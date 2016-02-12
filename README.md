@@ -38,7 +38,7 @@ de reação do jogador.
 
 #### Diagrama de navegação
 
-* Diagrama de navegação
+* ![Diagrama de Navegação](assets/images/navigation-diagram.png)
 
 
 #### License
