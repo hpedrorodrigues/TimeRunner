@@ -8,6 +8,7 @@
 * [Objetivos Específicos](#objetivos-específicos)
 * [Regras do Jogo](#regras-do-jogo)
 * [Diagrama de Navegação](#diagrama-de-navegação)
+* [Pontos Importantes](#pontos-importantes)
 * [Licença](#license)
 
 
@@ -21,12 +22,12 @@ de reação do jogador.
 
 #### Objetivo Geral
 
-* Fazer com que o jogador se divirta e melhore seu tempo de reação no jogo
+* Fazer com que o melhore seu tempo de reação no jogo
 
 
 #### Objetivos Específicos
 
-* Divertir o jogador
+* Desviar dos obstáculos
 * Durar o máximo de tempo que conseguir
 
 
@@ -39,6 +40,25 @@ de reação do jogador.
 #### Diagrama de navegação
 
 ![Diagrama de Navegação](assets/images/navigation-diagram.png)
+
+
+#### Pontos Importantes
+
+- Um jogo onde você joga como um cientista louco viajante
+- Você toca na tela para saltar sobre obstáculos e desliza para derrubar inimigos
+- Você começa cada jogo saindo de um portal para um período no tempo
+- Você tem que saltar por cima de coisas como pântanos e tocos de árvores, com insetos gigantes atacando você através
+da história
+- Se você sobreviver por tempo suficiente, a floresta começa gradualmente a diluir-se para fora, o chão fica mais seco,
+e os dinossauros começam a aparecer como inimigos
+- O jogo inteiro vai ser assim e quanto mais tempo você permanecer vivo, o jogo vai ficando mais difícil
+- Gráficos simples e fundos repetidamente gerados irá tornar mais fácil para produzir uma abundância de diferentes
+períodos de tempo
+- Por meio de antigos animais para os seres humanos primitivos para a civilização antiga, através da história
+registrada e culminando nas ruínas de uma colônia espacial de alta tecnologia, que você vai continuar a correr no
+"para sempre" se você chegar a esse ponto
+- Encontrar novos tempos dar um incentivo para o progresso, além do mecânico normal dos recordes. Simples e viciante,
+mas com um único ponto de venda interessante.
 
 
 #### License
