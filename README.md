@@ -13,7 +13,7 @@
 
 #### Enredo
 
-*Time Runner* é um jogo feito exclusivamente para *Android*. Inspirado em um
+**Time Runner** é um jogo feito exclusivamente para **Android**. Inspirado em um
 [post](http://www.reddit.com/r/gameideas/comments/3frqt9/need_idea_for_a_simple_yet_fun_mobile_game/)
 tem como objetivo fazer o jogador entrar numa *viagem* através da história de forma divertida, além de testar o tempo
 de reação do jogador.
@@ -32,13 +32,13 @@ de reação do jogador.
 
 #### Regras do Jogo
 
-* Ao ser atingido por um animal ou um inseto o jogador perderá o jogo
+* Ao ser atingido por algo (animais, insetos, tocos de árvores...) o jogador perderá o jogo
 * A pontuação do jogador será o seu tempo no jogo
 
 
 #### Diagrama de navegação
 
-* ![Diagrama de Navegação](assets/images/navigation-diagram.png)
+![Diagrama de Navegação](assets/images/navigation-diagram.png)
 
 
 #### License
