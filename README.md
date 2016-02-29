@@ -14,7 +14,7 @@
 
 #### Enredo
 
-**Time Runner** é um jogo feito exclusivamente para dispositivos móveis. Inspirado em um
+**Time Runner** é um jogo feito para dispositivos móveis. Inspirado em um
 [post](http://www.reddit.com/r/gameideas/comments/3frqt9/need_idea_for_a_simple_yet_fun_mobile_game/)
 tem como objetivo fazer o jogador entrar numa *viagem* através da história de forma divertida, além de testar o tempo
 de reação do jogador.
