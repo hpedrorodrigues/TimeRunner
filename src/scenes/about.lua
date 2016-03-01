@@ -2,15 +2,19 @@ local composer = require("composer")
 local viewUtil = require("src.view.view_util")
 local images = require("src.constant.images")
 local listener = require("src.constant.listener")
+local eventUtil = require("src.view.event_util")
+local sceneManager = require("src.scenes.manager")
 
 local scene = composer.newScene()
 
 function scene:create(event)
 
     local sceneGroup = self.view
-    local background = viewUtil.setBackground(images.MENU_BACKGROUND)
+    local background = viewUtil.setBackground(images.ABOUT_BACKGROUND)
 
     sceneGroup:insert(background)
+
+    eventUtil.setBackPressed(sceneManager.goMenu)
 end
 
 function scene:show(event)

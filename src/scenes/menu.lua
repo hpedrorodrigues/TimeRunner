@@ -13,17 +13,17 @@ function scene:create(event)
     local background = viewUtil.setBackground(images.MENU_BACKGROUND)
     local buttonsDistance = { x = 400, y = 200 }
 
-    local playButton = display.newImageRect(images.PLAY_BUTTON, 100, 100)
+    local playButton = display.newImageRect(images.PLAY_ICON, 100, 100)
     playButton.x = displayUtil.CENTER_X
     playButton.y = displayUtil.CENTER_Y
     playButton:addEventListener(listener.TAP, sceneManager.goGame)
 
-    local settingsButton = display.newImageRect(images.SETTINGS, 100, 100)
+    local settingsButton = display.newImageRect(images.SETTINGS_ICON, 100, 100)
     settingsButton.x = displayUtil.CENTER_X + buttonsDistance.x
     settingsButton.y = displayUtil.CENTER_Y - buttonsDistance.y
     settingsButton:addEventListener(listener.TAP, sceneManager.goSettings)
 
-    local aboutButton = display.newImageRect(images.ABOUT, 100, 100)
+    local aboutButton = display.newImageRect(images.ABOUT_ICON, 100, 100)
     aboutButton.x = displayUtil.CENTER_X - buttonsDistance.x
     aboutButton.y = displayUtil.CENTER_Y + buttonsDistance.y
     aboutButton:addEventListener(listener.TAP, sceneManager.goAbout)
