@@ -1,5 +1,5 @@
 local function _setBackground(url)
-    display.newImage(url, 700, 400, true)
+    return display.newImage(url, 700, 400, true)
 end
 
 

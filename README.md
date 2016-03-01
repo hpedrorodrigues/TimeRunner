@@ -39,7 +39,7 @@ de reação do jogador.
 
 #### Diagrama de navegação
 
-![Diagrama de Navegação](assets/images/navigation-diagram.png)
+![Diagrama de Navegação](assets/images/navigation_diagram.png)
 
 
 #### Pontos Importantes
