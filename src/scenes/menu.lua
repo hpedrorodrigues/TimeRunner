@@ -4,6 +4,7 @@ local displayUtil = require("src.view.display_util")
 local images = require("src.constant.images")
 local listener = require("src.constant.listener")
 local sceneManager = require("src.scenes.manager")
+local pingPong = require("src.effect.ping_pong")
 
 local scene = composer.newScene()
 
@@ -27,6 +28,8 @@ function scene:create(event)
     aboutButton.x = displayUtil.CENTER_X - buttonsDistance.x
     aboutButton.y = displayUtil.CENTER_Y + buttonsDistance.y
     aboutButton:addEventListener(listener.TAP, sceneManager.goAbout)
+
+    pingPong.make(playButton)
 
     sceneGroup:insert(background)
     sceneGroup:insert(playButton)
