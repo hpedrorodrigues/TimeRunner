@@ -1,4 +1,5 @@
 local listener = require("src.constant.listener")
+local composer = require("composer")
 
 local onBackPressed
 
@@ -13,12 +14,14 @@ local function _onKeyEvent(event)
 
     if (keyName == "back" and phase == "up") then
 
-        if (onBackPressed ~= nil) then
-            onBackPressed()
-        end
+        if (composer.getSceneName("current") ~= "src.scenes.menu") then
+            if (onBackPressed ~= nil) then
+                onBackPressed()
+            end
 
-        if (platformName == "Android") or (platformName == "WinPhone") then
-            return true
+            if (platformName == "Android") or (platformName == "WinPhone") then
+                return true
+            end
         end
     end
 
