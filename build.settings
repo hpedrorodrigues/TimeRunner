@@ -11,6 +11,7 @@ settings = {
     window = {},
     iphone = {
         plist = {
+            UIAppFonts = { "FFF_Tusj.ttf" },
             CFBundleDisplayName = "Time Runner",
             CFBundleName = "Time Runner",
             CFBundleIconFiles = {},

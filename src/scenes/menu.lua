@@ -34,10 +34,10 @@ function scene:create(event)
     pingPong.make(playButton)
 
     local gameTitle = display.newText({
-        text = "TimeRunner",
+        text = "Time Runner",
         x = displayUtil.CENTER_X,
         y = displayUtil.CENTER_Y - distance.y,
-        font = "FFFTusj-Bold",
+        font = (system.getInfo("environment") == "simulator" and "FFFTusj-Bold" or "FFF_Tusj"),
         fontSize = 100
     })
 
