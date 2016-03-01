@@ -1,3 +1,5 @@
+local transitionHandler
+
 local function _removeFlake(target)
     target:removeSelf()
     target = nil
@@ -10,7 +12,7 @@ local function _spawnSnowFlake()
     flake.x = math.random(display.contentWidth + 1000)
     flake.y = -2
 
-    transition.to(flake, {
+    transitionHandler = transition.to(flake, {
         time = math.random(3000) + 3000,
         y = display.contentHeight + 2,
         x = flake.x + wind,
@@ -23,7 +25,14 @@ local function _makeSnow()
     return true
 end
 
+local function _cancel()
+    if (transitionHandler ~= nil) then
+        transition.cancel(transitionHandler)
+    end
+end
+
 
 return {
-    make = _makeSnow
+    make = _makeSnow,
+    cancel = _cancel
 }

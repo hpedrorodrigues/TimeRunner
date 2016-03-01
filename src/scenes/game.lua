@@ -11,6 +11,8 @@ local scene = composer.newScene()
 
 function scene:create(event)
 
+    Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.make)
+
     local sceneGroup = self.view
     local background = viewUtil.setBackground(images.KINGDOM)
 
@@ -18,8 +20,6 @@ function scene:create(event)
 
     sceneGroup:insert(background)
     sceneGroup:insert(sprite)
-
-    Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.make)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end
@@ -58,11 +58,11 @@ end
 
 function scene:destroy(event)
 
-    local sceneGroup = self.view
+    Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.cancel)
 
-    -- Called prior to the removal of scene's view ("sceneGroup").
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
+    local sceneGroup = self.view
+    sceneGroup:removeSelf()
+    sceneGroup = nil
 end
 
 scene:addEventListener(listener.CREATE, scene)

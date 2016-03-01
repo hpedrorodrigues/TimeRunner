@@ -1,7 +1,11 @@
+local BASE_IMAGE_PATH = "assets/images/"
+
 return {
-    KINGDOM = "assets/images/time_locations/kingdom.jpg",
-    MENU_BACKGROUND = "assets/images/menu_background.jpg",
-    SPRITE = "assets/images/Running.png",
-    PLAY_BUTTON = "assets/images/play_button.png",
-    RUNNING = "assets/images/Running.png"
+    KINGDOM = BASE_IMAGE_PATH .. "time_locations/kingdom.jpg",
+    MENU_BACKGROUND = BASE_IMAGE_PATH .. "menu_background.jpg",
+    SPRITE = BASE_IMAGE_PATH .. "Running.png",
+    PLAY_BUTTON = BASE_IMAGE_PATH .. "play_button.png",
+    RUNNING = BASE_IMAGE_PATH .. "Running.png",
+    SETTINGS = BASE_IMAGE_PATH .. "settings.png",
+    ABOUT = BASE_IMAGE_PATH .. "about.png"
 }

@@ -7,14 +7,24 @@ local function _setBackPressed(backPressed)
 end
 
 local function _onKeyEvent(event)
-    local phase = event.phase
     local keyName = event.keyName
+    local phase = event.phase
+    local platformName = system.getInfo("platformName")
 
-    if ("back" == keyName and phase == "up") then
+    if (keyName == "back" and phase == "up") then
+
         if (onBackPressed ~= nil) then
             onBackPressed()
         end
+
+        if (platformName == "Android") or (platformName == "WinPhone") then
+            return true
+        end
     end
+
+    -- IMPORTANT! Return false to indicate that this app is NOT overriding the received key
+    -- This lets the operating system execute its default handling of the key
+    return false
 end
 
 Runtime:addEventListener(listener.KEY, _onKeyEvent)

@@ -2,25 +2,42 @@
 
 local composer = require("composer")
 
+local function _removeCurrentScene()
+    local currentScene = composer.getSceneName("current")
+
+    if (currentScene ~= nil) then
+        composer.removeScene(currentScene)
+    end
+end
+
 local function _goAbout()
-    composer.gotoScene("src.scenes.about")
+    _removeCurrentScene()
+    composer.removeHidden()
+    composer.gotoScene("src.scenes.about", { time = 500, effect = "crossFade" })
 end
 
 local function _goMenu()
-    composer.gotoScene("src.scenes.menu")
+    _removeCurrentScene()
+    composer.removeHidden()
+    composer.gotoScene("src.scenes.menu", { time = 500, effect = "crossFade" })
 end
 
 local function _goGame()
-    composer.gotoScene("src.scenes.game")
+    _removeCurrentScene()
+    composer.removeHidden()
+    composer.gotoScene("src.scenes.game", { time = 500, effect = "crossFade" })
 end
 
 local function _goSettings()
-    composer.gotoScene("src.scenes.settings")
+    _removeCurrentScene()
+    composer.removeHidden()
+    composer.gotoScene("src.scenes.settings", { time = 500, effect = "crossFade" })
 end
 
 return {
     goMenu = _goMenu,
     goAbout = _goAbout,
     goGame = _goGame,
-    goSettings = _goSettings
+    goSettings = _goSettings,
+    removeCurrentScene = _removeCurrentScene
 }
