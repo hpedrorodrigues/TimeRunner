@@ -1,18 +1,26 @@
 local composer = require("composer")
-local viewUtil = require("src.view.view_util")
 local images = require("src.constant.images")
 local listener = require("src.constant.listener")
 local eventUtil = require("src.view.event_util")
 local sceneManager = require("src.scenes.manager")
+local displayUtil = require("src.view.display_util")
 
 local scene = composer.newScene()
 
 function scene:create(event)
 
     local sceneGroup = self.view
-    local background = viewUtil.setBackground(images.ABOUT_BACKGROUND)
+    local background = display.newImage(images.ABOUT_BACKGROUND, 500, 300, true)
+
+    local backButtonDifference = 60
+
+    local backButton = display.newImageRect(images.BACK_ICON, 100, 100)
+    backButton.x = displayUtil.LEFT_SCREEN + backButtonDifference
+    backButton.y = displayUtil.TOP_SCREEN + backButtonDifference
+    backButton:addEventListener(listener.TAP, sceneManager.goMenu)
 
     sceneGroup:insert(background)
+    sceneGroup:insert(backButton)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end
@@ -52,10 +60,8 @@ end
 function scene:destroy(event)
 
     local sceneGroup = self.view
-
-    -- Called prior to the removal of scene's view ("sceneGroup").
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
+    sceneGroup:removeSelf()
+    sceneGroup = nil
 end
 
 scene:addEventListener(listener.CREATE, scene)

@@ -1,11 +1,11 @@
 local composer = require("composer")
-local viewUtil = require("src.view.view_util")
 local snowMaker = require("src.effect.snow")
 local listener = require("src.constant.listener")
 local sprite = require("src.sprite.sprite")
 local images = require("src.constant.images")
 local eventUtil = require("src.view.event_util")
 local sceneManager = require("src.scenes.manager")
+local displayUtil = require("src.view.display_util")
 
 local scene = composer.newScene()
 
@@ -14,12 +14,20 @@ function scene:create(event)
     Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.make)
 
     local sceneGroup = self.view
-    local background = viewUtil.setBackground(images.KINGDOM)
+    local background = display.newImage(images.KINGDOM, 700, 400, true)
+
+    local backButtonDifference = 60
+
+    local backButton = display.newImageRect(images.BACK_ICON, 100, 100)
+    backButton.x = displayUtil.LEFT_SCREEN + backButtonDifference
+    backButton.y = displayUtil.TOP_SCREEN + backButtonDifference
+    backButton:addEventListener(listener.TAP, sceneManager.goMenu)
 
     sprite:play()
 
     sceneGroup:insert(background)
     sceneGroup:insert(sprite)
+    sceneGroup:insert(backButton)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end

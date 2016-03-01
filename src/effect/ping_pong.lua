@@ -19,8 +19,8 @@ physics.addBody(rightWall, "static", { density = 1, friction = 0, bounce = 1, is
 local function _makeEffect(object)
     physics.addBody(object, "dynamic", { density = 1, friction = 0, radius = 0, isSensor = false, bounce = 1 })
 
-    local launchx = math.random(10, 20)
-    local launchy = math.random(10, 20)
+    local launchx = math.random(10, 15)
+    local launchy = math.random(10, 15)
 
     if (math.random(0, 5) == 0) then
         launchx = -launchx
