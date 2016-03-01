@@ -4,16 +4,19 @@ physics.start()
 physics.setScale(10)
 physics.setGravity(0, 0)
 
-local topWall = display.newRect(display.contentWidth / 2, 0, display.contentWidth, 0)
+local verticalDistance = 40
+local horizontalDistance = verticalDistance
+
+local topWall = display.newRect(display.contentWidth / 2, verticalDistance, display.contentWidth, 0)
 physics.addBody(topWall, "static", { density = 1, friction = 0, bounce = 1, isSensor = false })
 
-local bottomWall = display.newRect(display.contentWidth / 2, display.contentHeight, display.contentWidth, 0)
+local bottomWall = display.newRect(display.contentWidth / 2, display.contentHeight - verticalDistance, display.contentWidth, 0)
 physics.addBody(bottomWall, "static", { density = 1, friction = 0, bounce = 1, isSensor = false })
 
-local leftWall = display.newRect(2.5, display.contentHeight / 2, 0, display.contentHeight)
+local leftWall = display.newRect(horizontalDistance, display.contentHeight / 2, 0, display.contentHeight)
 physics.addBody(leftWall, "static", { density = 1, friction = 0, bounce = 1, isSensor = false })
 
-local rightWall = display.newRect(display.contentWidth - 2.5, display.contentHeight / 2, 0, display.contentHeight)
+local rightWall = display.newRect(display.contentWidth - horizontalDistance, display.contentHeight / 2, 0, display.contentHeight)
 physics.addBody(rightWall, "static", { density = 1, friction = 0, bounce = 1, isSensor = false })
 
 local function _makeEffect(object)
