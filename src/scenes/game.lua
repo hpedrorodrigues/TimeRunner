@@ -1,3 +1,7 @@
+-- Infinitely scrolling background: http://lomza.totem-soft.com/tutorial-scrollable-background-in-corona-sdk/
+-- http://stackoverflow.com/questions/11616534/design-an-endless-scrolling-background-in-corona-sdk
+
+
 local composer = require("composer")
 local snowMaker = require("src.effect.snow")
 local listener = require("src.constant.listener")
@@ -9,7 +13,7 @@ local displayUtil = require("src.view.display_util")
 
 local scene = composer.newScene()
 
-function scene:create(event)
+function scene:create()
 
     Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.make)
 
@@ -30,6 +34,14 @@ function scene:create(event)
     sceneGroup:insert(backButton)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
+
+    Runtime:addEventListener(listener.ENTER_FRAME, function()
+        background.x = background.x - 5
+
+        if background.x == display.contentWidth * 1.5 then
+            background.x = display.contentWidth * .5
+        end
+    end)
 end
 
 function scene:show(event)
