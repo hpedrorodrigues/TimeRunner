@@ -5,15 +5,21 @@
 
 local BASE_IMAGE_PATH = "assets/images/"
 
+local SPRITES_PATH = BASE_IMAGE_PATH .. "sprites/"
+local BACKGROUNDS_PATH = BASE_IMAGE_PATH .. "backgrounds/"
+local BUTTONS_PATH = BASE_IMAGE_PATH .. "buttons/"
+local SCENES_PATH = BASE_IMAGE_PATH .. "scenes/"
+
 return {
-    KINGDOM = BASE_IMAGE_PATH .. "time_locations/kingdom.jpg",
-    SPRITE = BASE_IMAGE_PATH .. "Running.png",
-    RUNNING = BASE_IMAGE_PATH .. "Running.png",
-    SETTINGS_BACKGROUND = BASE_IMAGE_PATH .. "settings_background.jpg",
-    MENU_BACKGROUND = BASE_IMAGE_PATH .. "menu_background.jpg",
-    ABOUT_BACKGROUND = BASE_IMAGE_PATH .. "about_background.jpg",
-    PLAY_ICON = BASE_IMAGE_PATH .. "play_button.png",
-    SETTINGS_ICON = BASE_IMAGE_PATH .. "settings.png",
-    ABOUT_ICON = BASE_IMAGE_PATH .. "about.png",
-    BACK_ICON = BASE_IMAGE_PATH .. "back_button.png"
+    CRAZY_SCIENTIST_SPRITE = SPRITES_PATH .. "crazy_scientist.png",
+    KINGDOM_SCENE = SCENES_PATH .. "kingdom.jpg",
+    SECOND_WAR_SCENE = SCENES_PATH .. "second_war.jpg",
+    EGYPT_SCENE = SCENES_PATH .. "egypt.jpg",
+    SETTINGS_BACKGROUND = BACKGROUNDS_PATH .. "settings.jpg",
+    MENU_BACKGROUND = BACKGROUNDS_PATH .. "menu.jpg",
+    ABOUT_BACKGROUND = BACKGROUNDS_PATH .. "about.jpg",
+    PLAY_BUTTON = BUTTONS_PATH .. "play.png",
+    SETTINGS_BUTTON = BUTTONS_PATH .. "settings.png",
+    ABOUT_BUTTON = BUTTONS_PATH .. "about.png",
+    BACK_BUTTON = BUTTONS_PATH .. "back.png"
 }

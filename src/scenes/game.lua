@@ -14,11 +14,11 @@ function scene:create(event)
     Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.make)
 
     local sceneGroup = self.view
-    local background = display.newImage(images.KINGDOM, 700, 400, true)
+    local background = display.newImage(images.EGYPT_SCENE, 700, 400, true)
 
     local backButtonDifference = 60
 
-    local backButton = display.newImageRect(images.BACK_ICON, 100, 100)
+    local backButton = display.newImageRect(images.BACK_BUTTON, 100, 100)
     backButton.x = displayUtil.LEFT_SCREEN + backButtonDifference
     backButton.y = displayUtil.TOP_SCREEN + backButtonDifference
     backButton:addEventListener(listener.TAP, sceneManager.goMenu)

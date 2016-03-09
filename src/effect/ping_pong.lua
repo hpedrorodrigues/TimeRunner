@@ -4,20 +4,23 @@ physics.start()
 physics.setScale(10)
 physics.setGravity(0, 0)
 
-local verticalDistance = 40
+local verticalDistance = 50
 local horizontalDistance = verticalDistance
 
-local topWall = display.newRect(display.contentWidth / 2, verticalDistance, display.contentWidth, 0)
-physics.addBody(topWall, "static", { density = 1, friction = 0, bounce = 1, isSensor = false })
+local wallConfiguration = { density = 1, friction = 0, bounce = 1, isSensor = false }
 
-local bottomWall = display.newRect(display.contentWidth / 2, display.contentHeight - verticalDistance, display.contentWidth, 0)
-physics.addBody(bottomWall, "static", { density = 1, friction = 0, bounce = 1, isSensor = false })
+local halfWidth = display.contentWidth / 2
+local halfHeight = display.contentHeight / 2
 
-local leftWall = display.newRect(horizontalDistance, display.contentHeight / 2, 0, display.contentHeight)
-physics.addBody(leftWall, "static", { density = 1, friction = 0, bounce = 1, isSensor = false })
+local topWall = display.newRect(halfWidth, verticalDistance, display.contentWidth, 0)
+local bottomWall = display.newRect(halfWidth, display.contentHeight - verticalDistance, display.contentWidth, 0)
+local leftWall = display.newRect(horizontalDistance, halfHeight, 0, display.contentHeight)
+local rightWall = display.newRect(display.contentWidth - horizontalDistance, halfHeight, 0, display.contentHeight)
 
-local rightWall = display.newRect(display.contentWidth - horizontalDistance, display.contentHeight / 2, 0, display.contentHeight)
-physics.addBody(rightWall, "static", { density = 1, friction = 0, bounce = 1, isSensor = false })
+physics.addBody(topWall, "static", wallConfiguration)
+physics.addBody(bottomWall, "static", wallConfiguration)
+physics.addBody(leftWall, "static", wallConfiguration)
+physics.addBody(rightWall, "static", wallConfiguration)
 
 local function _makeEffect(object)
     physics.addBody(object, "dynamic", { density = 1, friction = 0, radius = 0, isSensor = false, bounce = 1 })

@@ -16,17 +16,17 @@ function scene:create(event)
     local background = display.newImage(images.MENU_BACKGROUND, 300, 200, true)
     local distance = { x = 400, y = 250 }
 
-    local playButton = display.newImageRect(images.PLAY_ICON, 100, 100)
+    local playButton = display.newImageRect(images.PLAY_BUTTON, 100, 100)
     playButton.x = displayUtil.CENTER_X
     playButton.y = displayUtil.CENTER_Y
     playButton:addEventListener(listener.TAP, sceneManager.goGame)
 
-    local settingsButton = display.newImageRect(images.SETTINGS_ICON, 100, 100)
+    local settingsButton = display.newImageRect(images.SETTINGS_BUTTON, 100, 100)
     settingsButton.x = displayUtil.CENTER_X + distance.x
     settingsButton.y = displayUtil.CENTER_Y
     settingsButton:addEventListener(listener.TAP, sceneManager.goSettings)
 
-    local aboutButton = display.newImageRect(images.ABOUT_ICON, 100, 100)
+    local aboutButton = display.newImageRect(images.ABOUT_BUTTON, 100, 100)
     aboutButton.x = displayUtil.CENTER_X - distance.x
     aboutButton.y = displayUtil.CENTER_Y
     aboutButton:addEventListener(listener.TAP, sceneManager.goAbout)

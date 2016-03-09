@@ -14,7 +14,7 @@ function scene:create(event)
 
     local backButtonDifference = 60
 
-    local backButton = display.newImageRect(images.BACK_ICON, 100, 100)
+    local backButton = display.newImageRect(images.BACK_BUTTON, 100, 100)
     backButton.x = displayUtil.LEFT_SCREEN + backButtonDifference
     backButton.y = displayUtil.TOP_SCREEN + backButtonDifference
     backButton:addEventListener(listener.TAP, sceneManager.goMenu)
