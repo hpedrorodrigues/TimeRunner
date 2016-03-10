@@ -82,7 +82,7 @@ end
 
 function scene:destroy(event)
 
-    Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.cancel)
+    Runtime:removeEventListener(listener.ENTER_FRAME, snowMaker.make)
 
     local sceneGroup = self.view
     sceneGroup:removeSelf()

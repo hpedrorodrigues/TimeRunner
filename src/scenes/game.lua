@@ -1,24 +1,29 @@
--- Infinitely scrolling background: http://lomza.totem-soft.com/tutorial-scrollable-background-in-corona-sdk/
--- http://stackoverflow.com/questions/11616534/design-an-endless-scrolling-background-in-corona-sdk
-
-
 local composer = require("composer")
 local snowMaker = require("src.effect.snow")
 local listener = require("src.constant.listener")
-local sprite = require("src.sprite.sprite")
+local sprite = require("src.sprite.crazy_scientist")
 local images = require("src.constant.images")
 local eventUtil = require("src.view.event_util")
 local sceneManager = require("src.scenes.manager")
 local displayUtil = require("src.view.display_util")
 
 local scene = composer.newScene()
+local defaultDisplayConfiguration = display.getDefault()
 
 function scene:create()
 
-    Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.make)
-
     local sceneGroup = self.view
-    local background = display.newImage(images.EGYPT_SCENE, 700, 400, true)
+
+    display.setDefault("textureWrapX", "mirroredRepeat")
+
+    local background = display.newRect(display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight)
+    background.fill = { type = "image", filename = images.KINGDOM_SCENE }
+
+    local function animateBackground()
+        transition.to(background.fill, { time = 5000, x = 1, delta = true, onComplete = animateBackground })
+    end
+
+    animateBackground()
 
     local backButtonDifference = 60
 
@@ -35,13 +40,7 @@ function scene:create()
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 
-    Runtime:addEventListener(listener.ENTER_FRAME, function()
-        background.x = background.x - 5
-
-        if background.x == display.contentWidth * 1.5 then
-            background.x = display.contentWidth * .5
-        end
-    end)
+    Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.make)
 end
 
 function scene:show(event)
@@ -78,11 +77,13 @@ end
 
 function scene:destroy(event)
 
-    Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.cancel)
+    Runtime:removeEventListener(listener.ENTER_FRAME, snowMaker.make)
 
     local sceneGroup = self.view
     sceneGroup:removeSelf()
     sceneGroup = nil
+
+    display.setDefault(defaultDisplayConfiguration)
 end
 
 scene:addEventListener(listener.CREATE, scene)
