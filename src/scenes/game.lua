@@ -2,6 +2,7 @@ local composer = require("composer")
 local snowMaker = require("src.effect.snow")
 local listener = require("src.constant.listener")
 local sprite = require("src.sprite.crazy_scientist")
+local spriteControl = require("src.sprite.control.crazy_scientist")
 local images = require("src.constant.images")
 local eventUtil = require("src.view.event_util")
 local sceneManager = require("src.scenes.manager")
@@ -16,14 +17,16 @@ function scene:create()
 
     display.setDefault("textureWrapX", "mirroredRepeat")
 
-    local background = display.newRect(display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight)
+    local navigationStatusBarSize = 300
+
+    local background = display.newRect(display.contentCenterX, display.contentCenterY, display.contentWidth + navigationStatusBarSize, display.contentHeight)
     background.fill = { type = "image", filename = images.KINGDOM_SCENE }
 
-    local function animateBackground()
-        transition.to(background.fill, { time = 5000, x = 1, delta = true, onComplete = animateBackground })
+    local function infinitelyScrollingBackground()
+        transition.to(background.fill, { time = 5000, x = 1, delta = true, onComplete = infinitelyScrollingBackground })
     end
 
-    animateBackground()
+    infinitelyScrollingBackground()
 
     local backButtonDifference = 60
 
@@ -33,6 +36,8 @@ function scene:create()
     backButton:addEventListener(listener.TAP, sceneManager.goMenu)
 
     sprite:play()
+
+    spriteControl.make(sprite, background)
 
     sceneGroup:insert(background)
     sceneGroup:insert(sprite)
