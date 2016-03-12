@@ -7,6 +7,19 @@ function _make(sprite, background)
 
     physics.addBody(sprite, "dynamic", { density = 1, friction = 0, radius = 0, isSensor = false, bounce = 1 })
 
+    rectangle = display.newRect(0, 0, 100, 100)
+
+    rectangle.x = displayUtil.WIDTH_SCREEN
+    rectangle.y = displayUtil.HEIGHT_SCREEN
+
+    physics.addBody(rectangle, "kinematic", { isSensor = true })
+
+    function moveRandomly()
+        rectangle:setLinearVelocity(-200, 0);
+    end
+
+    timer.performWithDelay(500, moveRandomly, -1);
+
     local function handleSwipe(event)
         -- Reference - https://coronalabs.com/blog/2014/09/16/tutorial-swiping-an-object-to-fixed-points/
         if (event.phase == "moved") then
