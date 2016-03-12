@@ -9,13 +9,16 @@ function _make(sprite, background)
 
     rectangle = display.newRect(0, 0, 100, 100)
 
-    rectangle.x = displayUtil.WIDTH_SCREEN
+    rectangle.x = displayUtil.WIDTH_SCREEN + 75
     rectangle.y = displayUtil.HEIGHT_SCREEN
 
     physics.addBody(rectangle, "kinematic", { isSensor = true })
 
     function moveRandomly()
         rectangle:setLinearVelocity(-200, 0);
+        if (rectangle.x < displayUtil.LEFT_SCREEN) then
+            rectangle.x = displayUtil.WIDTH_SCREEN + 75
+        end
     end
 
     timer.performWithDelay(500, moveRandomly, -1);
