@@ -5,5 +5,6 @@ return {
     HIDE = "hide",
     DESTROY = "destroy",
     TAP = "tap",
-    KEY = "key"
+    KEY = "key",
+    TOUCH = "touch"
 }

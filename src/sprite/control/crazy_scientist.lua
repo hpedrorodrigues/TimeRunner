@@ -1,55 +1,55 @@
 local physics = require("physics")
 local displayUtil = require("src.view.display_util")
+local collisionUtil = require("src.view.collision_util")
+local swipeUtil = require("src.view.swipe_util")
+local sceneManager = require("src.scenes.manager")
+local listener = require("src.constant.listener")
+
+local randomObstaclesTimer
 
 function _make(sprite, background)
 
     physics.start()
 
-    physics.addBody(sprite, "dynamic", { density = 1, friction = 0, radius = 0, isSensor = false, bounce = 1 })
+    local obstacle = display.newRect(0, 0, 100, 100)
+    obstacle.x = displayUtil.WIDTH_SCREEN + 75
+    obstacle.y = displayUtil.HEIGHT_SCREEN
 
-    rectangle = display.newRect(0, 0, 100, 100)
+    physics.addBody(obstacle, "kinematic", { density = 1, isSensor = false })
+    physics.addBody(sprite, "dynamic", { density = 1, friction = 0, radius = 0, bounce = 1, isSensor = false })
 
-    rectangle.x = displayUtil.WIDTH_SCREEN + 75
-    rectangle.y = displayUtil.HEIGHT_SCREEN
+    local function translationObstacle()
 
-    physics.addBody(rectangle, "kinematic", { isSensor = true })
+        obstacle:setLinearVelocity(-500, 0);
 
-    function moveRandomly()
-        rectangle:setLinearVelocity(-200, 0);
-        if (rectangle.x < displayUtil.LEFT_SCREEN) then
-            rectangle.x = displayUtil.WIDTH_SCREEN + 75
+        if (obstacle.x < displayUtil.LEFT_SCREEN) then
+
+            obstacle.x = displayUtil.WIDTH_SCREEN + 75
         end
     end
 
-    timer.performWithDelay(500, moveRandomly, -1);
+    randomObstaclesTimer = timer.performWithDelay(500, translationObstacle, -1);
 
-    local function handleSwipe(event)
-        -- Reference - https://coronalabs.com/blog/2014/09/16/tutorial-swiping-an-object-to-fixed-points/
-        if (event.phase == "moved") then
+    collisionUtil.collision({ object1 = sprite, object2 = obstacle },
+        function(collisionFunction)
+            Runtime:removeEventListener(listener.ENTER_FRAME, collisionFunction)
+            timer.cancel(randomObstaclesTimer)
+            sceneManager.goMenu()
+        end)
 
-            local dY = event.y - event.yStart
-            local dX = event.x - event.xStart
-
-            if (dX < -10) then
-                -- Swipe LEFT
-
-                sprite:setLinearVelocity(0, 0)
-                sprite.x = displayUtil.LEFT_SCREEN + 100
-                sprite.y = displayUtil.HEIGHT_SCREEN - 80
-            elseif (dY > 10) then
-                -- Swipe DOWN
-
-                sprite:setLinearVelocity(0, 500)
-            elseif (dY < -10) then
-                -- Swipe UP
-
-                sprite:setLinearVelocity(0, -500)
-            end
+    swipeUtil.swipe(background, {
+        left = function()
+            sprite:setLinearVelocity(0, 0)
+            sprite.x = displayUtil.LEFT_SCREEN + 100
+            sprite.y = displayUtil.HEIGHT_SCREEN - 80
+        end,
+        down = function()
+            sprite:setLinearVelocity(0, 500)
+        end,
+        up = function()
+            sprite:setLinearVelocity(0, -500)
         end
-        return true
-    end
-
-    background:addEventListener("touch", handleSwipe)
+    })
 end
 
 return {
