@@ -60,7 +60,7 @@ registrada e culminando nas ruínas de uma colônia espacial de alta tecnologia,
 - Encontrar novos tempos dar um incentivo para o progresso, além do mecânico normal dos recordes. Simples e viciante,
 mas com um único ponto de venda interessante.
 
-See progress images [here](./docs/PROGRESS_IMAGES.md).
+Veja algumas imagens da evolução do jogo [aqui](./docs/PROGRESS_IMAGES.md).
 
 
 #### License
