@@ -19,7 +19,10 @@ function scene:create()
 
     local navigationStatusBarSize = 300
 
-    local background = display.newRect(display.contentCenterX, display.contentCenterY, display.contentWidth + navigationStatusBarSize, display.contentHeight)
+    local background = display.newRect(display.contentCenterX,
+        display.contentCenterY,
+        display.contentWidth + navigationStatusBarSize,
+        display.contentHeight)
     background.fill = { type = "image", filename = images.KINGDOM_SCENE }
 
     local function infinitelyScrollingBackground()
@@ -83,6 +86,8 @@ end
 function scene:destroy(event)
 
     Runtime:removeEventListener(listener.ENTER_FRAME, snowMaker.make)
+
+    spriteControl.clear()
 
     local sceneGroup = self.view
     sceneGroup:removeSelf()

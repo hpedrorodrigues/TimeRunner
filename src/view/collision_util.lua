@@ -2,6 +2,7 @@ local listener = require("src.constant.listener")
 
 local objects
 local action
+local collisionActionToClear
 
 local function _hasCollided(obj1, obj2)
     if (obj1 == nil or obj2 == nil) then
@@ -22,17 +23,23 @@ end
 
 local function _collision()
     if (objects ~= nil and action ~= nil and _hasCollided(objects.object1, objects.object2)) then
-        action(_collision)
+        action()
     end
 end
 
 local function _register(obj, act)
     objects = obj
     action = act
-    Runtime:addEventListener(listener.ENTER_FRAME, _collision)
+    collisionActionToClear = _collision
+    Runtime:addEventListener(listener.ENTER_FRAME, collisionActionToClear)
+end
+
+local function _collisionAction()
+    return collisionActionToClear
 end
 
 return {
     hasCollided = _hasCollided,
-    collision = _register
+    collision = _register,
+    action = _collisionAction
 }

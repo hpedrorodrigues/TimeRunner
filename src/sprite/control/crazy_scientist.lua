@@ -6,12 +6,26 @@ local sceneManager = require("src.scenes.manager")
 local listener = require("src.constant.listener")
 
 local randomObstaclesTimer
+local obstacle
+local sprite
 
-function _make(sprite, background)
+local function _clear()
+    Runtime:removeEventListener(listener.ENTER_FRAME, collisionUtil.action())
+
+    timer.cancel(randomObstaclesTimer)
+
+    physics.removeBody(obstacle)
+    physics.removeBody(sprite)
+
+    obstacle:removeSelf()
+end
+
+local function _make(sp, background)
+    sprite = sp
 
     physics.start()
 
-    local obstacle = display.newRect(0, 0, 100, 100)
+    obstacle = display.newRect(0, 0, 100, 100)
     obstacle.x = displayUtil.WIDTH_SCREEN + 75
     obstacle.y = displayUtil.HEIGHT_SCREEN
 
@@ -30,12 +44,10 @@ function _make(sprite, background)
 
     randomObstaclesTimer = timer.performWithDelay(500, translationObstacle, -1);
 
-    collisionUtil.collision({ object1 = sprite, object2 = obstacle },
-        function(collisionFunction)
-            Runtime:removeEventListener(listener.ENTER_FRAME, collisionFunction)
-            timer.cancel(randomObstaclesTimer)
-            sceneManager.goMenu()
-        end)
+    collisionUtil.collision({ object1 = sprite, object2 = obstacle }, function()
+        _clear()
+        sceneManager.goMenu()
+    end)
 
     swipeUtil.swipe(background, {
         left = function()
@@ -44,6 +56,7 @@ function _make(sprite, background)
             sprite.y = displayUtil.HEIGHT_SCREEN - 80
         end,
         down = function()
+            sprite:setLinearVelocity(0, 0)
             sprite:setLinearVelocity(0, 500)
         end,
         up = function()
@@ -53,5 +66,6 @@ function _make(sprite, background)
 end
 
 return {
-    make = _make
+    make = _make,
+    clear = _clear
 }
