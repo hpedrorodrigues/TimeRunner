@@ -7,14 +7,15 @@ local settings = require('src.db.settings')
 
 settings.showAllSettings()
 
-if (not settings.hasFirstAccess()) then
-    settings.insertFirstAccess()
-end
-
 defaults.set()
+
+if (settings.hasFirstAccess()) then
+    sceneManager.goMenu()
+else
+    settings.insertInitialValues()
+    sceneManager.goTutorial()
+end
 
 if (settings.isSoundEnabled()) then
     backgroundSound = audio.play(audio.loadStream(sounds.ADVENTURE), { loops = -1, fadein = 5000 })
 end
-
-sceneManager.goMenu()

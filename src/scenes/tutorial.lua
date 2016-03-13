@@ -4,16 +4,13 @@ local listener = require("src.constant.listener")
 local eventUtil = require("src.view.event_util")
 local sceneManager = require("src.scenes.manager")
 local displayUtil = require("src.view.display_util")
-local widget = require("widget")
-local settings = require('src.db.settings')
-local sounds = require("src.constant.sounds")
 
 local scene = composer.newScene()
 
 function scene:create(event)
 
     local sceneGroup = self.view
-    local background = display.newImage(images.SETTINGS_BACKGROUND, 700, 400, true)
+    local background = display.newImage(images.TUTORIAL_BACKGROUND, 700, 400, true)
 
     local backButtonDifference = 60
 
@@ -22,42 +19,8 @@ function scene:create(event)
     backButton.y = displayUtil.TOP_SCREEN + backButtonDifference
     backButton:addEventListener(listener.TAP, sceneManager.goMenu)
 
-    local soundSwitch = widget.newSwitch({
-        left = displayUtil.LEFT_SCREEN + 100,
-        top = 200,
-        style = "onOff",
-        id = "soundSwitch",
-        initialSwitchState = settings.isSoundEnabled(),
-        onPress = function(event)
-            local switch = event.target
-
-            if (switch.isOn) then
-
-                settings.disableSound()
-
-                if (backgroundSound ~= nil) then
-                    audio.stop(backgroundSound)
-                end
-            else
-
-                settings.enableSound()
-                backgroundSound = audio.play(audio.loadStream(sounds.ADVENTURE), { loops = -1, fadein = 5000 })
-            end
-        end
-    })
-
-    local soundTitle = display.newText({
-        text = "Habilitar som",
-        x = soundSwitch.x + 200,
-        y = soundSwitch.y,
-        font = native.systemFontBold,
-        fontSize = 40
-    })
-
     sceneGroup:insert(background)
     sceneGroup:insert(backButton)
-    sceneGroup:insert(soundSwitch)
-    sceneGroup:insert(soundTitle)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end

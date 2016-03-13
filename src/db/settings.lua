@@ -9,6 +9,13 @@ local ENABLE_SOUND_KEY = "enable_sound"
 local TRUE = 1
 local FALSE = 0
 
+local function _insertInitialValues()
+    database:exec(databaseConstants.formatInitialSettings({
+        firstAccessKey = FIRST_ACCESS_KEY,
+        enableSoundKey = ENABLE_SOUND_KEY
+    }))
+end
+
 local function _getSettingByKey(key)
     for row in database:nrows(databaseConstants.formatSelectSettingsByKeyScript(key)) do
         return row.value
@@ -24,7 +31,7 @@ end
 
 local function _showAllSettings()
     for row in database:nrows(databaseConstants.ALL_SETTINGS_SCRIPT) do
-        print('Setting: ' .. row.key .. ' - Value: ' .. tostring(row.value))
+        print('Setting -> Id: ' .. tostring(row.id) .. ' - Key: ' .. row.key .. ' - Value: ' .. tostring(row.value))
     end
 end
 
@@ -57,6 +64,7 @@ local function _isSoundEnabled()
 end
 
 return {
+    insertInitialValues = _insertInitialValues,
     enableSound = _enableSound,
     disableSound = _disableSound,
     isSoundEnabled = _isSoundEnabled,

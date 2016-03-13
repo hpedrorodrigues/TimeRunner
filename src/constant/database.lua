@@ -3,6 +3,13 @@ return {
     CREATE_SETTINGS_TABLE_SCRIPT = [[
         CREATE TABLE IF NOT EXISTS settings (id INTEGER PRIMARY KEY, key, value INTEGER);
     ]],
+    formatInitialSettings = function(object)
+        return [[
+            DELETE FROM settings;
+            INSERT OR REPLACE INTO settings VALUES (NULL, ']] .. object.firstAccessKey .. [[', 1);
+            INSERT OR REPLACE INTO settings VALUES (NULL, ']] .. object.enableSoundKey .. [[', 1);
+        ]]
+    end,
     formatDeleteSettingsByKeyScript = function(key)
         return [[ DELETE FROM settings WHERE key = ']] .. key .. [['; ]]
     end,

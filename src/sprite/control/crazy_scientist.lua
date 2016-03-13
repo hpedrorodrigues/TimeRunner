@@ -70,11 +70,22 @@ local function _make(sp, background)
     randomObstaclesTimer = timer.performWithDelay(500, translationObstacle, -1);
 
     collisionUtil.collision({ object1 = sprite, object2 = obstacle }, function()
-        sprite:setLinearVelocity(0, 0)
-        sprite.y = displayUtil.HEIGHT_SCREEN - 55
+        local function onComplete(event)
 
-        _clear()
-        sceneManager.goMenu()
+            if (event.action == "clicked") then
+                local i = event.index
+
+                if (i == 1) then
+                    sprite:setLinearVelocity(0, 0)
+                    sprite.y = displayUtil.HEIGHT_SCREEN - 55
+
+                    _clear()
+                    sceneManager.goMenu()
+                end
+            end
+        end
+
+        native.showAlert("Game Over", "You lose. :(\nPlease try again :)", { "Ok" }, onComplete)
     end)
 
     swipeUtil.swipe(background, {

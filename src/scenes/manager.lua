@@ -34,10 +34,17 @@ local function _goSettings()
     composer.gotoScene("src.scenes.settings", { time = 500, effect = "crossFade" })
 end
 
+local function _goTutorial()
+    _removeCurrentScene()
+    composer.removeHidden()
+    composer.gotoScene("src.scenes.tutorial", { time = 500, effect = "crossFade" })
+end
+
 return {
     goMenu = _goMenu,
     goAbout = _goAbout,
     goGame = _goGame,
     goSettings = _goSettings,
+    goTutorial = _goTutorial,
     removeCurrentScene = _removeCurrentScene
 }
