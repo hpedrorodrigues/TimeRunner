@@ -10,14 +10,17 @@ local obstacle
 local sprite
 
 local function _clear()
+
     Runtime:removeEventListener(listener.ENTER_FRAME, collisionUtil.action())
 
     timer.cancel(randomObstaclesTimer)
 
-    physics.removeBody(obstacle)
-    physics.removeBody(sprite)
+    if (obstacle ~= nil) then
+        physics.removeBody(obstacle)
 
-    obstacle:removeSelf()
+        obstacle:removeSelf()
+        obstacle = nil
+    end
 end
 
 local function _make(sp, background)
@@ -63,6 +66,12 @@ local function _make(sp, background)
             sprite:setLinearVelocity(0, -500)
         end
     })
+
+    local function controlScientistJump()
+        print(sprite.x, sprite.y)
+    end
+
+    Runtime:addEventListener(listener.ENTER_FRAME, controlScientistJump)
 end
 
 return {
