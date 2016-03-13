@@ -1,7 +1,5 @@
 # Progress images
 
-### First screen
-
 ![First Image](./../assets/images/progress/1.png)
 
 ![Second Image](./../assets/images/progress/2.png)
