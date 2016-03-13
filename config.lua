@@ -13,7 +13,7 @@ application = {
         height = height,
         scale = "letterbox",
         xAlign = "left",
-        yAlign = "bottom",
+        yAlign = "top",
         shaderPrecision = "highp"
     }
 }

@@ -58,6 +58,11 @@ local function _make(sp, background)
             sprite.x = displayUtil.LEFT_SCREEN + 100
             sprite.y = displayUtil.HEIGHT_SCREEN - 80
         end,
+        right = function()
+            sprite:setLinearVelocity(0, 0)
+            sprite.x = displayUtil.LEFT_SCREEN + 100
+            sprite.y = displayUtil.HEIGHT_SCREEN - 80
+        end,
         down = function()
             sprite:setLinearVelocity(0, 0)
             sprite:setLinearVelocity(0, 500)
