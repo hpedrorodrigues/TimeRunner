@@ -24,7 +24,7 @@ end
 
 local function _showAllSettings()
     for row in database:nrows(databaseConstants.ALL_SETTINGS_SCRIPT) do
-        print('Setting:', row.key, 'Value:', row.value)
+        print('Setting: ' .. row.key .. ' - Value: ' .. tostring(row.value))
     end
 end
 
