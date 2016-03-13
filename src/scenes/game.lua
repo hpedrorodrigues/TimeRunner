@@ -1,11 +1,11 @@
 local composer = require("composer")
 local listener = require("src.constant.listener")
-local sprite = require("src.sprite.crazy_scientist")
 local spriteControl = require("src.sprite.control.crazy_scientist")
 local images = require("src.constant.images")
 local eventUtil = require("src.view.event_util")
 local sceneManager = require("src.scenes.manager")
 local displayUtil = require("src.view.display_util")
+local sprite = require("src.sprite.crazy_scientist")
 
 local scene = composer.newScene()
 local defaultDisplayConfiguration = display.getDefault()
@@ -25,7 +25,12 @@ function scene:create()
     background.fill = { type = "image", filename = images.FRENCH_REVOLUTION_SCENE }
 
     local function infinitelyScrollingBackground()
-        transition.to(background.fill, { time = 5000, x = 1, delta = true, onComplete = infinitelyScrollingBackground })
+        transition.to(background.fill, {
+            time = 5000,
+            x = 1,
+            delta = true,
+            onComplete = infinitelyScrollingBackground
+        })
     end
 
     infinitelyScrollingBackground()

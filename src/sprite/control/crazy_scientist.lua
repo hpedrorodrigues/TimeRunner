@@ -16,8 +16,6 @@ local function _controlScientistJump()
         local roundedSpriteY = math.floor(sprite.y)
         local maxDifferencePermitted = 2
 
-        print(sprite.y)
-
         if (sprite.y < 550) then
 
             sprite:setLinearVelocity(0, 0)
