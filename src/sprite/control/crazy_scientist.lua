@@ -9,9 +9,32 @@ local randomObstaclesTimer
 local obstacle
 local sprite
 
+local function _controlScientistJump()
+    if (sprite ~= nil) then
+
+        local spriteLocationY = displayUtil.HEIGHT_SCREEN - 55
+        local roundedSpriteY = math.floor(sprite.y)
+        local maxDifferencePermitted = 2
+
+        print(sprite.y)
+
+        if (sprite.y < 550) then
+
+            sprite:setLinearVelocity(0, 0)
+            sprite:setLinearVelocity(0, 500)
+        elseif (roundedSpriteY == spriteLocationY
+                or roundedSpriteY + maxDifferencePermitted == spriteLocationY
+                or roundedSpriteY - maxDifferencePermitted == spriteLocationY) then
+
+            sprite:setLinearVelocity(0, 0)
+        end
+    end
+end
+
 local function _clear()
 
     Runtime:removeEventListener(listener.ENTER_FRAME, collisionUtil.action())
+    Runtime:removeEventListener(listener.ENTER_FRAME, _controlScientistJump)
 
     timer.cancel(randomObstaclesTimer)
 
@@ -28,7 +51,7 @@ local function _make(sp, background)
 
     physics.start()
 
-    obstacle = display.newRect(0, 0, 100, 100)
+    obstacle = display.newRect(0, 0, 75, 75)
     obstacle.x = displayUtil.WIDTH_SCREEN + 75
     obstacle.y = displayUtil.HEIGHT_SCREEN
 
@@ -53,16 +76,6 @@ local function _make(sp, background)
     end)
 
     swipeUtil.swipe(background, {
-        left = function()
-            sprite:setLinearVelocity(0, 0)
-            sprite.x = displayUtil.LEFT_SCREEN + 100
-            sprite.y = displayUtil.HEIGHT_SCREEN - 80
-        end,
-        right = function()
-            sprite:setLinearVelocity(0, 0)
-            sprite.x = displayUtil.LEFT_SCREEN + 100
-            sprite.y = displayUtil.HEIGHT_SCREEN - 80
-        end,
         down = function()
             sprite:setLinearVelocity(0, 0)
             sprite:setLinearVelocity(0, 500)
@@ -72,11 +85,7 @@ local function _make(sp, background)
         end
     })
 
-    local function controlScientistJump()
-        print(sprite.x, sprite.y)
-    end
-
-    Runtime:addEventListener(listener.ENTER_FRAME, controlScientistJump)
+    Runtime:addEventListener(listener.ENTER_FRAME, _controlScientistJump)
 end
 
 return {

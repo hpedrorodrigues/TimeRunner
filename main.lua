@@ -1,7 +1,7 @@
 local sceneManager = require("src.scenes.manager")
 local sounds = require("src.constant.sounds")
 
-audio.play(audio.loadSound(sounds.ADVENTURE), { duration = 0 })
+audio.play(audio.loadStream(sounds.ADVENTURE), { loops = -1, fadein = 5000 })
 
 sceneManager.goMenu()
 
