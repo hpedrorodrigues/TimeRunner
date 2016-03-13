@@ -15,6 +15,7 @@ return {
     KINGDOM_SCENE = SCENES_PATH .. "kingdom.jpg",
     SECOND_WAR_SCENE = SCENES_PATH .. "second_war.jpg",
     EGYPT_SCENE = SCENES_PATH .. "egypt.gif",
+    FRENCH_REVOLUTION_SCENE = SCENES_PATH .. "french_revolution.gif",
     SETTINGS_BACKGROUND = BACKGROUNDS_PATH .. "settings.jpg",
     MENU_BACKGROUND = BACKGROUNDS_PATH .. "menu.jpg",
     ABOUT_BACKGROUND = BACKGROUNDS_PATH .. "about.jpg",

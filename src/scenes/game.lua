@@ -22,7 +22,7 @@ function scene:create()
         display.contentCenterY,
         display.contentWidth + navigationStatusBarSize,
         display.contentHeight)
-    background.fill = { type = "image", filename = images.EGYPT_SCENE }
+    background.fill = { type = "image", filename = images.FRENCH_REVOLUTION_SCENE }
 
     local function infinitelyScrollingBackground()
         transition.to(background.fill, { time = 5000, x = 1, delta = true, onComplete = infinitelyScrollingBackground })

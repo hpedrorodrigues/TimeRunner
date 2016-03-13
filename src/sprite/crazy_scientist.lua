@@ -61,6 +61,6 @@ local sprite = display.newSprite(healthSheet, spriteSequence)
 sprite:setSequence(spriteSequenceNames.STOPPED)
 
 sprite.x = displayUtil.LEFT_SCREEN + 100
-sprite.y = displayUtil.HEIGHT_SCREEN - 80
+sprite.y = displayUtil.HEIGHT_SCREEN - 55
 
 return sprite

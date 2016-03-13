@@ -8,12 +8,12 @@ application = {
     showRuntimeErrors = true,
     launchPad = false,
     content = {
-        fps = 30,
+        fps = 60,
         width = width,
         height = height,
         scale = "letterbox",
         xAlign = "left",
-        yAlign = "top",
+        yAlign = "bottom",
         shaderPrecision = "highp"
     }
 }
