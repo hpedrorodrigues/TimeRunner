@@ -1,6 +1,14 @@
 -- Reference: https://docs.coronalabs.com/guide/distribution/buildSettings/index.html
 
 settings = {
+    build = {
+        neverStripDebugInfo = true
+    },
+    excludeFiles = {
+        all = { ".gitignore", "LICENSE", "README.md" },
+        ios = { "Icon-*dpi.png" },
+        android = { "Icon.png", "*@2x.png" }
+    },
     orientation = {
         default = "landscapeRight",
         supported = {

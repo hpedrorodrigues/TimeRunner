@@ -19,12 +19,13 @@ local function _controlScientistJump()
         if (sprite.y < 550) then
 
             sprite:setLinearVelocity(0, 0)
-            sprite:setLinearVelocity(0, 500)
+            sprite:setLinearVelocity(0, 700)
         elseif (roundedSpriteY == spriteLocationY
                 or roundedSpriteY + maxDifferencePermitted == spriteLocationY
                 or roundedSpriteY - maxDifferencePermitted == spriteLocationY) then
 
             sprite:setLinearVelocity(0, 0)
+            sprite.y = displayUtil.HEIGHT_SCREEN - 55
         end
     end
 end

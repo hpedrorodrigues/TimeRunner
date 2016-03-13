@@ -6,5 +6,6 @@ return {
     DESTROY = "destroy",
     TAP = "tap",
     KEY = "key",
-    TOUCH = "touch"
+    TOUCH = "touch",
+    SYSTEM = "system"
 }

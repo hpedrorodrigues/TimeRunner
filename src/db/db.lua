@@ -1,5 +1,6 @@
 local databaseConstants = require('src.constant.database')
 local sqlite3 = require("sqlite3")
+local listener = require('src.constant.listener')
 
 local dbPath = system.pathForFile(databaseConstants.DATABASE_NAME, system.DocumentsDirectory)
 local db = sqlite3.open(dbPath)
@@ -12,7 +13,7 @@ local function onSystemEvent(event)
     end
 end
 
-Runtime:addEventListener("system", onSystemEvent)
+Runtime:addEventListener(listener.SYSTEM, onSystemEvent)
 
 print("SQLite version: " .. sqlite3.version())
 
