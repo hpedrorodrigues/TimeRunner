@@ -14,7 +14,7 @@ return {
     CRAZY_SCIENTIST_SPRITE = SPRITES_PATH .. "crazy_scientist.png",
     KINGDOM_SCENE = SCENES_PATH .. "kingdom.jpg",
     SECOND_WAR_SCENE = SCENES_PATH .. "second_war.jpg",
-    EGYPT_SCENE = SCENES_PATH .. "egypt.jpg",
+    EGYPT_SCENE = SCENES_PATH .. "egypt.gif",
     SETTINGS_BACKGROUND = BACKGROUNDS_PATH .. "settings.jpg",
     MENU_BACKGROUND = BACKGROUNDS_PATH .. "menu.jpg",
     ABOUT_BACKGROUND = BACKGROUNDS_PATH .. "about.jpg",

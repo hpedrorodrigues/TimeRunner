@@ -1,5 +1,4 @@
 local composer = require("composer")
-local snowMaker = require("src.effect.snow")
 local listener = require("src.constant.listener")
 local sprite = require("src.sprite.crazy_scientist")
 local spriteControl = require("src.sprite.control.crazy_scientist")
@@ -23,7 +22,7 @@ function scene:create()
         display.contentCenterY,
         display.contentWidth + navigationStatusBarSize,
         display.contentHeight)
-    background.fill = { type = "image", filename = images.KINGDOM_SCENE }
+    background.fill = { type = "image", filename = images.EGYPT_SCENE }
 
     local function infinitelyScrollingBackground()
         transition.to(background.fill, { time = 5000, x = 1, delta = true, onComplete = infinitelyScrollingBackground })
@@ -47,8 +46,6 @@ function scene:create()
     sceneGroup:insert(backButton)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
-
-    Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.make)
 end
 
 function scene:show(event)
@@ -84,8 +81,6 @@ function scene:hide(event)
 end
 
 function scene:destroy(event)
-
-    Runtime:removeEventListener(listener.ENTER_FRAME, snowMaker.make)
 
     spriteControl.clear()
 
