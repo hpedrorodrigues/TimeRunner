@@ -63,7 +63,7 @@ local function _listStringsObject()
 end
 
 local function _listDisplayUtilObject()
-    _listProperties(displayConstants, 'Display Util')
+    _listProperties(displayConstants, 'Display Constants')
 end
 
 local function _listKnownConstantObjects()
