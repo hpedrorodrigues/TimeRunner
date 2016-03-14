@@ -1,10 +1,18 @@
 local listener = require("src.constant.listener")
 
+local INITIAL_SIZE = 1
+
 local action
 local collisionActionToClear
 local objects = {}
 local throttle = {}
-local size = 1
+local size = INITIAL_SIZE
+
+local function _clearFields()
+    size = INITIAL_SIZE
+    objects = {}
+    throttle = {}
+end
 
 local function _hasCollided(obj1, obj2)
     if (obj1 == nil or obj2 == nil) then
@@ -30,13 +38,18 @@ local function _hasCollided(obj1, obj2)
 end
 
 local function _collision()
-    if (size > 0) then
-        for i = 1, size - 1 do
-            local obj1 = objects[i].object1
-            local obj2 = objects[i].object2
+    if (size >= INITIAL_SIZE) then
 
-            if (action ~= nil and _hasCollided(obj1, obj2)) then
-                action()
+        for i = INITIAL_SIZE, size - 1 do
+
+            if (objects ~= nil and objects[i] ~= nil) then
+
+                local obj1 = objects[i].object1
+                local obj2 = objects[i].object2
+
+                if (action ~= nil and _hasCollided(obj1, obj2)) then
+                    action()
+                end
             end
         end
     end
@@ -51,6 +64,7 @@ local function _register(obj, act)
 end
 
 local function _collisionAction()
+    _clearFields()
     return collisionActionToClear
 end
 

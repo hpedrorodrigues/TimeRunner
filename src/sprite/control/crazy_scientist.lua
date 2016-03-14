@@ -48,17 +48,18 @@ local function _clear()
 
     timer.cancel(randomObstaclesTimer)
 
-    if (earthObstacle ~= nil) then
-        physics.removeBody(earthObstacle)
-
-        earthObstacle:removeSelf()
-        earthObstacle = nil
-    end
     if (airObstacle ~= nil) then
         physics.removeBody(airObstacle)
 
         airObstacle:removeSelf()
         airObstacle = nil
+    end
+
+    if (earthObstacle ~= nil) then
+        physics.removeBody(earthObstacle)
+
+        earthObstacle:removeSelf()
+        earthObstacle = nil
     end
 end
 
@@ -68,14 +69,15 @@ local function _make(sp, background, group)
     physics.start()
 
     local obstacleSize = 50
-
-    earthObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
-    earthObstacle.x = displayUtil.WIDTH_SCREEN + 75
-    earthObstacle.y = displayUtil.HEIGHT_SCREEN - (obstacleSize / 2)
+    local defaultObstacleX = displayUtil.WIDTH_SCREEN + 75
 
     airObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
-    airObstacle.x = displayUtil.WIDTH_SCREEN + 75
-    airObstacle.y = earthObstacle.y - (obstacleSize * 3)
+    airObstacle.x = defaultObstacleX
+    airObstacle.y = displayUtil.HEIGHT_SCREEN - (obstacleSize * 3)
+
+    earthObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
+    earthObstacle.x = defaultObstacleX
+    earthObstacle.y = displayUtil.HEIGHT_SCREEN - (obstacleSize / 2)
 
     physics.addBody(airObstacle, "kinematic", { density = 1, isSensor = false })
     physics.addBody(earthObstacle, "kinematic", { density = 1, isSensor = false })
@@ -102,19 +104,20 @@ local function _make(sp, background, group)
         airObstacle:setLinearVelocity(-200, 0);
         earthObstacle:setLinearVelocity(-500, 0);
 
-        if (earthObstacle.x < displayUtil.LEFT_SCREEN) then
-
-            earthObstacle.x = displayUtil.WIDTH_SCREEN + 75
-        end
         if (airObstacle.x < displayUtil.LEFT_SCREEN) then
 
-            airObstacle.x = displayUtil.WIDTH_SCREEN + 75
+            airObstacle.x = defaultObstacleX
+        end
+
+        if (earthObstacle.x < displayUtil.LEFT_SCREEN) then
+
+            earthObstacle.x = defaultObstacleX
         end
     end
 
     sprite.myName = bodyNames.sprite
-    earthObstacle.myName = bodyNames.earthObstacle
     airObstacle.myName = bodyNames.airObstacle
+    earthObstacle.myName = bodyNames.earthObstacle
 
     local function spriteCollision(self, event)
         if (event.phase == "ended") then
