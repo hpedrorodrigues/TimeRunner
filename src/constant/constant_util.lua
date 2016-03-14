@@ -3,28 +3,38 @@ local databaseConstants = require('src.constant.database')
 local listener = require("src.constant.listener")
 local sounds = require("src.constant.sounds")
 local spriteSequences = require("src.constant.sprite_sequence")
+local strings = require('src.constant.strings')
+local displayUtil = require('src.view.display_util')
 
 local function _listProperties(obj, message)
-    print('\n\n')
-    print('-----------------------------')
+    print(strings.BREAK_LINES)
+    print(strings.LONG_LINE)
     print(message)
-    print('\n')
+    print(strings.BREAK_LINE)
 
     for k, v in pairs(obj) do
 
         print('Key: ' .. k)
 
-        if (type(v) == 'function') then
+        local valueType = type(v)
+
+        if (valueType == 'function') then
 
             print('Value: [Function]')
+        elseif (valueType == 'userdata') then
+
+            print('Value: [UserData]')
+        elseif (valueType == 'table') then
+
+            print('Value: [Table]')
         else
 
             print('Value: ' .. v)
         end
     end
 
-    print('-----------------------------')
-    print('\n\n')
+    print(strings.LONG_LINE)
+    print(strings.BREAK_LINES)
 end
 
 local function _listImagesObject()
@@ -47,12 +57,22 @@ local function _listSpriteSequencesObject()
     _listProperties(spriteSequences, 'Sprite sequences')
 end
 
+local function _listStringsObject()
+    _listProperties(strings, 'Strings')
+end
+
+local function _listDisplayUtilObject()
+    _listProperties(displayUtil, 'Display Util')
+end
+
 local function _listKnownConstantObjects()
     _listImagesObject()
     _listDatabaseObject()
     _listListenerObject()
     _listSoundObject()
     _listSpriteSequencesObject()
+    _listStringsObject()
+    _listDisplayUtilObject()
 end
 
 return {

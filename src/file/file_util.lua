@@ -1,10 +1,11 @@
+local strings = require('src.constant.strings')
 local lfs = require("lfs")
 
 local function _listFiles(path, message)
-    print('\n\n')
-    print('-----------------------------')
+    print(strings.BREAK_LINES)
+    print(strings.LONG_LINE)
     print(message)
-    print('\n')
+    print(strings.BREAK_LINE)
 
     if (path == nil) then
 
@@ -18,8 +19,8 @@ local function _listFiles(path, message)
         end
     end
 
-    print('-----------------------------')
-    print('\n\n')
+    print(strings.LONG_LINE)
+    print(strings.BREAK_LINES)
 end
 
 local function _listDocumentsDirectory()

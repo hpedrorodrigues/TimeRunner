@@ -6,17 +6,13 @@ local function _cancel(sound)
     end
 end
 
-local function _play(soundPath)
-    local sound = audio.loadSound(soundPath)
+local function _playBackgroundSound()
+    local sound = audio.loadSound(sounds.ADVENTURE)
 
     return audio.play(sound, {
         loops = -1,
         fadein = 5000
     })
-end
-
-local function _playBackgroundSound()
-    return _play(sounds.ADVENTURE)
 end
 
 return {

@@ -1,5 +1,6 @@
 local databaseConstants = require('src.constant.database')
 local databaseManager = require('src.db.db')
+local strings = require('src.constant.strings')
 
 local database = databaseManager.database
 
@@ -32,18 +33,18 @@ local function _setSettingByKey(key, value)
 end
 
 local function _showAllSettings()
-    print('\n\n\n')
-    print('-----------------------------')
+    print(strings.BREAK_LINES)
+    print(strings.LONG_LINE)
     print('Existent settings on db')
-    print('\n')
+    print(strings.BREAK_LINE)
 
     for row in database:nrows(databaseConstants.ALL_SETTINGS_SCRIPT) do
 
         print('Setting -> Id: ' .. tostring(row.id) .. ' - Key: ' .. row.key .. ' - Value: ' .. tostring(row.value))
     end
 
-    print('-----------------------------')
-    print('\n\n\n')
+    print(strings.LONG_LINE)
+    print(strings.BREAK_LINES)
 end
 
 -- First Access

@@ -6,7 +6,6 @@ local sceneManager = require("src.scenes.manager")
 local displayUtil = require("src.view.display_util")
 local widget = require("widget")
 local settings = require('src.db.settings')
-local sounds = require("src.constant.sounds")
 local soundUtil = require("src.sound.sound_util")
 
 local scene = composer.newScene()
