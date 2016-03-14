@@ -1,6 +1,8 @@
 local importations = require(IMPORTATIONS)
 local composer = require(importations.COMPOSER)
 
+local transitionConfiguration = { time = 500, effect = 'crossFade' }
+
 local function _removeCurrentScene()
     local currentScene = composer.getSceneName('current')
 
@@ -12,31 +14,31 @@ end
 local function _goAbout()
     _removeCurrentScene()
     composer.removeHidden()
-    composer.gotoScene('src.scenes.about', { time = 500, effect = 'crossFade' })
+    composer.gotoScene('src.scenes.about', transitionConfiguration)
 end
 
 local function _goMenu()
     _removeCurrentScene()
     composer.removeHidden()
-    composer.gotoScene('src.scenes.menu', { time = 500, effect = 'crossFade' })
+    composer.gotoScene('src.scenes.menu', transitionConfiguration)
 end
 
 local function _goGame()
     _removeCurrentScene()
     composer.removeHidden()
-    composer.gotoScene('src.scenes.game', { time = 500, effect = 'crossFade' })
+    composer.gotoScene('src.scenes.game', transitionConfiguration)
 end
 
 local function _goSettings()
     _removeCurrentScene()
     composer.removeHidden()
-    composer.gotoScene('src.scenes.settings', { time = 500, effect = 'crossFade' })
+    composer.gotoScene('src.scenes.settings', transitionConfiguration)
 end
 
 local function _goTutorial()
     _removeCurrentScene()
     composer.removeHidden()
-    composer.gotoScene('src.scenes.tutorial', { time = 500, effect = 'crossFade' })
+    composer.gotoScene('src.scenes.tutorial', transitionConfiguration)
 end
 
 return {
