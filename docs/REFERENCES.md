@@ -17,6 +17,7 @@ Images
 Sounds
 
 - [1](http://free-loops.com/8595-lyrical-battle.html)
+- [2](http://www.freesound.org/)
 
 [Sprites](https://docs.coronalabs.com/api/library/graphics/newImageSheet.html)
 
