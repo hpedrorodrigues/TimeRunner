@@ -1,7 +1,9 @@
 ## Imagens da evolução do jogo
 
-![First Image](./../assets/images/progress/1.png)
+![1](./../assets/images/progress/1.png)
 
-![Second Image](./../assets/images/progress/2.png)
+![2](./../assets/images/progress/2.png)
 
-![Third Image](./../assets/images/progress/3.png)
+![3](./../assets/images/progress/3.png)
+
+![4](./../assets/images/progress/4.png)
