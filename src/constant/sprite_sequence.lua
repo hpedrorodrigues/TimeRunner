@@ -1,4 +1,4 @@
 return {
-    STOPPED = "StoppedSasuke",
-    RUNNING = "RunningSasuke"
+    STOPPED = "Stopped",
+    RUNNING = "Running"
 }

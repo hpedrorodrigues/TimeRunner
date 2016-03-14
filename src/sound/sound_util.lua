@@ -7,7 +7,7 @@ local function _cancel(sound)
 end
 
 local function _playBackgroundSound()
-    local sound = audio.loadSound(sounds.ADVENTURE)
+    local sound = audio.loadStream(sounds.ADVENTURE)
 
     return audio.play(sound, {
         loops = -1,
