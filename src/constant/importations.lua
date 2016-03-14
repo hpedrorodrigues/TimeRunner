@@ -2,7 +2,7 @@ return {
     SOUND_UTIL = 'src.util.sound_util',
     FILE_UTIL = 'src.util.file_util',
     CONSTANT_UTIL = 'src.util.constant_util',
-    DISPLAY_UTIL = 'src.util.display_util',
+    DISPLAY_CONSTANTS = 'src.constant.display',
     COLLISION_UTIL = 'src.util.collision_util',
     EVENT_UTIL = 'src.util.event_util',
     SWIPE_UTIL = 'src.util.swipe_util',

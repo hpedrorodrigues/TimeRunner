@@ -4,7 +4,7 @@ local images = require(importations.IMAGES)
 local listener = require(importations.LISTENER)
 local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
-local displayUtil = require(importations.DISPLAY_UTIL)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
 
 local scene = composer.newScene()
 
@@ -16,8 +16,8 @@ function scene:create(event)
     local backButtonDifference = 60
 
     local backButton = display.newImageRect(images.BACK_BUTTON, 100, 100)
-    backButton.x = displayUtil.LEFT_SCREEN + backButtonDifference
-    backButton.y = displayUtil.TOP_SCREEN + backButtonDifference
+    backButton.x = displayConstants.LEFT_SCREEN + backButtonDifference
+    backButton.y = displayConstants.TOP_SCREEN + backButtonDifference
     backButton:addEventListener(listener.TAP, sceneManager.goMenu)
 
     sceneGroup:insert(background)

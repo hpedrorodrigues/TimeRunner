@@ -13,7 +13,7 @@ local TRUE = 1
 local FALSE = 0
 
 local function _insertInitialValues()
-    database:exec(databaseConstants.formatInitialSettings({
+    database:exec(databaseConstants.formatInitialSettingsScript({
         firstAccessKey = FIRST_ACCESS_KEY,
         enableSoundKey = ENABLE_SOUND_KEY,
         enableLogsKey = ENABLE_LOGS_KEY

@@ -1,6 +1,6 @@
 local importations = require(IMPORTATIONS)
 local physics = require(importations.PHYSICS)
-local displayUtil = require(importations.DISPLAY_UTIL)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local collisionUtil = require(importations.COLLISION_UTIL)
 local swipeUtil = require(importations.SWIPE_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
@@ -24,7 +24,7 @@ local bodyNames = {
 local function _controlScientistJump()
     if (sprite ~= nil) then
 
-        local spriteLocationY = displayUtil.HEIGHT_SCREEN - 55
+        local spriteLocationY = displayConstants.HEIGHT_SCREEN - 55
         local roundedSpriteY = math.floor(sprite.y)
         local maxDifferencePermitted = 2
 
@@ -37,7 +37,7 @@ local function _controlScientistJump()
                 or roundedSpriteY - maxDifferencePermitted == spriteLocationY) then
 
             sprite:setLinearVelocity(0, 0)
-            sprite.y = displayUtil.HEIGHT_SCREEN - 55
+            sprite.y = displayConstants.HEIGHT_SCREEN - 55
         end
     end
 end
@@ -70,15 +70,15 @@ local function _make(sp, background, group)
     physics.start()
 
     local obstacleSize = 50
-    local defaultObstacleX = displayUtil.WIDTH_SCREEN + 75
+    local defaultObstacleX = displayConstants.WIDTH_SCREEN + 75
 
     airObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
     airObstacle.x = defaultObstacleX
-    airObstacle.y = displayUtil.HEIGHT_SCREEN - (obstacleSize * 3)
+    airObstacle.y = displayConstants.HEIGHT_SCREEN - (obstacleSize * 3)
 
     earthObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
     earthObstacle.x = defaultObstacleX
-    earthObstacle.y = displayUtil.HEIGHT_SCREEN - (obstacleSize / 2)
+    earthObstacle.y = displayConstants.HEIGHT_SCREEN - (obstacleSize / 2)
 
     physics.addBody(airObstacle, 'kinematic', { density = 1, isSensor = false })
     physics.addBody(earthObstacle, 'kinematic', { density = 1, isSensor = false })
@@ -92,7 +92,7 @@ local function _make(sp, background, group)
         lifeImages[i].y = distance.y
 
         if (i == 1) then
-            lifeImages[i].x = displayUtil.WIDTH_SCREEN - distance.y
+            lifeImages[i].x = displayConstants.WIDTH_SCREEN - distance.y
         else
             lifeImages[i].x = lifeImages[i - 1].x - distance.x
         end
@@ -105,12 +105,12 @@ local function _make(sp, background, group)
         airObstacle:setLinearVelocity(-200, 0);
         earthObstacle:setLinearVelocity(-500, 0);
 
-        if (airObstacle.x < displayUtil.LEFT_SCREEN) then
+        if (airObstacle.x < displayConstants.LEFT_SCREEN) then
 
             airObstacle.x = defaultObstacleX
         end
 
-        if (earthObstacle.x < displayUtil.LEFT_SCREEN) then
+        if (earthObstacle.x < displayConstants.LEFT_SCREEN) then
 
             earthObstacle.x = defaultObstacleX
         end
@@ -135,7 +135,7 @@ local function _make(sp, background, group)
         system.vibrate()
 
         sprite:setLinearVelocity(0, 0)
-        sprite.y = displayUtil.HEIGHT_SCREEN - 55
+        sprite.y = displayConstants.HEIGHT_SCREEN - 55
 
         lifeImages[life].isVisible = false
 

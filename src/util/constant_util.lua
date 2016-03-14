@@ -5,7 +5,7 @@ local listener = require(importations.LISTENER)
 local sounds = require(importations.SOUNDS)
 local spriteSequences = require(importations.SPRITE_SEQUENCE)
 local strings = require(importations.STRINGS)
-local displayUtil = require(importations.DISPLAY_UTIL)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
 
 local function _listProperties(obj, message)
     print(strings.BREAK_LINES)
@@ -63,7 +63,7 @@ local function _listStringsObject()
 end
 
 local function _listDisplayUtilObject()
-    _listProperties(displayUtil, 'Display Util')
+    _listProperties(displayConstants, 'Display Util')
 end
 
 local function _listKnownConstantObjects()

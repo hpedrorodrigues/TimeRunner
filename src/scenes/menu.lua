@@ -1,6 +1,6 @@
 local importations = require(IMPORTATIONS)
 local composer = require(importations.COMPOSER)
-local displayUtil = require(importations.DISPLAY_UTIL)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
 local listener = require(importations.LISTENER)
 local sceneManager = require(importations.SCENE_MANAGER)
@@ -18,26 +18,26 @@ function scene:create(event)
     local distance = { x = 400, y = 250 }
 
     local playButton = display.newImageRect(images.PLAY_BUTTON, 100, 100)
-    playButton.x = displayUtil.CENTER_X
-    playButton.y = displayUtil.CENTER_Y
+    playButton.x = displayConstants.CENTER_X
+    playButton.y = displayConstants.CENTER_Y
     playButton:addEventListener(listener.TAP, sceneManager.goGame)
 
     local settingsButton = display.newImageRect(images.SETTINGS_BUTTON, 100, 100)
-    settingsButton.x = displayUtil.CENTER_X + distance.x
-    settingsButton.y = displayUtil.CENTER_Y
+    settingsButton.x = displayConstants.CENTER_X + distance.x
+    settingsButton.y = displayConstants.CENTER_Y
     settingsButton:addEventListener(listener.TAP, sceneManager.goSettings)
 
     local aboutButton = display.newImageRect(images.ABOUT_BUTTON, 100, 100)
-    aboutButton.x = displayUtil.CENTER_X - distance.x
-    aboutButton.y = displayUtil.CENTER_Y
+    aboutButton.x = displayConstants.CENTER_X - distance.x
+    aboutButton.y = displayConstants.CENTER_Y
     aboutButton:addEventListener(listener.TAP, sceneManager.goAbout)
 
     pingPong.make(playButton)
 
     local gameTitle = display.newText({
         text = 'Time Runner',
-        x = displayUtil.CENTER_X,
-        y = displayUtil.CENTER_Y - distance.y,
+        x = displayConstants.CENTER_X,
+        y = displayConstants.CENTER_Y - distance.y,
         font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
         fontSize = 100
     })

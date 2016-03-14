@@ -1,6 +1,6 @@
 local importations = require(IMPORTATIONS)
 local spriteSequenceNames = require(importations.SPRITE_SEQUENCE)
-local displayUtil = require(importations.DISPLAY_UTIL)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
 
 local imageSheetOptions = {
@@ -40,7 +40,7 @@ local sprite = display.newSprite(healthSheet, spriteSequence)
 
 sprite:setSequence(spriteSequenceNames.STOPPED)
 
-sprite.x = displayUtil.LEFT_SCREEN + 100
-sprite.y = displayUtil.HEIGHT_SCREEN - 55
+sprite.x = displayConstants.LEFT_SCREEN + 100
+sprite.y = displayConstants.HEIGHT_SCREEN - 55
 
 return sprite
