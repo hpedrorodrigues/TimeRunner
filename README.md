@@ -9,6 +9,7 @@
 * [Regras do Jogo](#regras-do-jogo)
 * [Diagrama de Navegação](#diagrama-de-navegação)
 * [Pontos Importantes](#pontos-importantes)
+* [Anotações](#anotações)
 * [Licença](#license)
 
 
@@ -61,8 +62,10 @@ registrada e culminando nas ruínas de uma colônia espacial de alta tecnologia,
 mas com um único ponto de venda interessante.
 
 
-1. Veja algumas imagens da evolução do jogo [aqui](./docs/PROGRESS_IMAGES.md).
-2. Veja algumas referências utilizadas no jogo [aqui](./docs/REFERENCES.md).
+#### Anotações
+
+- Veja algumas imagens da evolução do jogo [aqui](./docs/PROGRESS_IMAGES.md).
+- Veja algumas referências utilizadas no jogo [aqui](./docs/REFERENCES.md).
 
 
 #### License
