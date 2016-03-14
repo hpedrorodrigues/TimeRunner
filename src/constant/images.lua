@@ -9,8 +9,10 @@ local SPRITES_PATH = BASE_IMAGE_PATH .. "sprites/"
 local BACKGROUNDS_PATH = BASE_IMAGE_PATH .. "backgrounds/"
 local BUTTONS_PATH = BASE_IMAGE_PATH .. "buttons/"
 local SCENES_PATH = BASE_IMAGE_PATH .. "scenes/"
+local GENERAL_PATH = BASE_IMAGE_PATH .. "general/"
 
 return {
+    LIFE = GENERAL_PATH .. "life.png",
     CRAZY_SCIENTIST_SPRITE = SPRITES_PATH .. "crazy_scientist.png",
     KINGDOM_SCENE = SCENES_PATH .. "kingdom.jpg",
     SECOND_WAR_SCENE = SCENES_PATH .. "second_war.jpg",

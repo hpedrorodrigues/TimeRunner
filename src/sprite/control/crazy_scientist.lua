@@ -4,10 +4,14 @@ local collisionUtil = require("src.view.collision_util")
 local swipeUtil = require("src.view.swipe_util")
 local sceneManager = require("src.scenes.manager")
 local listener = require("src.constant.listener")
+local images = require("src.constant.images")
+
+local INITIAL_LIFE = 3
 
 local randomObstaclesTimer
 local obstacle
 local sprite
+local life = INITIAL_LIFE
 
 local function _controlScientistJump()
     if (sprite ~= nil) then
@@ -45,7 +49,7 @@ local function _clear()
     end
 end
 
-local function _make(sp, background)
+local function _make(sp, background, group)
     sprite = sp
 
     physics.start()
@@ -56,6 +60,22 @@ local function _make(sp, background)
 
     physics.addBody(obstacle, "kinematic", { density = 1, isSensor = false })
     physics.addBody(sprite, "dynamic", { density = 1, friction = 0, radius = 0, bounce = 1, isSensor = false })
+
+    local distance = { x = 100, y = 60 }
+    local lifeImages = {}
+
+    for i = 1, 3 do
+        lifeImages[i] = display.newImageRect(images.LIFE, 100, 100)
+        lifeImages[i].y = distance.y
+
+        if (i == 1) then
+            lifeImages[i].x = displayUtil.WIDTH_SCREEN - distance.y
+        else
+            lifeImages[i].x = lifeImages[i - 1].x - distance.x
+        end
+
+        group:insert(lifeImages[i])
+    end
 
     local function translationObstacle()
 
@@ -70,22 +90,22 @@ local function _make(sp, background)
     randomObstaclesTimer = timer.performWithDelay(500, translationObstacle, -1);
 
     collisionUtil.collision({ object1 = sprite, object2 = obstacle }, function()
-        local function onComplete(event)
+        system.vibrate()
 
-            if (event.action == "clicked") then
-                local i = event.index
+        sprite:setLinearVelocity(0, 0)
+        sprite.y = displayUtil.HEIGHT_SCREEN - 55
 
-                if (i == 1) then
-                    sprite:setLinearVelocity(0, 0)
-                    sprite.y = displayUtil.HEIGHT_SCREEN - 55
+        lifeImages[life].isVisible = false
 
-                    _clear()
-                    sceneManager.goMenu()
-                end
-            end
+        life = life - 1
+
+        if (life == 0) then
+
+            life = INITIAL_LIFE
+
+            _clear()
+            sceneManager.goMenu()
         end
-
-        native.showAlert("Game Over", "You lose. :(\nPlease try again :)", { "Ok" }, onComplete)
     end)
 
     swipeUtil.swipe(background, {

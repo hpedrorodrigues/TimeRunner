@@ -44,11 +44,11 @@ function scene:create()
 
     sprite:play()
 
-    spriteControl.make(sprite, background)
-
     sceneGroup:insert(background)
     sceneGroup:insert(sprite)
     sceneGroup:insert(backButton)
+
+    spriteControl.make(sprite, background, sceneGroup)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end

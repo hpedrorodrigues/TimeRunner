@@ -39,8 +39,10 @@ settings = {
             normalScreens = true,
             largeScreens = true,
             xlargeScreens = false
+        },
+        usesPermissions = {
+            "android.permission.VIBRATE",
         }
     },
-    androidPermissions = {},
     plugins = {}
 }

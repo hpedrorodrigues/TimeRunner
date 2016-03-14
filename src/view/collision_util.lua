@@ -3,22 +3,27 @@ local listener = require("src.constant.listener")
 local objects
 local action
 local collisionActionToClear
+local debounce = true
 
 local function _hasCollided(obj1, obj2)
     if (obj1 == nil or obj2 == nil) then
         return false
     end
 
-    local left = obj1.contentBounds.xMin <= obj2.contentBounds.xMin
-            and obj1.contentBounds.xMax >= obj2.contentBounds.xMin
-    local right = obj1.contentBounds.xMin >= obj2.contentBounds.xMin
-            and obj1.contentBounds.xMin <= obj2.contentBounds.xMax
-    local up = obj1.contentBounds.yMin <= obj2.contentBounds.yMin
-            and obj1.contentBounds.yMax >= obj2.contentBounds.yMin
-    local down = obj1.contentBounds.yMin >= obj2.contentBounds.yMin
-            and obj1.contentBounds.yMin <= obj2.contentBounds.yMax
+    local dx = math.pow(obj1.x - obj2.x, 2)
+    local dy = math.pow(obj1.y - obj2.y, 2)
 
-    return (left or right) and (up or down)
+    local distance = math.sqrt(dx + dy)
+    local objectSize = (obj2.contentWidth / 2) + (obj1.contentWidth / 2)
+
+    if (distance < objectSize and debounce) then
+        debounce = false
+        timer.performWithDelay(1000, function()
+            debounce = true
+        end)
+        return true
+    end
+    return false
 end
 
 local function _collision()
