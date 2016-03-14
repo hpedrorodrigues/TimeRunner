@@ -2,7 +2,7 @@ local databaseConstants = require('src.constant.database')
 local databaseManager = require('src.db.db')
 local strings = require('src.constant.strings')
 
-local database = databaseManager.database
+local database = databaseManager.database()
 
 local FIRST_ACCESS_KEY = "first_access"
 local ENABLE_SOUND_KEY = "enable_sound"

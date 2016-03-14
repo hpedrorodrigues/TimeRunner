@@ -3,23 +3,35 @@ local sqlite3 = require("sqlite3")
 local listener = require('src.constant.listener')
 local strings = require('src.constant.strings')
 
-local dbPath = system.pathForFile(databaseConstants.DATABASE_NAME, system.DocumentsDirectory)
-local db = sqlite3.open(dbPath)
+local db
 
-db:exec(databaseConstants.CREATE_SETTINGS_TABLE_SCRIPT)
+local function _init()
+    local dbPath = system.pathForFile(databaseConstants.DATABASE_NAME, system.DocumentsDirectory)
+    db = sqlite3.open(dbPath)
 
-local function onSystemEvent(event)
-    if (event.type == "applicationExit" and db and db:isopen()) then
-        db:close()
+    db:exec(databaseConstants.CREATE_SETTINGS_TABLE_SCRIPT)
+
+    local function onSystemEvent(event)
+        if (event.type == "applicationExit" and db and db:isopen()) then
+            db:close()
+        end
     end
+
+    Runtime:addEventListener(listener.SYSTEM, onSystemEvent)
 end
 
-Runtime:addEventListener(listener.SYSTEM, onSystemEvent)
+local function _printSqliteVersion()
+    print(strings.BREAK_LINE)
+    print(strings.LONG_LINE)
+    print("SQLite version: " .. sqlite3.version())
+end
 
-print(strings.BREAK_LINE)
-print(strings.LONG_LINE)
-print("SQLite version: " .. sqlite3.version())
+local function _database()
+    return db
+end
 
 return {
-    database = db
+    database = _database,
+    init = _init,
+    printSqliteVersion = _printSqliteVersion
 }

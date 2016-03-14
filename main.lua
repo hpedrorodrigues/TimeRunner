@@ -1,11 +1,13 @@
-require('src.db.db')
-
+local database = require('src.db.db')
 local sceneManager = require("src.scenes.manager")
 local defaults = require("defaults")
 local soundUtil = require("src.sound.sound_util")
-local settings = require('src.db.settings')
 local fileUtil = require('src.file.file_util')
 local constantUtil = require('src.constant.constant_util')
+
+database.init()
+
+local settings = require('src.db.settings')
 
 defaults.set()
 
@@ -18,6 +20,7 @@ end
 
 if (settings.isLogsEnabled()) then
 
+    database.printSqliteVersion()
     settings.showAllSettings()
     fileUtil.listKnownDirectories()
     constantUtil.listKnownConstantObjects()
