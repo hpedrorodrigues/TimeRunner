@@ -7,6 +7,7 @@ local displayUtil = require("src.view.display_util")
 local widget = require("widget")
 local settings = require('src.db.settings')
 local sounds = require("src.constant.sounds")
+local soundUtil = require("src.sound.sound_util")
 
 local scene = composer.newScene()
 
@@ -22,8 +23,10 @@ function scene:create(event)
     backButton.y = displayUtil.TOP_SCREEN + backButtonDifference
     backButton:addEventListener(listener.TAP, sceneManager.goMenu)
 
+    local leftSwitches = displayUtil.LEFT_SCREEN + 100
+
     local soundSwitch = widget.newSwitch({
-        left = displayUtil.LEFT_SCREEN + 100,
+        left = leftSwitches,
         top = 200,
         style = "onOff",
         id = "soundSwitch",
@@ -34,14 +37,11 @@ function scene:create(event)
             if (switch.isOn) then
 
                 settings.disableSound()
-
-                if (backgroundSound ~= nil) then
-                    audio.stop(backgroundSound)
-                end
+                soundUtil.cancel(backgroundSound)
             else
 
                 settings.enableSound()
-                backgroundSound = audio.play(audio.loadStream(sounds.ADVENTURE), { loops = -1, fadein = 5000 })
+                backgroundSound = soundUtil.playBackgroundSound()
             end
         end
     })
@@ -54,10 +54,41 @@ function scene:create(event)
         fontSize = 40
     })
 
+    local logsSwitch = widget.newSwitch({
+        left = leftSwitches,
+        top = soundSwitch.y + 50,
+        style = "onOff",
+        id = "logsSwitch",
+        initialSwitchState = settings.isLogsEnabled(),
+        onPress = function(event)
+            local switch = event.target
+
+            if (switch.isOn) then
+
+                settings.disableLogs()
+            else
+
+                native.showAlert("Configurações", "Habilitar Logs\n\nIsso pode causar lentidão no jogo", { "OK" })
+
+                settings.enableLogs()
+            end
+        end
+    })
+
+    local logsTitle = display.newText({
+        text = "Habilitar logs",
+        x = logsSwitch.x + 200,
+        y = logsSwitch.y,
+        font = native.systemFontBold,
+        fontSize = 40
+    })
+
     sceneGroup:insert(background)
     sceneGroup:insert(backButton)
     sceneGroup:insert(soundSwitch)
     sceneGroup:insert(soundTitle)
+    sceneGroup:insert(logsSwitch)
+    sceneGroup:insert(logsTitle)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end

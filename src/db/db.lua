@@ -15,6 +15,8 @@ end
 
 Runtime:addEventListener(listener.SYSTEM, onSystemEvent)
 
+print('\n')
+print('-----------------------------')
 print("SQLite version: " .. sqlite3.version())
 
 return {
