@@ -3,7 +3,7 @@ local listener = require("src.constant.listener")
 local objects
 local action
 local collisionActionToClear
-local debounce = true
+local throttle = true
 
 local function _hasCollided(obj1, obj2)
     if (obj1 == nil or obj2 == nil) then
@@ -16,10 +16,10 @@ local function _hasCollided(obj1, obj2)
     local distance = math.sqrt(dx + dy)
     local objectSize = (obj2.contentWidth / 2) + (obj1.contentWidth / 2)
 
-    if (distance < objectSize and debounce) then
-        debounce = false
+    if (distance < objectSize and throttle) then
+        throttle = false
         timer.performWithDelay(1000, function()
-            debounce = true
+            throttle = true
         end)
         return true
     end

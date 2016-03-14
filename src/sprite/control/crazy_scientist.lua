@@ -61,7 +61,7 @@ local function _make(sp, background, group)
     physics.addBody(obstacle, "kinematic", { density = 1, isSensor = false })
     physics.addBody(sprite, "dynamic", { density = 1, friction = 0, radius = 0, bounce = 1, isSensor = false })
 
-    local distance = { x = 100, y = 60 }
+    local distance = { x = 120, y = 60 }
     local lifeImages = {}
 
     for i = 1, 3 do
