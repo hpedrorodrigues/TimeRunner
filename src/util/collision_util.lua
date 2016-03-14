@@ -1,4 +1,5 @@
-local listener = require("src.constant.listener")
+local importations = require(IMPORTATIONS)
+local listener = require(importations.LISTENER)
 
 local INITIAL_SIZE = 1
 

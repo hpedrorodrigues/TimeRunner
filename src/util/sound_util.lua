@@ -1,4 +1,5 @@
-local sounds = require("src.constant.sounds")
+local importations = require(IMPORTATIONS)
+local sounds = require(importations.SOUNDS)
 
 local function _cancel(sound)
     if (sound ~= nil) then

@@ -1,5 +1,6 @@
-local strings = require('src.constant.strings')
-local lfs = require("lfs")
+local importations = require(IMPORTATIONS)
+local strings = require(importations.STRINGS)
+local lfs = require(importations.LFS)
 
 local function _listFiles(path, message)
     print(strings.BREAK_LINES)

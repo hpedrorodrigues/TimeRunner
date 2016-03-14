@@ -1,5 +1,3 @@
--- Reference: https://docs.coronalabs.com/guide/distribution/buildSettings/index.html
-
 settings = {
     build = {
         neverStripDebugInfo = true

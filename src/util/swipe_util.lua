@@ -1,10 +1,9 @@
-local listener = require("src.constant.listener")
+local importations = require(IMPORTATIONS)
+local listener = require(importations.LISTENER)
 
 local events = {}
 
 local function _handleSwipe(event)
-    -- Reference - https://coronalabs.com/blog/2014/09/16/tutorial-swiping-an-object-to-fixed-points/
-
     if (events ~= nil and event.phase == "moved") then
 
         local dY = event.y - event.yStart

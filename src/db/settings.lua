@@ -1,6 +1,7 @@
-local databaseConstants = require('src.constant.database')
-local databaseManager = require('src.db.db')
-local strings = require('src.constant.strings')
+local importations = require(IMPORTATIONS)
+local databaseConstants = require(importations.DATABASE_CONSTANTS)
+local databaseManager = require(importations.DATABASE)
+local strings = require(importations.STRINGS)
 
 local database = databaseManager.database()
 

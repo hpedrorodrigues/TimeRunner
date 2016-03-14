@@ -1,10 +1,11 @@
-local physics = require("physics")
-local displayUtil = require("src.view.display_util")
-local collisionUtil = require("src.view.collision_util")
-local swipeUtil = require("src.view.swipe_util")
-local sceneManager = require("src.scenes.manager")
-local listener = require("src.constant.listener")
-local images = require("src.constant.images")
+local importations = require(IMPORTATIONS)
+local physics = require(importations.PHYSICS)
+local displayUtil = require(importations.DISPLAY_UTIL)
+local collisionUtil = require(importations.COLLISION_UTIL)
+local swipeUtil = require(importations.SWIPE_UTIL)
+local sceneManager = require(importations.SCENE_MANAGER)
+local listener = require(importations.LISTENER)
+local images = require(importations.IMAGES)
 
 local MAX_LIFES = 3
 

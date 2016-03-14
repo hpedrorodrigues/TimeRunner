@@ -1,5 +1,6 @@
-local listener = require("src.constant.listener")
-local composer = require("composer")
+local importations = require(IMPORTATIONS)
+local listener = require(importations.LISTENER)
+local composer = require(importations.COMPOSER)
 
 local onBackPressed
 

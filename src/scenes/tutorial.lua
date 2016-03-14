@@ -1,9 +1,10 @@
-local composer = require("composer")
-local images = require("src.constant.images")
-local listener = require("src.constant.listener")
-local eventUtil = require("src.view.event_util")
-local sceneManager = require("src.scenes.manager")
-local displayUtil = require("src.view.display_util")
+local importations = require(IMPORTATIONS)
+local composer = require(importations.COMPOSER)
+local images = require(importations.IMAGES)
+local listener = require(importations.LISTENER)
+local eventUtil = require(importations.EVENT_UTIL)
+local sceneManager = require(importations.SCENE_MANAGER)
+local displayUtil = require(importations.DISPLAY_UTIL)
 
 local scene = composer.newScene()
 

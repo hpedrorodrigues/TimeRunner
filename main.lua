@@ -1,13 +1,16 @@
-local database = require('src.db.db')
-local sceneManager = require("src.scenes.manager")
-local defaults = require("defaults")
-local soundUtil = require("src.sound.sound_util")
-local fileUtil = require('src.file.file_util')
-local constantUtil = require('src.constant.constant_util')
+IMPORTATIONS = 'src.constant.importations'
+
+local importations = require(IMPORTATIONS)
+local database = require(importations.DATABASE)
+local sceneManager = require(importations.SCENE_MANAGER)
+local defaults = require(importations.DEFAULTS)
+local soundUtil = require(importations.SOUND_UTIL)
+local fileUtil = require(importations.FILE_UTIL)
+local constantUtil = require(importations.CONSTANT_UTIL)
 
 database.init()
 
-local settings = require('src.db.settings')
+local settings = require(importations.SETTINGS)
 
 defaults.set()
 

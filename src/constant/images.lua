@@ -1,8 +1,3 @@
--- References:
--- http://www.hdwallpaperscool.com/running-hd-wallpapers/
--- http://www.iconarchive.com/show/100-flat-2-icons-by-graphicloads/information-icon.html
--- http://imgur.com/gallery/TkW97
-
 local BASE_IMAGE_PATH = "assets/images/"
 
 local SPRITES_PATH = BASE_IMAGE_PATH .. "sprites/"

@@ -1,4 +1,5 @@
-local physics = require('physics')
+local importations = require(IMPORTATIONS)
+local physics = require(importations.PHYSICS)
 
 physics.start()
 physics.setScale(10)

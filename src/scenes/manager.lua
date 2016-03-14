@@ -1,6 +1,5 @@
--- Reference: https://docs.coronalabs.com/daily/guide/system/composer/index.html
-
-local composer = require("composer")
+local importations = require(IMPORTATIONS)
+local composer = require(importations.COMPOSER)
 
 local function _removeCurrentScene()
     local currentScene = composer.getSceneName("current")

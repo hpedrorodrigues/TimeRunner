@@ -1,10 +1,11 @@
-local composer = require("composer")
-local displayUtil = require("src.view.display_util")
-local images = require("src.constant.images")
-local listener = require("src.constant.listener")
-local sceneManager = require("src.scenes.manager")
-local pingPong = require("src.effect.ping_pong")
-local snowMaker = require("src.effect.snow")
+local importations = require(IMPORTATIONS)
+local composer = require(importations.COMPOSER)
+local displayUtil = require(importations.DISPLAY_UTIL)
+local images = require(importations.IMAGES)
+local listener = require(importations.LISTENER)
+local sceneManager = require(importations.SCENE_MANAGER)
+local pingPong = require(importations.PING_PONG)
+local snowMaker = require(importations.SNOW)
 
 local scene = composer.newScene()
 

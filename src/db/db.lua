@@ -1,7 +1,8 @@
-local databaseConstants = require('src.constant.database')
-local sqlite3 = require("sqlite3")
-local listener = require('src.constant.listener')
-local strings = require('src.constant.strings')
+local importations = require(IMPORTATIONS)
+local databaseConstants = require(importations.DATABASE_CONSTANTS)
+local sqlite3 = require(importations.SQLITE3)
+local listener = require(importations.LISTENER)
+local strings = require(importations.STRINGS)
 
 local db
 
