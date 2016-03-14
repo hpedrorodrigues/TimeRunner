@@ -6,12 +6,19 @@ local sceneManager = require("src.scenes.manager")
 local listener = require("src.constant.listener")
 local images = require("src.constant.images")
 
-local INITIAL_LIFE = 3
+local MAX_LIFES = 3
 
 local randomObstaclesTimer
-local obstacle
+local earthObstacle
+local airObstacle
 local sprite
-local life = INITIAL_LIFE
+local life = MAX_LIFES
+
+local bodyNames = {
+    sprite = "sprite",
+    airObstacle = "airObstacle",
+    earthObstacle = "earthObstacle"
+}
 
 local function _controlScientistJump()
     if (sprite ~= nil) then
@@ -41,11 +48,17 @@ local function _clear()
 
     timer.cancel(randomObstaclesTimer)
 
-    if (obstacle ~= nil) then
-        physics.removeBody(obstacle)
+    if (earthObstacle ~= nil) then
+        physics.removeBody(earthObstacle)
 
-        obstacle:removeSelf()
-        obstacle = nil
+        earthObstacle:removeSelf()
+        earthObstacle = nil
+    end
+    if (airObstacle ~= nil) then
+        physics.removeBody(airObstacle)
+
+        airObstacle:removeSelf()
+        airObstacle = nil
     end
 end
 
@@ -54,17 +67,24 @@ local function _make(sp, background, group)
 
     physics.start()
 
-    obstacle = display.newRect(0, 0, 75, 75)
-    obstacle.x = displayUtil.WIDTH_SCREEN + 75
-    obstacle.y = displayUtil.HEIGHT_SCREEN
+    local obstacleSize = 50
 
-    physics.addBody(obstacle, "kinematic", { density = 1, isSensor = false })
+    earthObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
+    earthObstacle.x = displayUtil.WIDTH_SCREEN + 75
+    earthObstacle.y = displayUtil.HEIGHT_SCREEN - (obstacleSize / 2)
+
+    airObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
+    airObstacle.x = displayUtil.WIDTH_SCREEN + 75
+    airObstacle.y = earthObstacle.y - (obstacleSize * 3)
+
+    physics.addBody(airObstacle, "kinematic", { density = 1, isSensor = false })
+    physics.addBody(earthObstacle, "kinematic", { density = 1, isSensor = false })
     physics.addBody(sprite, "dynamic", { density = 1, friction = 0, radius = 0, bounce = 1, isSensor = false })
 
     local distance = { x = 120, y = 60 }
     local lifeImages = {}
 
-    for i = 1, 3 do
+    for i = 1, MAX_LIFES do
         lifeImages[i] = display.newImageRect(images.LIFE, 100, 100)
         lifeImages[i].y = distance.y
 
@@ -79,17 +99,35 @@ local function _make(sp, background, group)
 
     local function translationObstacle()
 
-        obstacle:setLinearVelocity(-500, 0);
+        airObstacle:setLinearVelocity(-200, 0);
+        earthObstacle:setLinearVelocity(-500, 0);
 
-        if (obstacle.x < displayUtil.LEFT_SCREEN) then
+        if (earthObstacle.x < displayUtil.LEFT_SCREEN) then
 
-            obstacle.x = displayUtil.WIDTH_SCREEN + 75
+            earthObstacle.x = displayUtil.WIDTH_SCREEN + 75
+        end
+        if (airObstacle.x < displayUtil.LEFT_SCREEN) then
+
+            airObstacle.x = displayUtil.WIDTH_SCREEN + 75
         end
     end
 
+    sprite.myName = bodyNames.sprite
+    earthObstacle.myName = bodyNames.earthObstacle
+    airObstacle.myName = bodyNames.airObstacle
+
+    local function spriteCollision(self, event)
+        if (event.phase == "ended") then
+            print(self.myName, ": collision ended with ", event.other.myName)
+        end
+    end
+
+    sprite.collision = spriteCollision
+    sprite:addEventListener("collision", sprite)
+
     randomObstaclesTimer = timer.performWithDelay(500, translationObstacle, -1);
 
-    collisionUtil.collision({ object1 = sprite, object2 = obstacle }, function()
+    local function collisionAction()
         system.vibrate()
 
         sprite:setLinearVelocity(0, 0)
@@ -101,12 +139,15 @@ local function _make(sp, background, group)
 
         if (life == 0) then
 
-            life = INITIAL_LIFE
+            life = MAX_LIFES
 
             _clear()
             sceneManager.goMenu()
         end
-    end)
+    end
+
+    collisionUtil.collision({ object1 = sprite, object2 = airObstacle }, collisionAction)
+    collisionUtil.collision({ object1 = sprite, object2 = earthObstacle }, collisionAction)
 
     swipeUtil.swipe(background, {
         down = function()
