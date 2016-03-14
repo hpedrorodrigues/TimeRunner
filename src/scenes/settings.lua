@@ -28,8 +28,8 @@ function scene:create(event)
     local soundSwitch = widget.newSwitch({
         left = leftSwitches,
         top = 200,
-        style = "onOff",
-        id = "soundSwitch",
+        style = 'onOff',
+        id = 'soundSwitch',
         initialSwitchState = settings.isSoundEnabled(),
         onPress = function(event)
             local switch = event.target
@@ -47,7 +47,7 @@ function scene:create(event)
     })
 
     local soundTitle = display.newText({
-        text = "Habilitar som",
+        text = 'Habilitar som',
         x = soundSwitch.x + 200,
         y = soundSwitch.y,
         font = native.systemFontBold,
@@ -57,8 +57,8 @@ function scene:create(event)
     local logsSwitch = widget.newSwitch({
         left = leftSwitches,
         top = soundSwitch.y + 50,
-        style = "onOff",
-        id = "logsSwitch",
+        style = 'onOff',
+        id = 'logsSwitch',
         initialSwitchState = settings.isLogsEnabled(),
         onPress = function(event)
             local switch = event.target
@@ -68,7 +68,7 @@ function scene:create(event)
                 settings.disableLogs()
             else
 
-                native.showAlert("Configurações", "Habilitar Logs\n\nIsso pode causar lentidão no jogo", { "OK" })
+                native.showAlert('Configurações', 'Habilitar Logs\n\nIsso pode causar lentidão no jogo', { 'OK' })
 
                 settings.enableLogs()
             end
@@ -76,7 +76,7 @@ function scene:create(event)
     })
 
     local logsTitle = display.newText({
-        text = "Habilitar logs",
+        text = 'Habilitar logs',
         x = logsSwitch.x + 200,
         y = logsSwitch.y,
         font = native.systemFontBold,
@@ -98,10 +98,10 @@ function scene:show(event)
     local sceneGroup = self.view
     local phase = event.phase
 
-    if (phase == "will") then
+    if (phase == 'will') then
 
         -- Called when the scene is still off screen (but is about to come on screen).
-    elseif (phase == "did") then
+    elseif (phase == 'did') then
 
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
@@ -114,12 +114,12 @@ function scene:hide(event)
     local sceneGroup = self.view
     local phase = event.phase
 
-    if (phase == "will") then
+    if (phase == 'will') then
 
         -- Called when the scene is on screen (but is about to go off screen).
-        -- Insert code here to "pause" the scene.
+        -- Insert code here to 'pause' the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-    elseif (phase == "did") then
+    elseif (phase == 'did') then
 
         -- Called immediately after scene goes off screen.
     end

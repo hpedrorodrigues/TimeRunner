@@ -1,4 +1,4 @@
 return {
-    STOPPED = "Stopped",
-    RUNNING = "Running"
+    STOPPED = 'Stopped',
+    RUNNING = 'Running'
 }

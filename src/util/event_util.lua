@@ -11,16 +11,16 @@ end
 local function _onKeyEvent(event)
     local keyName = event.keyName
     local phase = event.phase
-    local platformName = system.getInfo("platformName")
+    local platformName = system.getInfo('platformName')
 
-    if (keyName == "back" and phase == "up") then
+    if (keyName == 'back' and phase == 'up') then
 
-        if (composer.getSceneName("current") ~= "src.scenes.menu") then
+        if (composer.getSceneName('current') ~= 'src.scenes.menu') then
             if (onBackPressed ~= nil) then
                 onBackPressed()
             end
 
-            if (platformName == "Android") or (platformName == "WinPhone") then
+            if (platformName == 'Android') or (platformName == 'WinPhone') then
                 return true
             end
         end

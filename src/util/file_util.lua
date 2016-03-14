@@ -16,7 +16,7 @@ local function _listFiles(path, message)
         print('Listing files on path: "', path, '"')
 
         for file in lfs.dir(path) do
-            print("Found file -> " .. file)
+            print('Found file -> ' .. file)
         end
     end
 
@@ -25,19 +25,19 @@ local function _listFiles(path, message)
 end
 
 local function _listDocumentsDirectory()
-    _listFiles(system.pathForFile("", system.DocumentsDirectory), 'DocumentsDirectory')
+    _listFiles(system.pathForFile(strings.EMPTY, system.DocumentsDirectory), 'DocumentsDirectory')
 end
 
 local function _listResourcesDirectory()
-    _listFiles(system.pathForFile("", system.ResourceDirectory), 'ResourceDirectory')
+    _listFiles(system.pathForFile(strings.EMPTY, system.ResourceDirectory), 'ResourceDirectory')
 end
 
 local function _listTemporaryDirectory()
-    _listFiles(system.pathForFile("", system.TemporaryDirectory), 'TemporaryDirectory')
+    _listFiles(system.pathForFile(strings.EMPTY, system.TemporaryDirectory), 'TemporaryDirectory')
 end
 
 local function _listCachesDirectory()
-    _listFiles(system.pathForFile("", system.CachesDirectory), 'CachesDirectory')
+    _listFiles(system.pathForFile(strings.EMPTY, system.CachesDirectory), 'CachesDirectory')
 end
 
 local function _listKnownDirectories()

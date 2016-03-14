@@ -4,7 +4,7 @@ local listener = require(importations.LISTENER)
 local events = {}
 
 local function _handleSwipe(event)
-    if (events ~= nil and event.phase == "moved") then
+    if (events ~= nil and event.phase == 'moved') then
 
         local dY = event.y - event.yStart
         local dX = event.x - event.xStart

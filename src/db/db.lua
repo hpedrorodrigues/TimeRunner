@@ -13,7 +13,7 @@ local function _init()
     db:exec(databaseConstants.CREATE_SETTINGS_TABLE_SCRIPT)
 
     local function onSystemEvent(event)
-        if (event.type == "applicationExit" and db and db:isopen()) then
+        if (event.type == 'applicationExit' and db and db:isopen()) then
             db:close()
         end
     end
@@ -24,7 +24,7 @@ end
 local function _printSqliteVersion()
     print(strings.BREAK_LINE)
     print(strings.LONG_LINE)
-    print("SQLite version: " .. sqlite3.version())
+    print('SQLite version: ' .. sqlite3.version())
 end
 
 local function _database()

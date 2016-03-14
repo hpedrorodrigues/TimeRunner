@@ -5,9 +5,9 @@ local strings = require(importations.STRINGS)
 
 local database = databaseManager.database()
 
-local FIRST_ACCESS_KEY = "first_access"
-local ENABLE_SOUND_KEY = "enable_sound"
-local ENABLE_LOGS_KEY = "enable_logs"
+local FIRST_ACCESS_KEY = 'first_access'
+local ENABLE_SOUND_KEY = 'enable_sound'
+local ENABLE_LOGS_KEY = 'enable_logs'
 
 local TRUE = 1
 local FALSE = 0

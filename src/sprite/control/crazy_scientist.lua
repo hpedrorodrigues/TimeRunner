@@ -16,9 +16,9 @@ local sprite
 local life = MAX_LIFES
 
 local bodyNames = {
-    sprite = "sprite",
-    airObstacle = "airObstacle",
-    earthObstacle = "earthObstacle"
+    sprite = 'sprite',
+    airObstacle = 'airObstacle',
+    earthObstacle = 'earthObstacle'
 }
 
 local function _controlScientistJump()
@@ -80,9 +80,9 @@ local function _make(sp, background, group)
     earthObstacle.x = defaultObstacleX
     earthObstacle.y = displayUtil.HEIGHT_SCREEN - (obstacleSize / 2)
 
-    physics.addBody(airObstacle, "kinematic", { density = 1, isSensor = false })
-    physics.addBody(earthObstacle, "kinematic", { density = 1, isSensor = false })
-    physics.addBody(sprite, "dynamic", { density = 1, friction = 0, radius = 0, bounce = 1, isSensor = false })
+    physics.addBody(airObstacle, 'kinematic', { density = 1, isSensor = false })
+    physics.addBody(earthObstacle, 'kinematic', { density = 1, isSensor = false })
+    physics.addBody(sprite, 'dynamic', { density = 1, friction = 0, radius = 0, bounce = 1, isSensor = false })
 
     local distance = { x = 120, y = 60 }
     local lifeImages = {}
@@ -121,13 +121,13 @@ local function _make(sp, background, group)
     earthObstacle.myName = bodyNames.earthObstacle
 
     local function spriteCollision(self, event)
-        if (event.phase == "ended") then
-            print(self.myName, ": collision ended with ", event.other.myName)
+        if (event.phase == 'ended') then
+            print(self.myName, ': collision ended with ', event.other.myName)
         end
     end
 
     sprite.collision = spriteCollision
-    sprite:addEventListener("collision", sprite)
+    sprite:addEventListener('collision', sprite)
 
     randomObstaclesTimer = timer.performWithDelay(500, translationObstacle, -1);
 

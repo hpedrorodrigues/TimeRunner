@@ -1,5 +1,5 @@
 return {
-    DATABASE_NAME = "time_runner.db",
+    DATABASE_NAME = 'time_runner.db',
     CREATE_SETTINGS_TABLE_SCRIPT = [[
         CREATE TABLE IF NOT EXISTS settings (id INTEGER PRIMARY KEY, key, value INTEGER);
     ]],
@@ -15,10 +15,10 @@ return {
         return [[ DELETE FROM settings WHERE key = ']] .. key .. [['; ]]
     end,
     formatSelectSettingsByKeyScript = function(key)
-        return "SELECT * FROM settings WHERE key = '" .. key .. "'"
+        return 'SELECT * FROM settings WHERE key = "' .. key .. '"'
     end,
     formatInsertSettingsByKeyScript = function(key, value)
         return [[INSERT INTO settings VALUES (null, ']] .. key .. [[', ']] .. value .. [['); ]]
     end,
-    ALL_SETTINGS_SCRIPT = "SELECT * FROM settings",
+    ALL_SETTINGS_SCRIPT = 'SELECT * FROM settings',
 }

@@ -35,10 +35,10 @@ function scene:create(event)
     pingPong.make(playButton)
 
     local gameTitle = display.newText({
-        text = "Time Runner",
+        text = 'Time Runner',
         x = displayUtil.CENTER_X,
         y = displayUtil.CENTER_Y - distance.y,
-        font = (system.getInfo("environment") == "simulator" and "FFFTusj-Bold" or "FFF_Tusj"),
+        font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
         fontSize = 100
     })
 
@@ -54,10 +54,10 @@ function scene:show(event)
     local sceneGroup = self.view
     local phase = event.phase
 
-    if (phase == "will") then
+    if (phase == 'will') then
 
         -- Called when the scene is still off screen (but is about to come on screen).
-    elseif (phase == "did") then
+    elseif (phase == 'did') then
 
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
@@ -70,12 +70,12 @@ function scene:hide(event)
     local sceneGroup = self.view
     local phase = event.phase
 
-    if (phase == "will") then
+    if (phase == 'will') then
 
         -- Called when the scene is on screen (but is about to go off screen).
-        -- Insert code here to "pause" the scene.
+        -- Insert code here to 'pause' the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-    elseif (phase == "did") then
+    elseif (phase == 'did') then
 
         -- Called immediately after scene goes off screen.
     end

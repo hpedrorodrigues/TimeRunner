@@ -18,13 +18,13 @@ local bottomWall = display.newRect(halfWidth, display.contentHeight - verticalDi
 local leftWall = display.newRect(horizontalDistance, halfHeight, 0, display.contentHeight)
 local rightWall = display.newRect(display.contentWidth - horizontalDistance, halfHeight, 0, display.contentHeight)
 
-physics.addBody(topWall, "static", wallConfiguration)
-physics.addBody(bottomWall, "static", wallConfiguration)
-physics.addBody(leftWall, "static", wallConfiguration)
-physics.addBody(rightWall, "static", wallConfiguration)
+physics.addBody(topWall, 'static', wallConfiguration)
+physics.addBody(bottomWall, 'static', wallConfiguration)
+physics.addBody(leftWall, 'static', wallConfiguration)
+physics.addBody(rightWall, 'static', wallConfiguration)
 
 local function _makeEffect(object)
-    physics.addBody(object, "dynamic", { density = 1, friction = 0, radius = 0, isSensor = false, bounce = 1 })
+    physics.addBody(object, 'dynamic', { density = 1, friction = 0, radius = 0, isSensor = false, bounce = 1 })
 
     local launchx = math.random(10, 15)
     local launchy = math.random(10, 15)
