@@ -34,8 +34,9 @@ de reação do jogador.
 
 #### Regras do Jogo
 
-* Ao ser atingido por algo (animais, insetos, tocos de árvores...) o jogador perderá o jogo
+* Ao ser atingido por um obstáculo o jogador perderá o jogo
 * A pontuação do jogador será o seu tempo no jogo
+* O jogador poderá ser atingido apenas 3 vezes por um obstáculo
 
 
 #### Diagrama de navegação
