@@ -1,18 +1,20 @@
 local importations = require(IMPORTATIONS)
 local composer = require(importations.COMPOSER)
 local listener = require(importations.LISTENER)
-local spriteControl = require(importations.CRAZY_SCIENTIST_SPRITE_CONTROL)
+local gameRules = require(importations.GAME_RULES)
 local images = require(importations.IMAGES)
 local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
-local sprite = require(importations.CRAZY_SCIENTIST_SPRITE)
+local spriteManager = require(importations.CRAZY_SCIENTIST_SPRITE)
 
 local scene = composer.newScene()
 local defaultDisplayConfiguration = display.getDefault()
 
 local initialTime
 local finalTime
+
+local sprite
 
 function scene:create()
 
@@ -21,6 +23,8 @@ function scene:create()
     local sceneGroup = self.view
 
     display.setDefault('textureWrapX', 'mirroredRepeat')
+
+    sprite = spriteManager.create()
 
     local navigationStatusBarSize = 300
 
@@ -54,7 +58,7 @@ function scene:create()
     sceneGroup:insert(sprite)
     sceneGroup:insert(backButton)
 
-    spriteControl.make(sprite, background, sceneGroup)
+    gameRules.make(sprite, background, sceneGroup)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end
@@ -97,7 +101,7 @@ function scene:destroy(event)
 
     print(tostring(finalTime - initialTime) .. 's')
 
-    spriteControl.clear()
+    gameRules.clear()
 
     local sceneGroup = self.view
     sceneGroup:removeSelf()

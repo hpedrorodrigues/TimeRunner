@@ -7,7 +7,7 @@ return {
     EVENT_UTIL = 'src.util.event_util',
     SWIPE_UTIL = 'src.util.swipe_util',
     DATABASE = 'src.db.db',
-    DATABASE_CONSTANTS = 'src.constant.database',
+    DATABASE_CONSTANTS = 'src.constant.database_scripts',
     SCENE_MANAGER = 'src.scenes.manager',
     DEFAULTS = 'src.default.defaults',
     SETTINGS = 'src.db.settings',
@@ -21,7 +21,7 @@ return {
     LFS = 'lfs',
     COMPOSER = 'composer',
     CRAZY_SCIENTIST_SPRITE = 'src.sprite.crazy_scientist',
-    CRAZY_SCIENTIST_SPRITE_CONTROL = 'src.sprite.control.crazy_scientist',
+    GAME_RULES = 'src.scenes.rules.game',
     PING_PONG = 'src.effect.ping_pong',
     SNOW = 'src.effect.snow',
     WIDGET = 'widget'

@@ -7,5 +7,6 @@ return {
     TAP = 'tap',
     KEY = 'key',
     TOUCH = 'touch',
-    SYSTEM = 'system'
+    SYSTEM = 'system',
+    COLLISION = 'collision'
 }

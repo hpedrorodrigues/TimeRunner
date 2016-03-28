@@ -83,6 +83,8 @@ end
 
 function scene:destroy(event)
 
+    pingPong.cancel()
+
     Runtime:removeEventListener(listener.ENTER_FRAME, snowMaker.make)
 
     local sceneGroup = self.view
