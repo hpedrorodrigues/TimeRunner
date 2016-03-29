@@ -5,13 +5,15 @@ local swipeUtil = require(importations.SWIPE_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
 local listener = require(importations.LISTENER)
 local images = require(importations.IMAGES)
+local bearSpriteManager = require(importations.BEAR_SPRITE)
 
 local MAX_LIFES = 3
 
 local earthObstacle
 local airObstacle
-local sprite
 local life = MAX_LIFES
+
+local sprite
 
 local bodyNames = {
     sprite = 'sprite',
@@ -26,6 +28,8 @@ local earthObstacleCollisionFilter = { categoryBits = 4, maskBits = 1 }
 local lifeImages
 
 local _collisionFunction
+
+local defaultObstacleX = displayConstants.WIDTH_SCREEN + 75
 
 local function _controlScientistJump()
     if (sprite ~= nil) then
@@ -50,17 +54,19 @@ end
 
 local function _translationObstacle()
 
-    airObstacle:setLinearVelocity(-200, 0);
-    earthObstacle:setLinearVelocity(-500, 0);
+    local obstacles = { airObstacle, earthObstacle }
 
-    if (airObstacle.x < displayConstants.LEFT_SCREEN) then
+    for i, obstacle in ipairs(obstacles) do
 
-        airObstacle.x = defaultObstacleX
-    end
+        if (obstacle ~= nil) then
 
-    if (earthObstacle.x < displayConstants.LEFT_SCREEN) then
+            if (obstacle.x < displayConstants.LEFT_SCREEN) then
 
-        earthObstacle.x = defaultObstacleX
+                obstacle.x = defaultObstacleX
+            else
+                obstacle:setLinearVelocity(-500, 0);
+            end
+        end
     end
 end
 
@@ -94,11 +100,8 @@ local function _clear()
     physics.stop()
 end
 
-local function _collisionAction()
+local function _collisionAction(obstacle, sprite)
     system.vibrate()
-
-    sprite:setLinearVelocity(0, 0)
-    sprite.y = displayConstants.HEIGHT_SCREEN - 55
 
     lifeImages[life].isVisible = false
 
@@ -108,9 +111,7 @@ local function _collisionAction()
 
         life = MAX_LIFES
 
-        timer.performWithDelay(500, function()
-
-            _clear()
+        timer.performWithDelay(2, function()
 
             sceneManager.goMenu()
         end)
@@ -118,15 +119,28 @@ local function _collisionAction()
 end
 
 _collisionFunction = function(event)
-    if (event.phase == "began") then
-        local obstacle = event.object1
-        local isObstacle = obstacle ~= nil and (obstacle.myName == bodyNames.airObstacle or obstacle.myName == bodyNames.earthObstacle)
-        local sprite = event.object2
-        local isSprite = sprite ~= nil and sprite.myName == bodyNames.sprite
 
-        if (isObstacle and isSprite) then
+    local obstacle = event.object1
+    local isObstacle = obstacle ~= nil and (obstacle.myName == bodyNames.airObstacle or obstacle.myName == bodyNames.earthObstacle)
+    local sprite = event.object2
+    local isSprite = sprite ~= nil and sprite.myName == bodyNames.sprite
 
-            _collisionAction()
+    if (isObstacle and isSprite) then
+
+        if (event.phase == 'began') then
+
+            _collisionAction(obstacle, sprite)
+
+            if (obstacle.isVisible) then
+                obstacle.isVisible = false
+            end
+        elseif (event.phase == 'ended') then
+
+            timer.performWithDelay(500, function()
+                if (obstacle ~= nil) then
+                    obstacle.isVisible = true
+                end
+            end, 1)
         end
     end
 end
@@ -138,18 +152,19 @@ local function _make(sp, background, group)
 
     physics.setGravity(0, 9.8)
 
-    physics.setDrawMode("hybrid")
+--    physics.setDrawMode('hybrid')
 
     local obstacleSize = 50
-    local defaultObstacleX = displayConstants.WIDTH_SCREEN + 75
 
     airObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
     airObstacle.x = defaultObstacleX
     airObstacle.y = displayConstants.HEIGHT_SCREEN - (obstacleSize * 3)
 
-    earthObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
+    --    earthObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
+    earthObstacle = bearSpriteManager.create()
     earthObstacle.x = defaultObstacleX
     earthObstacle.y = displayConstants.HEIGHT_SCREEN - (obstacleSize / 2)
+    earthObstacle:play()
 
     physics.addBody(airObstacle, 'dynamic', { density = 1, friction = 1, bounce = .2, filter = airObstacleCollisionFilter })
     physics.addBody(earthObstacle, 'dynamic', { density = 1, friction = 1, bounce = .2, filter = earthObstacleCollisionFilter })

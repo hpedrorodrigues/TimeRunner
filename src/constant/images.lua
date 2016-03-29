@@ -9,6 +9,8 @@ local GENERAL_PATH = BASE_IMAGE_PATH .. 'general/'
 return {
     LIFE = GENERAL_PATH .. 'life.png',
     CRAZY_SCIENTIST_SPRITE = SPRITES_PATH .. 'Sasuke-bicubic.png',
+    BEAR_SPRITE = SPRITES_PATH .. 'bear.png',
+    TIGER_SPRITE = SPRITES_PATH .. 'tiger.png',
     KINGDOM_SCENE = SCENES_PATH .. 'kingdom.jpg',
     SECOND_WAR_SCENE = SCENES_PATH .. 'second_war.jpg',
     EGYPT_SCENE = SCENES_PATH .. 'egypt.gif',
