@@ -13,6 +13,7 @@ Images
 - [1](http://www.hdwallpaperscool.com/running-hd-wallpapers/)
 - [2](http://www.iconarchive.com/show/100-flat-2-icons-by-graphicloads/information-icon.html)
 - [3](http://imgur.com/gallery/TkW97)
+- [4](http://spritefx.blogspot.com.br/2013/04/sprite-animals.html)
 
 Sounds
 

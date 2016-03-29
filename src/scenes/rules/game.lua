@@ -6,6 +6,7 @@ local sceneManager = require(importations.SCENE_MANAGER)
 local listener = require(importations.LISTENER)
 local images = require(importations.IMAGES)
 local bearSpriteManager = require(importations.BEAR_SPRITE)
+local tigerSpriteManager = require(importations.TIGER_SPRITE)
 
 local MAX_LIFES = 3
 
@@ -21,9 +22,10 @@ local bodyNames = {
     earthObstacle = 'earthObstacle'
 }
 
-local playerCollisionFilter = { categoryBits = 1, maskBits = 6 }
-local airObstacleCollisionFilter = { categoryBits = 2, maskBits = 1 }
-local earthObstacleCollisionFilter = { categoryBits = 4, maskBits = 1 }
+local playerCollisionFilter = { categoryBits = 1, maskBits = 14 }
+local airObstacleCollisionFilter = { categoryBits = 2, maskBits = 9 }
+local earthObstacleCollisionFilter = { categoryBits = 4, maskBits = 9 }
+local bottomWallCollisionFilter = { categoryBits = 8, maskBits = 7 }
 
 local lifeImages
 
@@ -31,41 +33,46 @@ local _collisionFunction
 
 local defaultObstacleX = displayConstants.WIDTH_SCREEN + 75
 
-local function _controlScientistJump()
-    if (sprite ~= nil) then
+local collisionThrottle = false
 
-        local spriteLocationY = displayConstants.HEIGHT_SCREEN - 55
-        local roundedSpriteY = math.floor(sprite.y)
-        local maxDifferencePermitted = 2
-
-        if (sprite.y < 550) then
-
-            sprite:setLinearVelocity(0, 0)
-            sprite:setLinearVelocity(0, 700)
-        elseif (roundedSpriteY == spriteLocationY
-                or roundedSpriteY + maxDifferencePermitted == spriteLocationY
-                or roundedSpriteY - maxDifferencePermitted == spriteLocationY) then
-
-            sprite:setLinearVelocity(0, 0)
-            sprite.y = displayConstants.HEIGHT_SCREEN - 55
-        end
-    end
-end
+local collisionDelayTime = 2
 
 local function _translationObstacle()
 
-    local obstacles = { airObstacle, earthObstacle }
+    if (airObstacle ~= nil) then
 
-    for i, obstacle in ipairs(obstacles) do
+        if (airObstacle.x < displayConstants.LEFT_SCREEN) then
 
-        if (obstacle ~= nil) then
+            airObstacle.x = defaultObstacleX
+        else
+            airObstacle:setLinearVelocity(-500, 0)
+        end
+    end
 
-            if (obstacle.x < displayConstants.LEFT_SCREEN) then
+    if (earthObstacle ~= nil) then
 
-                obstacle.x = defaultObstacleX
-            else
-                obstacle:setLinearVelocity(-500, 0);
+        if (earthObstacle.x < displayConstants.LEFT_SCREEN) then
+
+            earthObstacle.x = defaultObstacleX
+
+            if (earthObstacle.myName == bodyNames.earthObstacle) then
+                local randomNumber = math.random(1, 2)
+
+                if (randomNumber == 1) then
+                    earthObstacle = bearSpriteManager.create()
+                elseif (randomNumber == 2) then
+                    earthObstacle = tigerSpriteManager.create()
+                else
+                    earthObstacle = tigerSpriteManager.create()
+                end
+
+                earthObstacle:play()
+
+                physics.addBody(earthObstacle, 'dynamic', { density = 1, friction = 1, bounce = .2, filter = earthObstacleCollisionFilter })
             end
+        else
+
+            earthObstacle:setLinearVelocity(-500, 0)
         end
     end
 end
@@ -74,7 +81,6 @@ local function _clear()
 
     Runtime:removeEventListener(listener.ENTER_FRAME, _translationObstacle)
     Runtime:removeEventListener(listener.COLLISION, _collisionFunction)
-    Runtime:removeEventListener(listener.ENTER_FRAME, _controlScientistJump)
 
     if (sprite ~= nil) then
         physics.removeBody(sprite)
@@ -111,7 +117,7 @@ local function _collisionAction(obstacle, sprite)
 
         life = MAX_LIFES
 
-        timer.performWithDelay(2, function()
+        timer.performWithDelay(collisionDelayTime, function()
 
             sceneManager.goMenu()
         end)
@@ -125,7 +131,13 @@ _collisionFunction = function(event)
     local sprite = event.object2
     local isSprite = sprite ~= nil and sprite.myName == bodyNames.sprite
 
-    if (isObstacle and isSprite) then
+    if (isObstacle and isSprite and not collisionThrottle) then
+
+        collisionThrottle = true
+
+        timer.performWithDelay(1000, function()
+            collisionThrottle = false
+        end)
 
         if (event.phase == 'began') then
 
@@ -136,23 +148,33 @@ _collisionFunction = function(event)
             end
         elseif (event.phase == 'ended') then
 
-            timer.performWithDelay(500, function()
+            timer.performWithDelay(collisionDelayTime, function()
                 if (obstacle ~= nil) then
                     obstacle.isVisible = true
                 end
-            end, 1)
+            end)
         end
+
+        timer.performWithDelay(1000, function()
+            sprite.x = displayConstants.LEFT_SCREEN + 100
+            sprite.y = displayConstants.HEIGHT_SCREEN - 55
+
+            sprite:setLinearVelocity(0, 0)
+        end)
     end
 end
 
 local function _make(sp, background, group)
+    local halfWidth = display.contentWidth / 2
+    local bottomWall = display.newRect(halfWidth, display.contentHeight, display.contentWidth, 0)
+
     sprite = sp
 
     physics.start()
 
     physics.setGravity(0, 9.8)
 
---    physics.setDrawMode('hybrid')
+    physics.setDrawMode('hybrid')
 
     local obstacleSize = 50
 
@@ -163,9 +185,10 @@ local function _make(sp, background, group)
     --    earthObstacle = display.newRect(0, 0, obstacleSize, obstacleSize)
     earthObstacle = bearSpriteManager.create()
     earthObstacle.x = defaultObstacleX
-    earthObstacle.y = displayConstants.HEIGHT_SCREEN - (obstacleSize / 2)
+    earthObstacle.y = displayConstants.HEIGHT_SCREEN - 50
     earthObstacle:play()
 
+    physics.addBody(bottomWall, 'static', { density = 1, friction = 0, bounce = 1, filter = bottomWallCollisionFilter })
     physics.addBody(airObstacle, 'dynamic', { density = 1, friction = 1, bounce = .2, filter = airObstacleCollisionFilter })
     physics.addBody(earthObstacle, 'dynamic', { density = 1, friction = 1, bounce = .2, filter = earthObstacleCollisionFilter })
     physics.addBody(sprite, 'dynamic', { density = 1, friction = 1, bounce = .2, filter = playerCollisionFilter })
@@ -192,18 +215,21 @@ local function _make(sp, background, group)
 
     swipeUtil.swipe(background, {
         down = function()
-            sprite:applyForce(0, 0)
-            sprite:applyForce(0, 4.5, sprite.x, sprite.y)
+            sprite:applyLinearImpulse(0, 0)
+            sprite:applyLinearImpulse(0, 5)
+            --            sprite:applyForce(0, 0)
+            --            sprite:applyForce(0, 4.5, sprite.x, sprite.y)
         end,
         up = function()
-            sprite:applyForce(0, 0)
-            sprite:applyForce(0, -4.5, sprite.x, sprite.y)
+            sprite:applyLinearImpulse(0, 0)
+            sprite:applyLinearImpulse(0, -5)
+            --            sprite:applyForce(0, 0)
+            --            sprite:applyForce(0, -4.5, sprite.x, sprite.y)
         end
     })
 
     Runtime:addEventListener(listener.ENTER_FRAME, _translationObstacle)
     Runtime:addEventListener(listener.COLLISION, _collisionFunction)
-    Runtime:addEventListener(listener.ENTER_FRAME, _controlScientistJump)
 end
 
 return {
