@@ -33,7 +33,7 @@ local _collisionFunction
 
 local defaultObstacleX = displayConstants.WIDTH_SCREEN + 75
 
-local collisionThrottle = false
+local collisionThrottle = true
 
 local collisionDelayTime = 2
 
@@ -131,21 +131,19 @@ _collisionFunction = function(event)
     local sprite = event.object2
     local isSprite = sprite ~= nil and sprite.myName == bodyNames.sprite
 
-    if (isObstacle and isSprite and not collisionThrottle) then
+    if (isObstacle and isSprite and collisionThrottle) then
 
-        collisionThrottle = true
+        collisionThrottle = false
 
         timer.performWithDelay(1000, function()
-            collisionThrottle = false
+            collisionThrottle = true
         end)
 
         if (event.phase == 'began') then
 
             _collisionAction(obstacle, sprite)
 
-            if (obstacle.isVisible) then
-                obstacle.isVisible = false
-            end
+            obstacle.isVisible = false
         elseif (event.phase == 'ended') then
 
             timer.performWithDelay(collisionDelayTime, function()
