@@ -25,6 +25,10 @@ return {
     BEAR_SPRITE = 'src.sprite.bear',
     TIGER_SPRITE = 'src.sprite.tiger',
     GAME_RULES = 'src.scenes.rules.game',
+    FILTER_RULES = 'src.scenes.rules.filters',
+    SPRITES_MANAGER_RULES = 'src.scenes.rules.sprites_manager',
+    LIFE_MANAGER_RULES = 'src.scenes.rules.life_manager',
+    COLLISION_MANAGER_RULES = 'src.scenes.rules.collision_manager',
     PING_PONG = 'src.effect.ping_pong',
     SNOW = 'src.effect.snow',
     WIDGET = 'widget'
