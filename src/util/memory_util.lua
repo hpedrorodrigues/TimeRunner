@@ -12,9 +12,9 @@ local function _showMemoryInfo()
 
     if (system.getInfo('environment') == 'simulator') then
 
-        Runtime:addEventListener(listener.ENTER_FRAME, function()
+--        Runtime:addEventListener(listener.ENTER_FRAME, function()
             print('System Memory:', string.format('%.2f KB', collectgarbage('count')))
-        end)
+--        end)
     else
 
         print('System Memory:', string.format('%.2f KB', collectgarbage('count')))
