@@ -32,9 +32,7 @@ local lifeImages
 local _collisionFunction
 
 local defaultObstacleX = displayConstants.WIDTH_SCREEN + 75
-
 local collisionThrottle = true
-
 local collisionDelayTime = 2
 
 local function _translationObstacle()
@@ -156,8 +154,6 @@ _collisionFunction = function(event)
         timer.performWithDelay(1000, function()
             sprite.x = displayConstants.LEFT_SCREEN + 100
             sprite.y = displayConstants.HEIGHT_SCREEN - 55
-
-            sprite:setLinearVelocity(0, 0)
         end)
     end
 end
@@ -213,16 +209,10 @@ local function _make(sp, background, group)
 
     swipeUtil.swipe(background, {
         down = function()
-            sprite:applyLinearImpulse(0, 0)
-            sprite:applyLinearImpulse(0, 5)
-            --            sprite:applyForce(0, 0)
-            --            sprite:applyForce(0, 4.5, sprite.x, sprite.y)
+            sprite:setLinearVelocity(0, -200)
         end,
         up = function()
-            sprite:applyLinearImpulse(0, 0)
-            sprite:applyLinearImpulse(0, -5)
-            --            sprite:applyForce(0, 0)
-            --            sprite:applyForce(0, -4.5, sprite.x, sprite.y)
+            sprite:setLinearVelocity(0, 200)
         end
     })
 
