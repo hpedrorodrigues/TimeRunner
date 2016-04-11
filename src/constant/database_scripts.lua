@@ -8,7 +8,6 @@ return {
         return [[
             INSERT OR REPLACE INTO settings VALUES (NULL, ']] .. object.firstAccessKey .. [[', 1);
             INSERT OR REPLACE INTO settings VALUES (NULL, ']] .. object.enableSoundKey .. [[', 1);
-            INSERT OR REPLACE INTO settings VALUES (NULL, ']] .. object.enableLogsKey .. [[', 1);
         ]]
     end,
     formatDeleteSettingsByKeyScript = function(key)

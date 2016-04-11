@@ -7,7 +7,6 @@ local database = databaseManager.database()
 
 local FIRST_ACCESS_KEY = 'first_access'
 local ENABLE_SOUND_KEY = 'enable_sound'
-local ENABLE_LOGS_KEY = 'enable_logs'
 
 local TRUE = 1
 local FALSE = 0
@@ -15,8 +14,7 @@ local FALSE = 0
 local function _insertInitialValues()
     database:exec(databaseConstants.formatInitialSettingsScript({
         firstAccessKey = FIRST_ACCESS_KEY,
-        enableSoundKey = ENABLE_SOUND_KEY,
-        enableLogsKey = ENABLE_LOGS_KEY
+        enableSoundKey = ENABLE_SOUND_KEY
     }))
 end
 
@@ -76,24 +74,6 @@ local function _isSoundEnabled()
     return _getSettingByKey(ENABLE_SOUND_KEY) == TRUE
 end
 
--- Enable Logs
-
-local function _setEnableLogs(value)
-    _setSettingByKey(ENABLE_LOGS_KEY, value)
-end
-
-local function _enableLogs()
-    _setEnableLogs(TRUE)
-end
-
-local function _disableLogs()
-    _setEnableLogs(FALSE)
-end
-
-local function _isLogsEnabled()
-    return _getSettingByKey(ENABLE_LOGS_KEY) == TRUE
-end
-
 return {
     insertInitialValues = _insertInitialValues,
     enableSound = _enableSound,
@@ -101,8 +81,5 @@ return {
     isSoundEnabled = _isSoundEnabled,
     insertFirstAccess = _insertFirstAccess,
     hasFirstAccess = _hasFirstAccess,
-    showAllSettings = _showAllSettings,
-    enableLogs = _enableLogs,
-    disableLogs = _disableLogs,
-    isLogsEnabled = _isLogsEnabled
+    showAllSettings = _showAllSettings
 }

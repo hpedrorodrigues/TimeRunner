@@ -54,41 +54,10 @@ function scene:create(event)
         fontSize = 40
     })
 
-    local logsSwitch = widget.newSwitch({
-        left = leftSwitches,
-        top = soundSwitch.y + 50,
-        style = 'onOff',
-        id = 'logsSwitch',
-        initialSwitchState = settings.isLogsEnabled(),
-        onPress = function(event)
-            local switch = event.target
-
-            if (switch.isOn) then
-
-                settings.disableLogs()
-            else
-
-                native.showAlert('Configurações', 'Habilitar Logs\n\nIsso pode causar lentidão no jogo', { 'OK' })
-
-                settings.enableLogs()
-            end
-        end
-    })
-
-    local logsTitle = display.newText({
-        text = 'Habilitar logs',
-        x = logsSwitch.x + 200,
-        y = logsSwitch.y,
-        font = native.systemFontBold,
-        fontSize = 40
-    })
-
     sceneGroup:insert(background)
     sceneGroup:insert(backButton)
     sceneGroup:insert(soundSwitch)
     sceneGroup:insert(soundTitle)
-    sceneGroup:insert(logsSwitch)
-    sceneGroup:insert(logsTitle)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end

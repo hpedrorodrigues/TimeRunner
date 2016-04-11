@@ -19,17 +19,14 @@ if (settings.hasFirstAccess()) then
     sceneManager.goMenu()
 else
     settings.insertInitialValues()
-    sceneManager.goTutorial()
+    --    sceneManager.goTutorial()
 end
 
-if (settings.isLogsEnabled()) then
-
-    database.printSqliteVersion()
-    settings.showAllSettings()
-    fileUtil.listKnownDirectories()
-    constantUtil.listKnownConstantObjects()
-    memoryUtil.showMemoryInfo()
-end
+database.printSqliteVersion()
+settings.showAllSettings()
+fileUtil.listKnownDirectories()
+constantUtil.listKnownConstantObjects()
+memoryUtil.showMemoryInfo()
 
 if (settings.isSoundEnabled()) then
     backgroundSound = soundUtil.playBackgroundSound()
