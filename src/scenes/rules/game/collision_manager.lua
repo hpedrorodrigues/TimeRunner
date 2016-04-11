@@ -19,7 +19,8 @@ end
 local function _control(event)
 
     local obstacle = event.object1
-    local isObstacle = obstacle ~= nil and (obstacle.myName == bodyNames.airObstacle or obstacle.myName == bodyNames.earthObstacle)
+    local isObstacle = obstacle ~= nil
+            and (obstacle.myName == bodyNames.airObstacle or obstacle.myName == bodyNames.earthObstacle)
     local sprite = event.object2
     local isSprite = sprite ~= nil and sprite.myName == bodyNames.sprite
 
