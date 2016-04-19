@@ -26,6 +26,9 @@ local function _create()
     local healthSheet = graphics.newImageSheet(images.CRAZY_SCIENTIST_SPRITE, imageSheetOptions)
     local sprite = display.newSprite(healthSheet, spriteSequence)
 
+    sprite.myName = 'crazy_scientist'
+    sprite.died = false
+
     sprite:setSequence(spriteSequenceNames.RUNNING)
 
     sprite.x = displayConstants.LEFT_SCREEN + 100

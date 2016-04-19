@@ -1,8 +1,6 @@
 local importations = require(IMPORTATIONS)
-local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local sceneManager = require(importations.SCENE_MANAGER)
 
-local collisionThrottle = true
 local collisionDelayTime = 2
 
 local lifeManager
@@ -12,63 +10,44 @@ local function _setLifeManager(lm)
     lifeManager = lm
 end
 
-local function _setBodyNames(bn)
-    bodyNames = bn
-end
-
 local function _control(event)
 
-    local obstacle = event.object1
-    local isObstacle = obstacle ~= nil
-            and (obstacle.myName == bodyNames.airObstacle or obstacle.myName == bodyNames.earthObstacle)
-    local sprite = event.object2
-    local isSprite = sprite ~= nil and sprite.myName == bodyNames.sprite
+    if ((event.object1.myName == 'obstacle' and event.object2.myName == 'crazy_scientist')
+            or (event.object2.myName == 'obstacle' and event.object1.myName == 'crazy_scientist')) then
 
-    if (isObstacle and isSprite and collisionThrottle) then
+        local sprite = (event.object1.myName == 'crazy_scientist') and event.object1 or event.object2
+        local spriteObstacle = (event.object1.myName == 'obstacle') and event.object1 or event.object2
 
-        collisionThrottle = false
+        if (sprite.died == false) then
+            sprite.died = true
+        end
 
-        timer.performWithDelay(1000, function()
-            collisionThrottle = true
+        timer.performWithDelay(200, function()
+            transition.to(sprite, { alpha = 1, timer = 250 })
+            sprite.died = false
         end)
 
-        if (event.phase == 'began') then
+        system.vibrate()
 
-            system.vibrate()
+        lifeManager.setVisibilityFromCurrentLife(false)
 
-            lifeManager.setVisibilityFromCurrentLife(false)
+        lifeManager.decrease()
 
-            lifeManager.decrease()
+        if (not lifeManager.hasLife()) then
 
-            if (not lifeManager.hasLife()) then
-
-                lifeManager.reset()
-
-                timer.performWithDelay(collisionDelayTime, function()
-
-                    sceneManager.goMenu()
-                end)
-            end
-
-            obstacle.isVisible = false
-        elseif (event.phase == 'ended') then
+            lifeManager.reset()
 
             timer.performWithDelay(collisionDelayTime, function()
-                if (obstacle ~= nil) then
-                    obstacle.isVisible = true
-                end
+
+                sceneManager.goMenu()
             end)
         end
 
-        timer.performWithDelay(1000, function()
-            sprite.x = displayConstants.LEFT_SCREEN + 100
-            sprite.y = displayConstants.HEIGHT_SCREEN - 55
-        end)
+        spriteObstacle.isDeleted = true
     end
 end
 
 return {
     setLifeManager = _setLifeManager,
-    setBodyNames = _setBodyNames,
     control = _control
 }
