@@ -2,9 +2,12 @@ local importations = require(IMPORTATIONS)
 local listener = require(importations.LISTENER)
 
 local events = {}
+local throttle = true
 
 local function _handleSwipe(event)
-    if (events ~= nil and event.phase == 'moved') then
+    if (events ~= nil and event.phase == 'moved' and throttle) then
+
+        throttle = false
 
         local dY = event.y - event.yStart
         local dX = event.x - event.xStart
@@ -34,6 +37,10 @@ local function _handleSwipe(event)
                 events.up()
             end
         end
+
+        timer.performWithDelay(500, function()
+            throttle = true
+        end)
     end
 
     return true

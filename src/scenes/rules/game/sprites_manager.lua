@@ -37,12 +37,14 @@ local function _createRandomSprites()
     end
 
     local sprite = sprites[spritesQuantity]
+
     sprite.myName = 'obstacle'
     sprite:play()
 
     physics.addBody(sprite, { density = 1, friction = 0.4, bounce = 1, filter = filters.earthObstacleCollision })
 
     sprite.gravityScale = 9.8
+    sprite.angularVelocity = 0
 
     sprite:translate(translateVelocity, 0)
 end

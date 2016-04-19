@@ -6,18 +6,42 @@ local filters = require(importations.FILTER_RULES)
 local spritesManager = require(importations.SPRITES_MANAGER_RULES)
 local lifeManager = require(importations.LIFE_MANAGER_RULES)
 local collisionManager = require(importations.COLLISION_MANAGER_RULES)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
 
 local sprite
+local jumpVelocity = 500
+
+local function _controlScientistJump()
+    if (sprite ~= nil) then
+
+        local spriteLocationY = displayConstants.HEIGHT_SCREEN - 55
+        local roundedSpriteY = math.floor(sprite.y)
+        local maxDifferencePermitted = 2
+
+        if (sprite.y < 500) then
+
+            sprite:setLinearVelocity(0, 0)
+            sprite:setLinearVelocity(0, jumpVelocity)
+        elseif (roundedSpriteY == spriteLocationY
+                or spriteLocationY - roundedSpriteY < maxDifferencePermitted) then
+
+            sprite:setLinearVelocity(0, 0)
+            sprite.y = displayConstants.HEIGHT_SCREEN - 55
+            sprite.x = displayConstants.LEFT_SCREEN + 100
+        end
+    end
+end
 
 local function _clear()
 
     spritesManager.cancel()
 
+    Runtime:removeEventListener(listener.ENTER_FRAME, _controlScientistJump)
     Runtime:removeEventListener(listener.COLLISION, collisionManager.control)
 
     if (sprite ~= nil) then
-        physics.removeBody(sprite)
 
+        physics.removeBody(sprite)
         sprite:removeSelf()
         sprite = nil
     end
@@ -43,10 +67,12 @@ local function _make(sp, background, group)
 
     swipeUtil.swipe(background, {
         down = function()
-            sprite:setLinearVelocity(0, -200)
+            sprite:setLinearVelocity(0, 0)
+            sprite:setLinearVelocity(0, -1 * jumpVelocity)
         end,
         up = function()
-            sprite:setLinearVelocity(0, 200)
+            sprite:setLinearVelocity(0, 0)
+            sprite:setLinearVelocity(0, jumpVelocity)
         end
     })
 
@@ -56,6 +82,7 @@ local function _make(sp, background, group)
     collisionManager.setLifeManager(lifeManager)
 
     Runtime:addEventListener(listener.COLLISION, collisionManager.control)
+    Runtime:addEventListener(listener.ENTER_FRAME, _controlScientistJump)
 end
 
 return {
