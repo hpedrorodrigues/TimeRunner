@@ -4,6 +4,7 @@ local tigerSpriteManager = require(importations.TIGER_SPRITE)
 local physics = require(importations.PHYSICS)
 local listener = require(importations.LISTENER)
 local filters = require(importations.FILTER_RULES)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
 
 local sprites = {}
 local spritesQuantity = 0
@@ -29,8 +30,10 @@ local function _createRandomSprites()
 
     if (math.random(1, 2) == 1) then
         sprites[spritesQuantity] = _createBearSprite()
+        sprites[spritesQuantity].animalName = 'bear'
     else
         sprites[spritesQuantity] = _createTigerSprite()
+        sprites[spritesQuantity].animalName = 'tiger'
     end
 
     local sprite = sprites[spritesQuantity]
@@ -38,6 +41,8 @@ local function _createRandomSprites()
     sprite:play()
 
     physics.addBody(sprite, { density = 1, friction = 0.4, bounce = 1, filter = filters.earthObstacleCollision })
+
+    sprite.gravityScale = 9.8
 
     sprite:translate(translateVelocity, 0)
 end
@@ -52,6 +57,15 @@ local function _spriteUpdate()
         if (child ~= nil) then
 
             child:translate(translateVelocity, 0)
+
+            if (child.animalName == 'tiger') then
+
+                child.y = displayConstants.HEIGHT_SCREEN - 30
+            elseif (child.animalName == 'bear') then
+
+                child.y = displayConstants.HEIGHT_SCREEN - 40
+            else
+            end
 
             if (child.x <= -20 or child.isDeleted) then
 
