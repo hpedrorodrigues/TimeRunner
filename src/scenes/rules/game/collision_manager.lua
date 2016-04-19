@@ -1,5 +1,6 @@
 local importations = require(IMPORTATIONS)
 local sceneManager = require(importations.SCENE_MANAGER)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
 
 local collisionDelayTime = 2
 
@@ -24,6 +25,7 @@ local function _control(event)
 
         timer.performWithDelay(200, function()
             transition.to(sprite, { alpha = 1, timer = 250 })
+            sprite.x = displayConstants.LEFT_SCREEN + 100
             sprite.died = false
         end)
 

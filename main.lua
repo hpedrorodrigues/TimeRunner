@@ -18,15 +18,14 @@ defaults.set()
 if (settings.hasFirstAccess()) then
     sceneManager.goMenu()
 else
+    database.printSqliteVersion()
+    settings.showAllSettings()
+    fileUtil.listKnownDirectories()
+    constantUtil.listKnownConstantObjects()
+    memoryUtil.showMemoryInfo()
     settings.insertInitialValues()
     --    sceneManager.goTutorial()
 end
-
-database.printSqliteVersion()
-settings.showAllSettings()
-fileUtil.listKnownDirectories()
-constantUtil.listKnownConstantObjects()
-memoryUtil.showMemoryInfo()
 
 if (settings.isSoundEnabled()) then
     backgroundSound = soundUtil.playBackgroundSound()

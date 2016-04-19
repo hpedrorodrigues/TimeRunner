@@ -10,6 +10,7 @@ local spritesQuantity = 0
 local delay = 1200
 local group = {}
 local spritesTimer
+local translateVelocity = -8
 
 local function _setGroup(gp)
     group = gp
@@ -24,6 +25,8 @@ local function _createTigerSprite()
 end
 
 local function _createRandomSprites()
+    spritesQuantity = spritesQuantity + 1
+
     if (math.random(1, 2) == 1) then
         sprites[spritesQuantity] = _createBearSprite()
     else
@@ -36,20 +39,19 @@ local function _createRandomSprites()
 
     physics.addBody(sprite, { density = 1, friction = 0.4, bounce = 1, filter = filters.earthObstacleCollision })
 
-    sprite:setLinearVelocity(200, 0)
-
-    spritesQuantity = spritesQuantity + 1
+    sprite:translate(translateVelocity, 0)
 end
 
 local function _spriteUpdate()
 
     for i = 1, spritesQuantity do
 
-        local child = sprites[i]
+        local currentPosition = i
+        local child = sprites[currentPosition]
 
         if (child ~= nil) then
 
-            child:translate(-12, 0)
+            child:translate(translateVelocity, 0)
 
             if (child.x <= -20 or child.isDeleted) then
 
@@ -58,8 +60,6 @@ local function _spriteUpdate()
                 child:removeSelf()
                 child = nil
                 sprites[i] = nil
-
-                spritesQuantity = spritesQuantity - 1
             end
         end
     end
