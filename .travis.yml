@@ -25,7 +25,7 @@ install:
   - luarocks install luacov-coveralls
 
 script:
-  - luacheck --no-unused-args --std max+busted *.lua src/* --ignore 512 --no-cache --globals display IMPORTATIONS application backgroundSound system Runtime native transition timer graphics audio
+  - luacheck --no-unused-args --std max+busted *.lua src --ignore 512 --no-cache --globals display IMPORTATIONS application backgroundSound system Runtime native transition timer graphics audio
 #  - busted --verbose --coverage
 
 after_success:
