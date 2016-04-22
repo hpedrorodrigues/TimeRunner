@@ -57,6 +57,11 @@ local function _cancel()
             physics.removeBody(wall)
 
             wall = nil
+
+            -- Doing it because is needed but linter not known Corona SDK
+            if (wall ~= nil) then
+                print(wall)
+            end
         end
     end
 

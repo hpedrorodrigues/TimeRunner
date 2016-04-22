@@ -1,3 +1,8 @@
+# References:
+# https://github.com/mpeterv/hererocks
+# https://github.com/kikito/middleclass/blob/master/.travis.yml
+# http://luacheck.readthedocs.org/en/stable/cli.html#command-line-options
+
 language: python
 sudo: false
 
@@ -15,9 +20,13 @@ before_install:
 
 install:
   - luarocks install luacheck
+  - luarocks install busted
+  - luarocks install luacov
+  - luarocks install luacov-coveralls
 
 script:
-  - luacheck --no-unused-args --std max+busted *.lua spec
+  - luacheck --no-unused-args --std max+busted *.lua src/* --ignore 512 --no-cache --globals display IMPORTATIONS application backgroundSound system Runtime native transition timer graphics audio
+#  - busted --verbose --coverage
 
 after_success:
   - luacov-coveralls --exclude $TRAVIS_BUILD_DIR/lua_install

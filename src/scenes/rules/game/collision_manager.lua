@@ -5,7 +5,6 @@ local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local collisionDelayTime = 2
 
 local lifeManager
-local bodyNames
 
 local function _setLifeManager(lm)
     lifeManager = lm

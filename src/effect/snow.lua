@@ -3,6 +3,11 @@ local transitionHandler
 local function _removeFlake(target)
     target:removeSelf()
     target = nil
+
+    -- Doing it because is needed but linter not known Corona SDK
+    if (target ~= nil) then
+        print(target)
+    end
 end
 
 local function _spawnSnowFlake()

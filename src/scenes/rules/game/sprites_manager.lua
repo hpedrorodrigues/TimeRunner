@@ -66,7 +66,6 @@ local function _spriteUpdate()
             elseif (child.animalName == 'bear') then
 
                 child.y = displayConstants.HEIGHT_SCREEN - 40
-            else
             end
 
             if (child.x <= -20 or child.isDeleted) then
@@ -76,6 +75,11 @@ local function _spriteUpdate()
                 child:removeSelf()
                 child = nil
                 sprites[i] = nil
+
+                -- Doing it because is needed but linter not known Corona SDK
+                if (child ~= nil) then
+                    print(child)
+                end
             end
         end
     end
@@ -93,6 +97,11 @@ local function _removeAllSprites()
             child:removeSelf()
             child = nil
             sprites[i] = nil
+
+            -- Doing it because is needed but linter not known Corona SDK
+            if (child ~= nil) then
+                print(child)
+            end
         end
     end
 
