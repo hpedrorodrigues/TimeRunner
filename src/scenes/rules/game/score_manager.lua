@@ -4,7 +4,6 @@ local listener = require(importations.LISTENER)
 
 local scoreText
 local group
-local lifeManager
 local initialTime
 local score
 
@@ -19,10 +18,6 @@ local function _score()
     else
         return score
     end
-end
-
-local function _setLifeManager(lf)
-    lifeManager = lf
 end
 
 local function _createScore(gp)
@@ -59,6 +54,5 @@ end
 return {
     create = _createScore,
     destroy = _destroyScore,
-    setLifeManager = _setLifeManager,
     score = _score
 }

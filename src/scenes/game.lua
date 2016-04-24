@@ -37,7 +37,7 @@ function scene:create()
             fill.filename = images.FRENCH_REVOLUTION_SCENE;
         elseif (gameRules.scoreManager().score() < 200) then
 
-            fill.filename = images.SECOND_WAR_SCENE;
+            fill.filename = images.EGYPT_SCENE;
         else
 
             fill.filename = images.KINGDOM_SCENE;

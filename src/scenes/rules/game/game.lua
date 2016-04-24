@@ -87,7 +87,6 @@ local function _make(sp, background, group)
 
     collisionManager.setLifeManager(lifeManager)
 
-    scoreManager.setLifeManager(lifeManager)
     scoreManager.create(group)
 
     Runtime:addEventListener(listener.COLLISION, collisionManager.control)
