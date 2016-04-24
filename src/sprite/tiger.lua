@@ -5,7 +5,7 @@ local images = require(importations.IMAGES)
 
 local function _create()
 
-    local imageSheetOptions = { width = 122, height = 45, numFrames = 6 }
+    local imageSheetOptions = { width = 122, height = 44, numFrames = 6 }
 
     local spriteSequence = {
         {
