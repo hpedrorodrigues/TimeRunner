@@ -12,6 +12,10 @@ local scoreManager = require(importations.SCORE_MANAGER_RULES)
 local sprite
 local jumpVelocity = 500
 
+local function _scoreManager()
+    return scoreManager
+end
+
 local function _controlScientistJump()
     if (sprite ~= nil) then
 
@@ -92,5 +96,6 @@ end
 
 return {
     make = _make,
-    clear = _clear
+    clear = _clear,
+    scoreManager = _scoreManager
 }

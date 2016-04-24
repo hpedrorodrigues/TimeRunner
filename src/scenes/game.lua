@@ -30,7 +30,20 @@ function scene:create()
     background.fill = { type = 'image', filename = images.FRENCH_REVOLUTION_SCENE }
 
     local function infinitelyScrollingBackground()
-        transition.to(background.fill, {
+        local fill = background.fill;
+
+        if (gameRules.scoreManager().score() < 100) then
+
+            fill.filename = images.FRENCH_REVOLUTION_SCENE;
+        elseif (gameRules.scoreManager().score() < 200) then
+
+            fill.filename = images.SECOND_WAR_SCENE;
+        else
+
+            fill.filename = images.KINGDOM_SCENE;
+        end
+
+        transition.to(fill, {
             time = 5000,
             x = 1,
             delta = true,

@@ -6,9 +6,19 @@ local scoreText
 local group
 local lifeManager
 local initialTime
+local score
 
 local function _refresh()
-    scoreText.text = 'Score: ' .. tostring(os.time() - initialTime)
+    score = os.time() - initialTime
+    scoreText.text = 'Score: ' .. tostring(score)
+end
+
+local function _score()
+    if (score == nil) then
+        return 0
+    else
+        return score
+    end
 end
 
 local function _setLifeManager(lf)
@@ -22,10 +32,10 @@ local function _createScore(gp)
 
     scoreText = display.newText({
         text = 'Score',
-        x = displayConstants.WIDTH_SCREEN - ((lifeManager.MAX_LIFES + 1) * 130),
+        x = displayConstants.LEFT_SCREEN + 250,
         y = 60,
         font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
-        fontSize = 30
+        fontSize = 40
     })
 
     group:insert(scoreText)
@@ -49,5 +59,6 @@ end
 return {
     create = _createScore,
     destroy = _destroyScore,
-    setLifeManager = _setLifeManager
+    setLifeManager = _setLifeManager,
+    score = _score
 }

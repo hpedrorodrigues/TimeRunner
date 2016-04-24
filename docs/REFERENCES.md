@@ -19,6 +19,8 @@ Sounds
 
 - [1](http://free-loops.com/8595-lyrical-battle.html)
 - [2](http://www.freesound.org/)
+- [3](https://www.youtube.com/watch?v=_GRW6N8N5bs)
+- [4](http://freemusicarchive.org/music/BoxCat_Games/)
 
 [Sprites](https://docs.coronalabs.com/api/library/graphics/newImageSheet.html)
 
