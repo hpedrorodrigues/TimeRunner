@@ -7,6 +7,7 @@ local spritesManager = require(importations.SPRITES_MANAGER_RULES)
 local lifeManager = require(importations.LIFE_MANAGER_RULES)
 local collisionManager = require(importations.COLLISION_MANAGER_RULES)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
+local scoreManager = require(importations.SCORE_MANAGER_RULES)
 
 local sprite
 local jumpVelocity = 500
@@ -35,6 +36,7 @@ end
 local function _clear()
 
     spritesManager.cancel()
+    scoreManager.destroy()
 
     Runtime:removeEventListener(listener.ENTER_FRAME, _controlScientistJump)
     Runtime:removeEventListener(listener.COLLISION, collisionManager.control)
@@ -80,6 +82,9 @@ local function _make(sp, background, group)
     spritesManager.create()
 
     collisionManager.setLifeManager(lifeManager)
+
+    scoreManager.setLifeManager(lifeManager)
+    scoreManager.create(group)
 
     Runtime:addEventListener(listener.COLLISION, collisionManager.control)
     Runtime:addEventListener(listener.ENTER_FRAME, _controlScientistJump)

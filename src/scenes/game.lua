@@ -11,14 +11,9 @@ local spriteManager = require(importations.CRAZY_SCIENTIST_SPRITE)
 local scene = composer.newScene()
 local defaultDisplayConfiguration = display.getDefault()
 
-local initialTime
-local finalTime
-
 local sprite
 
 function scene:create()
-
-    initialTime = os.time()
 
     local sceneGroup = self.view
 
@@ -64,10 +59,6 @@ function scene:create()
 end
 
 function scene:destroy(event)
-
-    finalTime = os.time()
-
-    print(tostring(finalTime - initialTime) .. 's')
 
     gameRules.clear()
 
