@@ -64,7 +64,7 @@ local function _make(sp, background, group)
 
     physics.start()
     physics.setGravity(0, 9.8)
---    physics.setDrawMode('hybrid')
+    physics.setDrawMode('hybrid')
 
     physics.addBody(bottomWall, 'static', { density = 1, friction = 0, bounce = 1, filter = filters.bottomWallCollision })
     physics.addBody(sprite, { density = 1, friction = 1, bounce = .2, filter = filters.playerCollision })

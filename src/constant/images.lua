@@ -12,7 +12,7 @@ return {
     BEAR_SPRITE = SPRITES_PATH .. 'bear.png',
     TIGER_SPRITE = SPRITES_PATH .. 'tiger.png',
     KINGDOM_SCENE = SCENES_PATH .. 'kingdom.jpg',
-    EGYPT_SCENE = SCENES_PATH .. 'egypt.gif',
+    EGYPT_SCENE = SCENES_PATH .. 'egypt.jpg',
     FRENCH_REVOLUTION_SCENE = SCENES_PATH .. 'french_revolution.gif',
     SETTINGS_BACKGROUND = BACKGROUNDS_PATH .. 'settings.jpg',
     MENU_BACKGROUND = BACKGROUNDS_PATH .. 'menu.jpg',
