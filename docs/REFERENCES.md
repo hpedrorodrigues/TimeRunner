@@ -24,6 +24,7 @@ Sounds
 - [2](http://www.freesound.org/)
 - [3](https://www.youtube.com/watch?v=_GRW6N8N5bs)
 - [4](http://freemusicarchive.org/music/BoxCat_Games/)
+- [5](http://www.playonloop.com/2015-music-loops/time-attack/)
 
 [Sprites](https://docs.coronalabs.com/api/library/graphics/newImageSheet.html)
 

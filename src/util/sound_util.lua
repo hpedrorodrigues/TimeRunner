@@ -12,7 +12,7 @@ local function _playBackgroundSound()
 
     return audio.play(sound, {
         loops = -1,
-        fadein = 5000
+        fadein = 10000
     })
 end
 
