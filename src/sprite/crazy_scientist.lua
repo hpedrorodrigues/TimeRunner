@@ -34,8 +34,6 @@ local function _create()
     sprite.x = displayConstants.LEFT_SCREEN + 100
     sprite.y = displayConstants.HEIGHT_SCREEN - 55
 
-    sprite.angularVelocity = 0
-
     return sprite
 end
 

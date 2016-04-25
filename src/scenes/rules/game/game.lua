@@ -1,12 +1,10 @@
 local importations = require(IMPORTATIONS)
 local physics = require(importations.PHYSICS)
-local swipeUtil = require(importations.SWIPE_UTIL)
 local listener = require(importations.LISTENER)
 local filters = require(importations.FILTER_RULES)
 local spritesManager = require(importations.SPRITES_MANAGER_RULES)
 local lifeManager = require(importations.LIFE_MANAGER_RULES)
 local collisionManager = require(importations.COLLISION_MANAGER_RULES)
-local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local scoreManager = require(importations.SCORE_MANAGER_RULES)
 
 local sprite
@@ -19,20 +17,12 @@ end
 local function _controlScientistJump()
     if (sprite ~= nil) then
 
-        local spriteLocationY = displayConstants.HEIGHT_SCREEN - 55
-        local roundedSpriteY = math.floor(sprite.y)
-        local maxDifferencePermitted = 2
+        sprite.angularVelocity = 0
+        sprite.isFixedRotation = true
 
-        if (sprite.y < 500) then
-
+        if (sprite.y < 450) then
             sprite:setLinearVelocity(0, 0)
             sprite:setLinearVelocity(0, jumpVelocity)
-        elseif (roundedSpriteY == spriteLocationY
-                or spriteLocationY - roundedSpriteY < maxDifferencePermitted) then
-
-            sprite:setLinearVelocity(0, 0)
-            sprite.y = displayConstants.HEIGHT_SCREEN - 55
-            sprite.x = displayConstants.LEFT_SCREEN + 100
         end
     end
 end
@@ -71,16 +61,10 @@ local function _make(sp, background, group)
 
     lifeManager.createImages(group)
 
-    swipeUtil.swipe(background, {
-        down = function()
-            sprite:setLinearVelocity(0, 0)
-            sprite:setLinearVelocity(0, -1 * jumpVelocity)
-        end,
-        up = function()
-            sprite:setLinearVelocity(0, 0)
-            sprite:setLinearVelocity(0, jumpVelocity)
-        end
-    })
+    background:addEventListener(listener.TOUCH, function()
+        sprite:setLinearVelocity(0, 0)
+        sprite:setLinearVelocity(0, jumpVelocity)
+    end)
 
     spritesManager.setGroup(group)
     spritesManager.create()
