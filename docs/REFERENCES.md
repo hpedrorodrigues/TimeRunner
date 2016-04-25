@@ -14,6 +14,9 @@ Images
 - [2](http://www.iconarchive.com/show/100-flat-2-icons-by-graphicloads/information-icon.html)
 - [3](http://imgur.com/gallery/TkW97)
 - [4](http://spritefx.blogspot.com.br/2013/04/sprite-animals.html)
+- [5](http://ultradownloads.com.br/papel-de-parede/Arte-Digital-Game-Over/)
+- [6](http://twistedsifter.com/2013/05/animated-gifs-of-fighting-game-backgrounds/)
+- [7](http://alliswall.com/3d-and-abstract/time_traveller_1)
 
 Sounds
 

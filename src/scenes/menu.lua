@@ -5,16 +5,13 @@ local images = require(importations.IMAGES)
 local listener = require(importations.LISTENER)
 local sceneManager = require(importations.SCENE_MANAGER)
 local pingPong = require(importations.PING_PONG)
-local snowMaker = require(importations.SNOW)
 
 local scene = composer.newScene()
 
 function scene:create(event)
 
-    Runtime:addEventListener(listener.ENTER_FRAME, snowMaker.make)
-
     local sceneGroup = self.view
-    local background = display.newImage(images.MENU_BACKGROUND, 300, 200, true)
+    local background = display.newImage(images.MENU_BACKGROUND, 700, 300, true)
     local distance = { x = 400, y = 250 }
 
     local playButton = display.newImageRect(images.PLAY_BUTTON, 100, 100)
@@ -52,8 +49,6 @@ end
 function scene:destroy(event)
 
     pingPong.cancel()
-
-    Runtime:removeEventListener(listener.ENTER_FRAME, snowMaker.make)
 
     local sceneGroup = self.view
     sceneGroup:removeSelf()

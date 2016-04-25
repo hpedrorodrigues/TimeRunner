@@ -26,7 +26,7 @@ function scene:create(event)
         x = displayConstants.CENTER_X,
         y = displayConstants.CENTER_Y + 180,
         font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
-        fontSize = 40
+        fontSize = 100
     })
 
     sceneGroup:insert(background)
