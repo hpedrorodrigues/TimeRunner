@@ -77,6 +77,7 @@ local function _make(sp, background, group)
     spritesManager.create()
 
     collisionManager.setLifeManager(lifeManager)
+    collisionManager.setScoreManager(scoreManager)
 
     scoreManager.create(group)
 

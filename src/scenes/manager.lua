@@ -23,6 +23,16 @@ local function _goMenu()
     composer.gotoScene('src.scenes.menu', transitionConfiguration)
 end
 
+local function _goGameOver(sc)
+    _removeCurrentScene()
+    composer.removeHidden()
+    composer.gotoScene('src.scenes.game_over', {
+        time = 500,
+        effect = 'crossFade',
+        params = { score = sc }
+    })
+end
+
 local function _goGame()
     _removeCurrentScene()
     composer.removeHidden()
@@ -43,6 +53,7 @@ end
 
 return {
     goMenu = _goMenu,
+    goGameOver = _goGameOver,
     goAbout = _goAbout,
     goGame = _goGame,
     goSettings = _goSettings,

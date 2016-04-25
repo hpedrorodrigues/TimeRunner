@@ -18,6 +18,7 @@ return {
     MENU_BACKGROUND = BACKGROUNDS_PATH .. 'menu.jpg',
     ABOUT_BACKGROUND = BACKGROUNDS_PATH .. 'about.jpg',
     TUTORIAL_BACKGROUND = BACKGROUNDS_PATH .. 'tutorial.jpg',
+    GAME_OVER_BACKGROUND = BACKGROUNDS_PATH .. 'game_over.jpg',
     PLAY_BUTTON = BUTTONS_PATH .. 'play.png',
     SETTINGS_BUTTON = BUTTONS_PATH .. 'settings.png',
     ABOUT_BUTTON = BUTTONS_PATH .. 'about.png',

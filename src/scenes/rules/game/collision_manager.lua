@@ -5,9 +5,14 @@ local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local collisionDelayTime = 2
 
 local lifeManager
+local scoreManager
 
 local function _setLifeManager(lm)
     lifeManager = lm
+end
+
+local function _setScoreManager(sm)
+    scoreManager = sm
 end
 
 local function _control(event)
@@ -40,7 +45,7 @@ local function _control(event)
 
             timer.performWithDelay(collisionDelayTime, function()
 
-                sceneManager.goMenu()
+                sceneManager.goGameOver(scoreManager.score())
             end)
         end
 
@@ -50,5 +55,6 @@ end
 
 return {
     setLifeManager = _setLifeManager,
+    setScoreManager = _setScoreManager,
     control = _control
 }
