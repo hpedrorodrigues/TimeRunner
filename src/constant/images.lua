@@ -15,7 +15,7 @@ return {
     EGYPT_SCENE = SCENES_PATH .. 'egypt.jpg',
     FRENCH_REVOLUTION_SCENE = SCENES_PATH .. 'french_revolution.gif',
     SETTINGS_BACKGROUND = BACKGROUNDS_PATH .. 'settings.jpg',
-    MENU_BACKGROUND = BACKGROUNDS_PATH .. 'main-menu.jpg',
+    MENU_BACKGROUND = BACKGROUNDS_PATH .. 'menu.jpg',
     ABOUT_BACKGROUND = BACKGROUNDS_PATH .. 'about.jpg',
     TUTORIAL_BACKGROUND = BACKGROUNDS_PATH .. 'tutorial.jpg',
     GAME_OVER_BACKGROUND = BACKGROUNDS_PATH .. 'game_over.jpg',

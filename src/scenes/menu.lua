@@ -11,7 +11,7 @@ local scene = composer.newScene()
 function scene:create(event)
 
     local sceneGroup = self.view
-    local background = display.newImage(images.MENU_BACKGROUND, 700, 300, true)
+    local background = display.newImage(images.MENU_BACKGROUND, 300, 200, true)
     local distance = { x = 400, y = 250 }
 
     local playButton = display.newImageRect(images.PLAY_BUTTON, 100, 100)
