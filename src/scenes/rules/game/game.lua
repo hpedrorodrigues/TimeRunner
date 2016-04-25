@@ -6,6 +6,7 @@ local spritesManager = require(importations.SPRITES_MANAGER_RULES)
 local lifeManager = require(importations.LIFE_MANAGER_RULES)
 local collisionManager = require(importations.COLLISION_MANAGER_RULES)
 local scoreManager = require(importations.SCORE_MANAGER_RULES)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
 
 local sprite
 local jumpVelocity = 500
@@ -21,8 +22,13 @@ local function _controlScientistJump()
         sprite.isFixedRotation = true
 
         if (sprite.y < 450) then
+
             sprite:setLinearVelocity(0, 0)
             sprite:setLinearVelocity(0, jumpVelocity)
+        elseif (math.floor((displayConstants.HEIGHT_SCREEN - 55) - (sprite.y + 5)) < 150 and sprite.isOnAir) then
+
+            sprite.y = displayConstants.HEIGHT_SCREEN - 55
+            sprite.isOnAir = false
         end
     end
 end
@@ -64,6 +70,7 @@ local function _make(sp, background, group)
     background:addEventListener(listener.TOUCH, function()
         sprite:setLinearVelocity(0, 0)
         sprite:setLinearVelocity(0, jumpVelocity)
+        sprite.isOnAir = true
     end)
 
     spritesManager.setGroup(group)
