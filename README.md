@@ -25,7 +25,7 @@ de reação do jogador.
 
 #### Objetivo Geral
 
-* Fazer com que o melhore seu tempo de reação no jogo
+* Fazer com que o jogador melhore seu tempo de reação no jogo
 
 
 #### Objetivos Específicos
@@ -37,7 +37,7 @@ de reação do jogador.
 #### Regras do Jogo
 
 * Ao ser atingido por um obstáculo o jogador perderá o jogo
-* A pontuação do jogador será o seu tempo no jogo
+* A pontuação do jogador será o seu tempo no jogo em segundos
 * O jogador poderá ser atingido apenas 5 vezes por um obstáculo
 * A cada 300s o jogo trocará de tempo, ou seja, o cenário irá mudar pra um
 um novo background se adaptando ao novo período de tempo
