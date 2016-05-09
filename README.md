@@ -39,7 +39,7 @@ de reação do jogador.
 * Ao ser atingido por um obstáculo o jogador perderá o jogo
 * A pontuação do jogador será o seu tempo no jogo
 * O jogador poderá ser atingido apenas 5 vezes por um obstáculo
-* A cada 100s o jogo trocará de tempo, ou seja, o cenário irá mudar pra um
+* A cada 300s o jogo trocará de tempo, ou seja, o cenário irá mudar pra um
 um novo background se adaptando ao novo período de tempo
 
 

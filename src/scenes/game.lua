@@ -29,10 +29,12 @@ function scene:create()
         display.contentHeight)
     background.fill = { type = 'image', filename = images.FRENCH_REVOLUTION_SCENE }
 
+    local transitionHandler
+
     local function infinitelyScrollingBackground()
         local fill = background.fill;
 
-        if (gameRules.scoreManager().score() % 100 == 0) then
+        if (gameRules.scoreManager().score() % 300 == 0) then
 
             local random = math.random(1, 3)
 
@@ -45,11 +47,14 @@ function scene:create()
             end
         end
 
-        transition.to(fill, {
+        transitionHandler = transition.to(fill, {
             time = 5000,
             x = 1,
             delta = true,
-            onComplete = infinitelyScrollingBackground
+            onComplete = function()
+                transition.cancel(transitionHandler)
+                infinitelyScrollingBackground()
+            end
         })
     end
 
