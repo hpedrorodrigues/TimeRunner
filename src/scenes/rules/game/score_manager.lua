@@ -27,10 +27,10 @@ local function _createScore(gp)
 
     scoreText = display.newText({
         text = 'Score',
-        x = displayConstants.LEFT_SCREEN + 250,
-        y = 60,
+        x = displayConstants.LEFT_SCREEN + 120,
+        y = 25,
         font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
-        fontSize = 40
+        fontSize = 20
     })
 
     group:insert(scoreText)

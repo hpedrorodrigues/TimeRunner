@@ -53,9 +53,9 @@ function scene:create()
 
     infinitelyScrollingBackground()
 
-    local backButtonDifference = 60
+    local backButtonDifference = 30
 
-    local backButton = display.newImageRect(images.BACK_BUTTON, 100, 100)
+    local backButton = display.newImageRect(images.BACK_BUTTON, 40, 40)
     backButton.x = displayConstants.LEFT_SCREEN + backButtonDifference
     backButton.y = displayConstants.TOP_SCREEN + backButtonDifference
     backButton:addEventListener(listener.TAP, sceneManager.goMenu)

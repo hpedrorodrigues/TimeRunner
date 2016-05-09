@@ -2,14 +2,14 @@ local importations = require(IMPORTATIONS)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
 
-local MAX_LIFES = 3
+local MAX_LIFES = 5
 
 local currentLife
 local lifeImages
 
 local distance = {
-    x = 120,
-    y = 60
+    x = 50,
+    y = 30
 }
 
 local function _reset()
@@ -36,7 +36,7 @@ local function _createImages(group)
     lifeImages = {}
 
     for i = 1, MAX_LIFES do
-        lifeImages[i] = display.newImageRect(images.LIFE, 100, 100)
+        lifeImages[i] = display.newImageRect(images.LIFE, 40, 40)
         lifeImages[i].y = distance.y
 
         if (i == 1) then

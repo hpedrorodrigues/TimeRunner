@@ -8,7 +8,7 @@ local displayConstants = require(importations.DISPLAY_CONSTANTS)
 
 local sprites = {}
 local spritesQuantity = 0
-local delay = 1200
+local delay = 800
 local group = {}
 local spritesTimer
 local translateVelocity = -8
@@ -26,27 +26,28 @@ local function _createTigerSprite()
 end
 
 local function _createRandomSprites()
-    spritesQuantity = spritesQuantity + 1
+    local randomNumber = math.random(1, 6)
 
-    if (math.random(1, 2) == 1) then
-        sprites[spritesQuantity] = _createBearSprite()
-        sprites[spritesQuantity].animalName = 'bear'
-    else
-        sprites[spritesQuantity] = _createTigerSprite()
-        sprites[spritesQuantity].animalName = 'tiger'
+    if (randomNumber == 1 or randomNumber == 2) then
+        spritesQuantity = spritesQuantity + 1
+
+        if (randomNumber == 1) then
+            sprites[spritesQuantity] = _createBearSprite()
+            sprites[spritesQuantity].animalName = 'bear'
+        elseif (randomNumber == 2) then
+            sprites[spritesQuantity] = _createTigerSprite()
+            sprites[spritesQuantity].animalName = 'tiger'
+        end
+
+        local sprite = sprites[spritesQuantity]
+
+        sprite.myName = 'obstacle'
+        sprite:play()
+
+        physics.addBody(sprite, { density = 1, friction = 0.4, bounce = 1, filter = filters.earthObstacleCollision })
+
+        sprite:translate(translateVelocity, 0)
     end
-
-    local sprite = sprites[spritesQuantity]
-
-    sprite.myName = 'obstacle'
-    sprite:play()
-
-    physics.addBody(sprite, { density = 1, friction = 0.4, bounce = 1, filter = filters.earthObstacleCollision })
-
-    sprite.gravityScale = 9.8
-    sprite.angularVelocity = 0
-
-    sprite:translate(translateVelocity, 0)
 end
 
 local function _spriteUpdate()
