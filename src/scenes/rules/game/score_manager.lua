@@ -9,7 +9,7 @@ local score
 
 local function _refresh()
     score = os.time() - initialTime
-    scoreText.text = 'Score: ' .. tostring(score)
+    scoreText.text = 'Score: ' .. tostring(score) .. 's'
 end
 
 local function _score()
