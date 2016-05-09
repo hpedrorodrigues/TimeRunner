@@ -32,15 +32,17 @@ function scene:create()
     local function infinitelyScrollingBackground()
         local fill = background.fill;
 
-        if (gameRules.scoreManager().score() < 100) then
+        if (gameRules.scoreManager().score() % 100 == 0) then
 
-            fill.filename = images.FRENCH_REVOLUTION_SCENE;
-        elseif (gameRules.scoreManager().score() < 200) then
+            local random = math.random(1, 3)
 
-            fill.filename = images.EGYPT_SCENE;
-        else
-
-            fill.filename = images.KINGDOM_SCENE;
+            if (random == 1) then
+                fill.filename = images.FRENCH_REVOLUTION_SCENE;
+            elseif (random == 2) then
+                fill.filename = images.EGYPT_SCENE;
+            else
+                fill.filename = images.KINGDOM_SCENE;
+            end
         end
 
         transition.to(fill, {
