@@ -67,11 +67,21 @@ function scene:create()
     backButton.y = displayConstants.TOP_SCREEN + backButtonDifference
     backButton:addEventListener(listener.TAP, sceneManager.goMenu)
 
+    local gameTitle = display.newText({
+        text = 'Time Runner',
+        x = display.contentCenterX,
+        y = 25,
+        font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
+        fontSize = 30
+    })
+    gameTitle:setFillColor(1, 0, 0)
+
     sprite:play()
 
     sceneGroup:insert(background)
     sceneGroup:insert(sprite)
     sceneGroup:insert(backButton)
+    sceneGroup:insert(gameTitle)
 
     gameRules.make(sprite, background, sceneGroup)
 
