@@ -30,7 +30,7 @@ local function _createScore(gp)
         x = displayConstants.LEFT_SCREEN + 120,
         y = 25,
         font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
-        fontSize = 20
+        fontSize = 24
     })
 
     group:insert(scoreText)

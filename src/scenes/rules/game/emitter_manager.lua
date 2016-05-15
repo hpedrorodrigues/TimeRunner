@@ -60,7 +60,7 @@ local function _emitterUpdate()
 
         if (child ~= nil) then
 
-            if (child.x <= -20 or child.isDeleted) then
+            if (child.x >= display.contentWidth or child.isDeleted) then
 
                 physics.removeBody(child)
                 child:removeSelf()

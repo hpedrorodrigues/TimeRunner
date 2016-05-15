@@ -1,8 +1,6 @@
 local function _set()
     display.setStatusBar(display.HiddenStatusBar)
 
-    native.setProperty('androidSystemUiVisibility', 'immersive')
-
     math.randomseed(os.time())
 
     display.setDefault('anchorX', 0.5)

@@ -48,7 +48,7 @@ function scene:create()
         end
 
         transitionHandler = transition.to(fill, {
-            time = 5000,
+            time = 3000,
             x = 1,
             delta = true,
             onComplete = function()

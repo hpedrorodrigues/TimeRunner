@@ -11,7 +11,7 @@ local spritesQuantity = 0
 local delay = 800
 local group = {}
 local spritesTimer
-local translateVelocity = -8
+local translateVelocity = -10
 
 local function _setGroup(gp)
     group = gp
