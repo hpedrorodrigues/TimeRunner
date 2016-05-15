@@ -1,7 +1,7 @@
 local importations = require(IMPORTATIONS)
 local composer = require(importations.COMPOSER)
 local listener = require(importations.LISTENER)
-local gameRules = require(importations.GAME_RULES)
+local rules = require(importations.GAME_RULES)
 local images = require(importations.IMAGES)
 local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
@@ -34,7 +34,7 @@ function scene:create()
     local function infinitelyScrollingBackground()
         local fill = background.fill;
 
-        if (gameRules.scoreManager().score() % 300 == 0) then
+        if (rules.scoreManager().score() % 300 == 0) then
 
             local random = math.random(1, 3)
 
@@ -83,14 +83,14 @@ function scene:create()
     sceneGroup:insert(backButton)
     sceneGroup:insert(gameTitle)
 
-    gameRules.make(sprite, background, sceneGroup)
+    rules.apply(sceneGroup, sprite)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end
 
 function scene:destroy(event)
 
-    gameRules.clear()
+    rules.clear()
 
     local sceneGroup = self.view
     sceneGroup:removeSelf()

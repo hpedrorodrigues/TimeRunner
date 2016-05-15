@@ -9,12 +9,6 @@ local function _create()
 
     local spriteSequence = {
         {
-            name = spriteSequenceNames.STOPPED,
-            start = 9,
-            count = 1,
-            time = 1000,
-            loopCount = 0
-        }, {
             name = spriteSequenceNames.RUNNING,
             start = 10,
             count = 3,
@@ -31,7 +25,7 @@ local function _create()
 
     sprite:setSequence(spriteSequenceNames.RUNNING)
 
-    sprite.x = displayConstants.LEFT_SCREEN + 100
+    sprite.x = displayConstants.LEFT_SCREEN + 150
     sprite.y = displayConstants.HEIGHT_SCREEN - 55
 
     return sprite

@@ -17,7 +17,18 @@ end
 
 local function _control(event)
 
-    if ((event.object1.myName == 'obstacle' and event.object2.myName == 'crazy_scientist')
+    if ((event.object1.myName == 'obstacle' and event.object2.myName == 'shot')
+            or (event.object2.myName == 'obstacle' and event.object1.myName == 'shot')) then
+
+        local shot = (event.object1.myName == 'shot') and event.object1 or event.object2
+        local obstacle = (event.object1.myName == 'obstacle') and event.object1 or event.object2
+
+        system.vibrate()
+
+        shot.isDeleted = true
+        obstacle.isDeleted = true
+
+    elseif ((event.object1.myName == 'obstacle' and event.object2.myName == 'crazy_scientist')
             or (event.object2.myName == 'obstacle' and event.object1.myName == 'crazy_scientist')) then
 
         local sprite = (event.object1.myName == 'crazy_scientist') and event.object1 or event.object2
@@ -29,7 +40,7 @@ local function _control(event)
 
         timer.performWithDelay(200, function()
             transition.to(sprite, { alpha = 1, timer = 250 })
-            sprite.x = displayConstants.LEFT_SCREEN + 100
+            sprite.x = displayConstants.LEFT_SCREEN + 150
             sprite.died = false
         end)
 
