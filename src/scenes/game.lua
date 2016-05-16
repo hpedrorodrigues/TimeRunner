@@ -27,7 +27,7 @@ function scene:create()
         display.contentCenterY,
         display.contentWidth + navigationStatusBarSize,
         display.contentHeight)
-    background.fill = { type = 'image', filename = images.FRENCH_REVOLUTION_SCENE }
+    background.fill = { type = 'image', filename = images.MAIN_SCENE }
 
     local transitionHandler
 
@@ -39,11 +39,11 @@ function scene:create()
             local random = math.random(1, 3)
 
             if (random == 1) then
-                fill.filename = images.FRENCH_REVOLUTION_SCENE;
+                fill.filename = images.MAIN_SCENE
             elseif (random == 2) then
-                fill.filename = images.EGYPT_SCENE;
+                fill.filename = images.MAIN_SCENE
             else
-                fill.filename = images.KINGDOM_SCENE;
+                fill.filename = images.MAIN_SCENE
             end
         end
 

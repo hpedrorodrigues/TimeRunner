@@ -11,7 +11,9 @@ local scene = composer.newScene()
 function scene:create(event)
 
     local sceneGroup = self.view
-    local background = display.newImage(images.ABOUT_BACKGROUND, 500, 300, true)
+    local background = display.newImageRect(images.ABOUT_BACKGROUND, 1800, 900)
+    background.x = displayConstants.CENTER_X
+    background.y = displayConstants.CENTER_Y
 
     local backButtonDifference = 60
 
