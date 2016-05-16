@@ -24,13 +24,21 @@ local function _newEmitter(filename, baseDir)
     return display.newEmitter(_loadParams(filename, baseDir))
 end
 
+local function _newShot()
+    return _newEmitter(emitters.SHOT)
+end
+
+local function _newPortal()
+    return _newEmitter(emitters.PORTAL)
+end
+
 local function _shoot(sprite)
 
     local group = display.newGroup()
     group.x = sprite.x
     group.y = sprite.y
 
-    local emitterFireshot = _newEmitter(emitters.FIRESHOT)
+    local emitterFireshot = _newShot()
     emitterFireshot.x = group.x
     emitterFireshot.y = group.y
 
@@ -114,5 +122,7 @@ return {
     newEmitter = _newEmitter,
     shoot = _shoot,
     start = _start,
-    cancel = _cancel
+    cancel = _cancel,
+    newPortal = _newPortal,
+    newShot = _newShot
 }

@@ -17,6 +17,16 @@ local function _scoreManager()
     return scoreManager
 end
 
+local function _displayPortal(sp)
+    local emitter = emitterManager.newPortal()
+    emitter.x = sp.x
+    emitter.y = sp.y
+
+    timer.performWithDelay(2000, function()
+        emitter:stop()
+    end)
+end
+
 local function _playerJump(event)
     if (throttleJump == nil or throttleJump == false) then
         throttleJump = true
@@ -62,6 +72,8 @@ local function _make(group, sp)
 
     lifeManager.reset()
     emitterManager.start()
+
+    _displayPortal(sprite)
 
     local bottomWall = display.newRect(display.contentWidth / 2, display.contentHeight, display.contentWidth, 0)
 

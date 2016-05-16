@@ -30,7 +30,7 @@
   "startColorRed": 1,
   "finishColorVarianceRed": 1,
   "absolutePosition": false,
-  "textureFileName": "assets/json/texture.png",
+  "textureFileName": "assets/json/shot_texture.png",
   "startColorVarianceAlpha": 1,
   "maxParticles": 371,
   "finishColorVarianceGreen": 0,
