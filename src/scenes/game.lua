@@ -12,6 +12,7 @@ local scene = composer.newScene()
 local defaultDisplayConfiguration = display.getDefault()
 
 local sprite
+local transitionTime = 2000
 
 function scene:create()
 
@@ -36,6 +37,8 @@ function scene:create()
 
         if (rules.scoreManager().score() % 300 == 0) then
 
+            transitionTime = transitionTime - 100
+
             local random = math.random(1, 3)
 
             if (random == 1) then
@@ -48,7 +51,7 @@ function scene:create()
         end
 
         transitionHandler = transition.to(fill, {
-            time = 3000,
+            time = transitionTime,
             x = 1,
             delta = true,
             onComplete = function()
