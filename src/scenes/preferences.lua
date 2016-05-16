@@ -50,7 +50,7 @@ function scene:create(event)
     })
 
     local soundTitle = display.newText({
-        text = 'Habilitar som',
+        text = 'Enable sound',
         x = soundSwitch.x + 200,
         y = soundSwitch.y,
         font = fonts.SYSTEM,

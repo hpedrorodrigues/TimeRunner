@@ -104,14 +104,20 @@ local function _make(group, sp)
     end
 
     local jumpDifference = 50
+    local largeButtonConfiguration = {
+        size = 200,
+        alpha = .2
+    }
 
-    local triggerFireLargeButton = display.newCircle(100, 100, 170)
+    local triggerFireLargeButton = display.newCircle(100, 100, largeButtonConfiguration.size)
     triggerFireLargeButton.x = display.contentWidth - jumpDifference
     triggerFireLargeButton.y = display.contentHeight - jumpDifference
-    triggerFireLargeButton:setFillColor(0, 0, 0, .2)
+    triggerFireLargeButton:setFillColor(0, 0, 0, largeButtonConfiguration.alpha)
 
-    triggerFireLargeButton:addEventListener(listener.TOUCH, function()
-        emitterManager.shoot(sprite)
+    triggerFireLargeButton:addEventListener(listener.TOUCH, function(event)
+        if (event.phase == 'began') then
+            emitterManager.shoot(sprite)
+        end
     end)
 
     local triggerFireButton = widget.newButton({
@@ -120,10 +126,10 @@ local function _make(group, sp)
         defaultFile = images.ATTACK_BUTTON
     })
 
-    local jumpLargeButton = display.newCircle(100, 100, 170)
+    local jumpLargeButton = display.newCircle(100, 100, largeButtonConfiguration.size)
     jumpLargeButton.x = display.screenOriginY + jumpDifference
     jumpLargeButton.y = display.contentHeight - jumpDifference
-    jumpLargeButton:setFillColor(0, 0, 0, .2)
+    jumpLargeButton:setFillColor(0, 0, 0, largeButtonConfiguration.alpha)
 
     jumpLargeButton:addEventListener(listener.TOUCH, _playerJump)
 

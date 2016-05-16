@@ -15,19 +15,19 @@ function scene:create(event)
     background.y = displayConstants.CENTER_Y
 
     local distance = { y = 130 }
-    local buttons = { x = 411, y = 102 }
+    local buttons = { width = 411, height = 102 }
 
-    local playButton = display.newImageRect(images.PLAY_BUTTON, buttons.x, buttons.y)
+    local playButton = display.newImageRect(images.PLAY_BUTTON, buttons.width, buttons.height)
     playButton.x = displayConstants.CENTER_X
     playButton.y = displayConstants.CENTER_Y + 20
     playButton:addEventListener(listener.TAP, sceneManager.goGame)
 
-    local preferencesButton = display.newImageRect(images.PREFERENCES_BUTTON, buttons.x, buttons.y)
+    local preferencesButton = display.newImageRect(images.PREFERENCES_BUTTON, buttons.width, buttons.height)
     preferencesButton.x = playButton.x
     preferencesButton.y = playButton.y + distance.y
     preferencesButton:addEventListener(listener.TAP, sceneManager.goPreferences)
 
-    local aboutButton = display.newImageRect(images.ABOUT_BUTTON, buttons.x, buttons.y)
+    local aboutButton = display.newImageRect(images.ABOUT_BUTTON, buttons.width, buttons.height)
     aboutButton.x = preferencesButton.x
     aboutButton.y = preferencesButton.y + distance.y
     aboutButton:addEventListener(listener.TAP, sceneManager.goAbout)
