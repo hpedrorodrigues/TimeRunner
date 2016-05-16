@@ -12,7 +12,9 @@ local screenTime = 5000
 function scene:create(event)
 
     local sceneGroup = self.view
-    local background = display.newImage(images.GAME_OVER_BACKGROUND, 650, 400, true)
+    local background = display.newImageRect(images.GAME_OVER_BACKGROUND, 1440, 790)
+    background.x = displayConstants.CENTER_X
+    background.y = displayConstants.CENTER_Y
 
     local backButtonDifference = 60
 

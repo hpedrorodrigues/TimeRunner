@@ -91,25 +91,40 @@ local function _make(group, sp)
         self:setLinearVelocity(0, 200)
     end
 
+    local jumpDifference = 50
+
+    local triggerFireLargeButton = display.newCircle(100, 100, 170)
+    triggerFireLargeButton.x = display.contentWidth - jumpDifference
+    triggerFireLargeButton.y = display.contentHeight - jumpDifference
+    triggerFireLargeButton:setFillColor(0, 0, 0, .2)
+
+    triggerFireLargeButton:addEventListener(listener.TOUCH, function()
+        emitterManager.shoot(sprite)
+    end)
+
     local triggerFireButton = widget.newButton({
-        x = display.contentWidth - 30,
-        y = display.contentHeight - 30,
-        defaultFile = images.ABOUT_BUTTON,
-        onPress = function()
-            emitterManager.shoot(sprite)
-        end
+        x = triggerFireLargeButton.x,
+        y = triggerFireLargeButton.y,
+        defaultFile = images.ATTACK_BUTTON
     })
 
-    local jumpDifference = 50
+    local jumpLargeButton = display.newCircle(100, 100, 170)
+    jumpLargeButton.x = display.screenOriginY + jumpDifference
+    jumpLargeButton.y = display.contentHeight - jumpDifference
+    jumpLargeButton:setFillColor(0, 0, 0, .2)
+
+    jumpLargeButton:addEventListener(listener.TOUCH, _playerJump)
+
     local jumpButton = widget.newButton({
-        x = display.screenOriginY + jumpDifference,
-        y = display.contentHeight - jumpDifference,
-        defaultFile = images.JUMP_BUTTON,
-        onPress = _playerJump
+        x = jumpLargeButton.x,
+        y = jumpLargeButton.y,
+        defaultFile = images.JUMP_BUTTON
     })
 
     group:insert(jumpButton)
+    group:insert(jumpLargeButton)
     group:insert(triggerFireButton)
+    group:insert(triggerFireLargeButton)
 
     Runtime:addEventListener(listener.COLLISION, collisionManager.control)
 end
