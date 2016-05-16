@@ -11,3 +11,9 @@
 ![5](./../assets/images/progress/5.png)
 
 ![6](./../assets/images/progress/6.png)
+
+![7](./../assets/images/progress/7.png)
+
+![8](./../assets/images/progress/8.png)
+
+![9](./../assets/images/progress/9.png)
