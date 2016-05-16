@@ -100,10 +100,11 @@ local function _make(group, sp)
         end
     })
 
+    local jumpDifference = 50
     local jumpButton = widget.newButton({
-        x = display.screenOriginY + 30,
-        y = display.contentHeight - 30,
-        defaultFile = images.ABOUT_BUTTON,
+        x = display.screenOriginY + jumpDifference,
+        y = display.contentHeight - jumpDifference,
+        defaultFile = images.JUMP_BUTTON,
         onPress = _playerJump
     })
 

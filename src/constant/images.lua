@@ -23,5 +23,6 @@ return {
     PREFERENCES_BUTTON = BUTTONS_PATH .. 'preferences.png',
     ABOUT_BUTTON = BUTTONS_PATH .. 'about.png',
     BACK_BUTTON = BUTTONS_PATH .. 'back.png',
+    JUMP_BUTTON = BUTTONS_PATH .. 'jump.png',
     TITLE = GENERAL_PATH .. 'title.png'
 }

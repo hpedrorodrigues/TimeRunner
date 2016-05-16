@@ -1,6 +1,5 @@
 local importations = require(IMPORTATIONS)
 local spriteSequenceNames = require(importations.SPRITE_SEQUENCE)
-local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
 
 local function _create()
