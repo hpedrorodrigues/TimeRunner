@@ -18,8 +18,8 @@ function scene:create(event)
     local buttons = { x = 411, y = 102 }
 
     local playButton = display.newImageRect(images.PLAY_BUTTON, buttons.x, buttons.y)
-    playButton.x = display.contentWidth - 260
-    playButton.y = displayConstants.CENTER_Y - 20
+    playButton.x = displayConstants.CENTER_X
+    playButton.y = displayConstants.CENTER_Y + 20
     playButton:addEventListener(listener.TAP, sceneManager.goGame)
 
     local preferencesButton = display.newImageRect(images.PREFERENCES_BUTTON, buttons.x, buttons.y)

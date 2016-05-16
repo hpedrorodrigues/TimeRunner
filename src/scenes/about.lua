@@ -123,7 +123,7 @@ local function _songs(group)
 end
 
 local function _images(group)
-    local images = display.newText({
+    local imagesText = display.newText({
         text = 'Images:',
         x = displayConstants.CENTER_X + 300,
         y = displayConstants.TOP_SCREEN + 580,
@@ -133,13 +133,13 @@ local function _images(group)
 
     local imagesUrl = display.newText({
         text = 'wallpaper.zone/night-background-images',
-        x = images.x,
-        y = images.y + firstDifference,
+        x = imagesText.x,
+        y = imagesText.y + firstDifference,
         font = fonts.SYSTEM,
         fontSize = subtitleFontSize
     })
 
-    group:insert(images)
+    group:insert(imagesText)
     group:insert(imagesUrl)
 end
 
