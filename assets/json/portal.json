@@ -37,7 +37,7 @@
   "maxParticles": 100,
   "finishColorVarianceGreen": 0,
   "finishParticleSize": 260,
-  "duration": 0.6,
+  "duration": 1.5,
   "startColorVarianceRed": 0,
   "finishColorRed": 0.999996,
   "gravityx": 0,
