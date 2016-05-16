@@ -22,8 +22,10 @@ local function _displayPortal(sp)
     emitter.x = sp.x
     emitter.y = sp.y + 50
 
-    timer.performWithDelay(2000, function()
-        emitter:stop()
+    timer.performWithDelay(500, function()
+        timer.performWithDelay(2000, function()
+            emitter:stop()
+        end)
     end)
 end
 

@@ -73,6 +73,11 @@ mas com um único ponto de venda interessante.
 - Veja algumas referências utilizadas no jogo [aqui](./docs/REFERENCES.md).
 
 
+#### Tecnologias utilizadas
+
+- Corona Simulator - Version 2016.2830 (2016.2.18)
+
+
 #### License
 
     Copyright 2015 Pedro Rodrigues
