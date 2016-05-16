@@ -30,8 +30,6 @@ return {
     LIFE_MANAGER_RULES = 'src.scenes.rules.game.life_manager',
     COLLISION_MANAGER_RULES = 'src.scenes.rules.game.collision_manager',
     SCORE_MANAGER_RULES = 'src.scenes.rules.game.score_manager',
-    PING_PONG = 'src.effect.ping_pong',
-    SNOW = 'src.effect.snow',
     WIDGET = 'widget',
     EMITTER_MANAGER = 'src.scenes.rules.game.emitter_manager',
     EMITTERS = 'src.constant.emitters',
