@@ -35,7 +35,7 @@ local function _playerJump(event)
             throttleJump = false
         end)
 
-        if (event.phase == 'began' and sprite.canJump == 0) then
+        if (event.phase == 'ended' and sprite.canJump == 0) then
             sprite.canJump = 1
 
             sprite:jump()
@@ -103,7 +103,7 @@ local function _make(group, sp)
     end
 
     local jumpDifference = 50
-    local largeButtonConfiguration = { size = 200, alpha = .2 }
+    local largeButtonConfiguration = { size = 200, alpha = .2, alphaNormal = .2, alphaClicked = .6 }
 
     local triggerFireLargeButton = display.newCircle(100, 100, largeButtonConfiguration.size)
     triggerFireLargeButton.x = display.contentWidth - jumpDifference
@@ -112,6 +112,9 @@ local function _make(group, sp)
 
     triggerFireLargeButton:addEventListener(listener.TOUCH, function(event)
         if (event.phase == 'began') then
+            triggerFireLargeButton.alpha = largeButtonConfiguration.alphaClicked
+        elseif (event.phase == 'ended') then
+            triggerFireLargeButton.alpha = largeButtonConfiguration.alphaNormal
             emitterManager.shoot(sprite)
         end
     end)
@@ -127,7 +130,14 @@ local function _make(group, sp)
     jumpLargeButton.y = display.contentHeight - jumpDifference
     jumpLargeButton:setFillColor(0, 0, 0, 1)
 
-    jumpLargeButton:addEventListener(listener.TOUCH, _playerJump)
+    jumpLargeButton:addEventListener(listener.TOUCH, function(event)
+        if (event.phase == 'began') then
+            jumpLargeButton.alpha = largeButtonConfiguration.alphaClicked
+        elseif (event.phase == 'ended') then
+            jumpLargeButton.alpha = largeButtonConfiguration.alphaNormal
+            _playerJump(event)
+        end
+    end)
 
     local jumpButton = widget.newButton({
         x = jumpLargeButton.x,
