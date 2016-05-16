@@ -84,7 +84,6 @@ local function _make(group, sp)
 
     physics.start()
     physics.setGravity(0, 9.8)
-    --    physics.setDrawMode('hybrid')
 
     physics.addBody(bottomWall, 'static', { density = 1, friction = 0, bounce = 1, filter = filters.bottomWallCollision })
     physics.addBody(sprite, { density = 1, friction = 1, bounce = .2, filter = filters.playerCollision })
@@ -104,15 +103,12 @@ local function _make(group, sp)
     end
 
     local jumpDifference = 50
-    local largeButtonConfiguration = {
-        size = 200,
-        alpha = .2
-    }
+    local largeButtonConfiguration = { size = 200, alpha = .2 }
 
     local triggerFireLargeButton = display.newCircle(100, 100, largeButtonConfiguration.size)
     triggerFireLargeButton.x = display.contentWidth - jumpDifference
     triggerFireLargeButton.y = display.contentHeight - jumpDifference
-    triggerFireLargeButton:setFillColor(0, 0, 0, largeButtonConfiguration.alpha)
+    triggerFireLargeButton:setFillColor(0, 0, 0, 1)
 
     triggerFireLargeButton:addEventListener(listener.TOUCH, function(event)
         if (event.phase == 'began') then
@@ -129,7 +125,7 @@ local function _make(group, sp)
     local jumpLargeButton = display.newCircle(100, 100, largeButtonConfiguration.size)
     jumpLargeButton.x = display.screenOriginY + jumpDifference
     jumpLargeButton.y = display.contentHeight - jumpDifference
-    jumpLargeButton:setFillColor(0, 0, 0, largeButtonConfiguration.alpha)
+    jumpLargeButton:setFillColor(0, 0, 0, 1)
 
     jumpLargeButton:addEventListener(listener.TOUCH, _playerJump)
 
@@ -138,6 +134,23 @@ local function _make(group, sp)
         y = jumpLargeButton.y,
         defaultFile = images.JUMP_BUTTON
     })
+
+    local changeAlphaTimer = timer.performWithDelay(100, function(event)
+        local alpha = .6
+
+        if (event.count % 2 == 0) then
+            alpha = largeButtonConfiguration.alpha
+        end
+
+        triggerFireLargeButton.alpha = alpha
+        jumpLargeButton.alpha = alpha
+    end, 10)
+
+    timer.performWithDelay(2000, function()
+        timer.cancel(changeAlphaTimer)
+        triggerFireLargeButton.alpha = largeButtonConfiguration.alpha
+        jumpLargeButton.alpha = largeButtonConfiguration.alpha
+    end)
 
     group:insert(jumpButton)
     group:insert(jumpLargeButton)

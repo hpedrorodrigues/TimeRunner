@@ -32,7 +32,7 @@ function scene:create(event)
     gameOverTitle.x = displayConstants.CENTER_X
     gameOverTitle.y = display.screenOriginY + 200
 
-    local scoreDifference = 75
+    local scoreDifference = 80
 
     local scoreTitle = display.newImageRect(images.SCORE_BUTTON, 237, 104)
     scoreTitle.x = gameOverTitle.x - scoreDifference
