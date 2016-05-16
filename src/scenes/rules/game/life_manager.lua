@@ -9,7 +9,7 @@ local lifeImages
 
 local distance = {
     x = 50,
-    y = 30
+    y = displayConstants.TOP_SCREEN + 60
 }
 
 local function _reset()

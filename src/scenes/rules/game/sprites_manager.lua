@@ -11,7 +11,9 @@ local spritesQuantity = 0
 local delay = 800
 local group = {}
 local spritesTimer
-local translateVelocity = -10
+local translateVelocity = -12
+
+local buttonsDifference = 130
 
 local function _setGroup(gp)
     group = gp
@@ -26,7 +28,7 @@ local function _createTigerSprite()
 end
 
 local function _createRandomSprites()
-    local randomNumber = math.random(1, 6)
+    local randomNumber = math.random(1, 4)
 
     if (randomNumber == 1 or randomNumber == 2) then
         spritesQuantity = spritesQuantity + 1
@@ -34,9 +36,13 @@ local function _createRandomSprites()
         if (randomNumber == 1) then
             sprites[spritesQuantity] = _createBearSprite()
             sprites[spritesQuantity].animalName = 'bear'
+            sprites[spritesQuantity].x = display.contentWidth - buttonsDifference
+            sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 40
         elseif (randomNumber == 2) then
             sprites[spritesQuantity] = _createTigerSprite()
             sprites[spritesQuantity].animalName = 'tiger'
+            sprites[spritesQuantity].x = display.contentWidth - buttonsDifference
+            sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 50
         end
 
         local sprite = sprites[spritesQuantity]
@@ -63,13 +69,13 @@ local function _spriteUpdate()
 
             if (child.animalName == 'tiger') then
 
-                child.y = displayConstants.HEIGHT_SCREEN - 30
+                child.y = displayConstants.HEIGHT_SCREEN - 50
             elseif (child.animalName == 'bear') then
 
                 child.y = displayConstants.HEIGHT_SCREEN - 40
             end
 
-            if (child.x <= -20 or child.isDeleted) then
+            if (child.x <= (display.screenOriginY + buttonsDifference) or child.isDeleted) then
 
                 physics.removeBody(child)
                 group:remove(child)

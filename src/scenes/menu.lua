@@ -4,40 +4,37 @@ local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
 local listener = require(importations.LISTENER)
 local sceneManager = require(importations.SCENE_MANAGER)
-local pingPong = require(importations.PING_PONG)
 
 local scene = composer.newScene()
 
 function scene:create(event)
 
     local sceneGroup = self.view
-    local background = display.newImage(images.MENU_BACKGROUND, 300, 200, true)
-    local distance = { x = 400, y = 250 }
+    local background = display.newImageRect(images.MENU_BACKGROUND, 1800, 900)
+    background.x = displayConstants.CENTER_X
+    background.y = displayConstants.CENTER_Y
 
-    local playButton = display.newImageRect(images.PLAY_BUTTON, 100, 100)
-    playButton.x = displayConstants.CENTER_X
-    playButton.y = displayConstants.CENTER_Y
+    local distance = { y = 130 }
+    local buttons = { x = 411, y = 102 }
+
+    local playButton = display.newImageRect(images.PLAY_BUTTON, buttons.x, buttons.y)
+    playButton.x = display.contentWidth - 260
+    playButton.y = displayConstants.CENTER_Y - 20
     playButton:addEventListener(listener.TAP, sceneManager.goGame)
 
-    local settingsButton = display.newImageRect(images.SETTINGS_BUTTON, 100, 100)
-    settingsButton.x = displayConstants.CENTER_X + distance.x
-    settingsButton.y = displayConstants.CENTER_Y
+    local settingsButton = display.newImageRect(images.PREFERENCES_BUTTON, buttons.x, buttons.y)
+    settingsButton.x = playButton.x
+    settingsButton.y = playButton.y + distance.y
     settingsButton:addEventListener(listener.TAP, sceneManager.goSettings)
 
-    local aboutButton = display.newImageRect(images.ABOUT_BUTTON, 100, 100)
-    aboutButton.x = displayConstants.CENTER_X - distance.x
-    aboutButton.y = displayConstants.CENTER_Y
+    local aboutButton = display.newImageRect(images.ABOUT_BUTTON, buttons.x, buttons.y)
+    aboutButton.x = settingsButton.x
+    aboutButton.y = settingsButton.y + distance.y
     aboutButton:addEventListener(listener.TAP, sceneManager.goAbout)
 
-    pingPong.make(playButton)
-
-    local gameTitle = display.newText({
-        text = 'Time Runner',
-        x = displayConstants.CENTER_X,
-        y = displayConstants.CENTER_Y - distance.y,
-        font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
-        fontSize = 100
-    })
+    local gameTitle = display.newImageRect(images.TITLE, 783, 183)
+    gameTitle.x = displayConstants.CENTER_X
+    gameTitle.y = displayConstants.CENTER_Y - 250
 
     sceneGroup:insert(background)
     sceneGroup:insert(settingsButton)
@@ -47,8 +44,6 @@ function scene:create(event)
 end
 
 function scene:destroy(event)
-
-    pingPong.cancel()
 
     local sceneGroup = self.view
     sceneGroup:removeSelf()

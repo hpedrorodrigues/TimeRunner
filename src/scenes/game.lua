@@ -60,21 +60,16 @@ function scene:create()
 
     infinitelyScrollingBackground()
 
-    local backButtonDifference = 30
+    local backButtonDifference = 60
 
-    local backButton = display.newImageRect(images.BACK_BUTTON, 40, 40)
+    local backButton = display.newImageRect(images.BACK_BUTTON, 79, 78)
     backButton.x = displayConstants.LEFT_SCREEN + backButtonDifference
     backButton.y = displayConstants.TOP_SCREEN + backButtonDifference
     backButton:addEventListener(listener.TAP, sceneManager.goMenu)
 
-    local gameTitle = display.newText({
-        text = 'Time Runner',
-        x = display.contentCenterX,
-        y = 25,
-        font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
-        fontSize = 30
-    })
-    gameTitle:setFillColor(1, 0, 0)
+    local gameTitle = display.newImageRect(images.TITLE, 261, 61)
+    gameTitle.x = displayConstants.CENTER_X
+    gameTitle.y = displayConstants.TOP_SCREEN + 50
 
     sprite:play()
 

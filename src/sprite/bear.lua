@@ -22,9 +22,6 @@ local function _create()
 
     sprite:setSequence(spriteSequenceNames.RUNNING)
 
-    sprite.x = displayConstants.WIDTH_SCREEN
-    sprite.y = displayConstants.HEIGHT_SCREEN - 40
-
     return sprite
 end
 
