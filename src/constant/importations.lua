@@ -35,5 +35,6 @@ return {
     WIDGET = 'widget',
     EMITTER_MANAGER = 'src.scenes.rules.game.emitter_manager',
     EMITTERS = 'src.constant.emitters',
-    JSON = 'json'
+    JSON = 'json',
+    FONTS = 'src.constant.fonts'
 }

@@ -8,6 +8,7 @@ local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local widget = require(importations.WIDGET)
 local settings = require(importations.SETTINGS)
 local soundUtil = require(importations.SOUND_UTIL)
+local fonts = require(importations.FONTS)
 
 local scene = composer.newScene()
 
@@ -52,7 +53,7 @@ function scene:create(event)
         text = 'Habilitar som',
         x = soundSwitch.x + 200,
         y = soundSwitch.y,
-        font = native.systemFontBold,
+        font = fonts.SYSTEM,
         fontSize = 40
     })
 

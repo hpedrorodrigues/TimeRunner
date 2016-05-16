@@ -5,6 +5,7 @@ local listener = require(importations.LISTENER)
 local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
+local fonts = require(importations.FONTS)
 
 local scene = composer.newScene()
 local screenTime = 5000
@@ -27,7 +28,7 @@ function scene:create(event)
         text = 'Score: ' .. event.params.score,
         x = displayConstants.CENTER_X,
         y = displayConstants.CENTER_Y + 180,
-        font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
+        font = fonts.SYSTEM,
         fontSize = 100
     })
 

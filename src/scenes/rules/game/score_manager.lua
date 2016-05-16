@@ -1,6 +1,7 @@
 local importations = require(IMPORTATIONS)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local listener = require(importations.LISTENER)
+local fonts = require(importations.FONTS)
 
 local scoreText
 local group
@@ -9,7 +10,7 @@ local score
 
 local function _refresh()
     score = os.time() - initialTime
-    scoreText.text = 'Score: ' .. tostring(score) .. 's'
+    scoreText.text = 'Pontuação: ' .. tostring(score) .. 's'
 end
 
 local function _score()
@@ -27,9 +28,9 @@ local function _createScore(gp)
 
     scoreText = display.newText({
         text = 'Score',
-        x = displayConstants.LEFT_SCREEN + 220,
-        y = displayConstants.TOP_SCREEN + 52,
-        font = (system.getInfo('environment') == 'simulator' and 'FFFTusj-Bold' or 'FFF_Tusj'),
+        x = displayConstants.LEFT_SCREEN + 250,
+        y = displayConstants.TOP_SCREEN + 50,
+        font = fonts.SYSTEM,
         fontSize = 35
     })
 
