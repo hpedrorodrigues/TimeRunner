@@ -39,10 +39,10 @@ local function _goGame()
     composer.gotoScene('src.scenes.game', transitionConfiguration)
 end
 
-local function _goSettings()
+local function _goPreferences()
     _removeCurrentScene()
     composer.removeHidden()
-    composer.gotoScene('src.scenes.settings', transitionConfiguration)
+    composer.gotoScene('src.scenes.preferences', transitionConfiguration)
 end
 
 local function _goTutorial()
@@ -56,7 +56,7 @@ return {
     goGameOver = _goGameOver,
     goAbout = _goAbout,
     goGame = _goGame,
-    goSettings = _goSettings,
+    goPreferences = _goPreferences,
     goTutorial = _goTutorial,
     removeCurrentScene = _removeCurrentScene
 }

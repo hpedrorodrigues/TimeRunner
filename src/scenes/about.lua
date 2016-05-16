@@ -126,7 +126,7 @@ local function _images(group)
     local images = display.newText({
         text = 'Images:',
         x = displayConstants.CENTER_X + 300,
-        y = displayConstants.TOP_SCREEN + 550,
+        y = displayConstants.TOP_SCREEN + 580,
         font = fonts.SYSTEM,
         fontSize = titleFontSize
     })

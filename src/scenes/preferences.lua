@@ -15,7 +15,7 @@ local scene = composer.newScene()
 function scene:create(event)
 
     local sceneGroup = self.view
-    local background = display.newImageRect(images.SETTINGS_BACKGROUND, 1800, 900)
+    local background = display.newImageRect(images.PREFERENCES_BACKGROUND, 1800, 900)
     background.x = displayConstants.CENTER_X
     background.y = displayConstants.CENTER_Y
 

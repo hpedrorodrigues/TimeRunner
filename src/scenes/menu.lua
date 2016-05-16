@@ -22,14 +22,14 @@ function scene:create(event)
     playButton.y = displayConstants.CENTER_Y - 20
     playButton:addEventListener(listener.TAP, sceneManager.goGame)
 
-    local settingsButton = display.newImageRect(images.PREFERENCES_BUTTON, buttons.x, buttons.y)
-    settingsButton.x = playButton.x
-    settingsButton.y = playButton.y + distance.y
-    settingsButton:addEventListener(listener.TAP, sceneManager.goSettings)
+    local preferencesButton = display.newImageRect(images.PREFERENCES_BUTTON, buttons.x, buttons.y)
+    preferencesButton.x = playButton.x
+    preferencesButton.y = playButton.y + distance.y
+    preferencesButton:addEventListener(listener.TAP, sceneManager.goPreferences)
 
     local aboutButton = display.newImageRect(images.ABOUT_BUTTON, buttons.x, buttons.y)
-    aboutButton.x = settingsButton.x
-    aboutButton.y = settingsButton.y + distance.y
+    aboutButton.x = preferencesButton.x
+    aboutButton.y = preferencesButton.y + distance.y
     aboutButton:addEventListener(listener.TAP, sceneManager.goAbout)
 
     local gameTitle = display.newImageRect(images.TITLE, 783, 183)
@@ -37,7 +37,7 @@ function scene:create(event)
     gameTitle.y = displayConstants.CENTER_Y - 250
 
     sceneGroup:insert(background)
-    sceneGroup:insert(settingsButton)
+    sceneGroup:insert(preferencesButton)
     sceneGroup:insert(aboutButton)
     sceneGroup:insert(playButton)
     sceneGroup:insert(gameTitle)

@@ -12,7 +12,7 @@ return {
     BEAR_SPRITE = SPRITES_PATH .. 'bear.png',
     TIGER_SPRITE = SPRITES_PATH .. 'tiger.png',
     MAIN_SCENE = SCENES_PATH .. 'main.jpg',
-    SETTINGS_BACKGROUND = BACKGROUNDS_PATH .. 'settings.png',
+    PREFERENCES_BACKGROUND = BACKGROUNDS_PATH .. 'preferences.png',
     MENU_BACKGROUND = BACKGROUNDS_PATH .. 'menu.png',
     ABOUT_BACKGROUND = BACKGROUNDS_PATH .. 'about.png',
     TUTORIAL_BACKGROUND = BACKGROUNDS_PATH .. 'tutorial.jpg',
