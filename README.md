@@ -10,6 +10,7 @@
 * [Objetivos Específicos](#objetivos-específicos)
 * [Regras do Jogo](#regras-do-jogo)
 * [Diagrama de Navegação](#diagrama-de-navegação)
+* [Imagens](#imagens)
 * [Pontos Importantes](#pontos-importantes)
 * [Anotações](#anotações)
 * [Licença](#license)
