@@ -130,6 +130,8 @@ local function _generatePowerUp()
         powerUpEmitter:setLinearVelocity(-500, 0)
 
         powerUpEmitterList[powerUpEmitterQuantity] = powerUpEmitter
+
+        powerUpEmitter.myName = 'power_up'
     end
 end
 
@@ -142,7 +144,7 @@ local function _powerUmitterUpdate()
 
         if (child ~= nil) then
 
-            if (child.x < display.screenOriginX) then
+            if (child.x < display.screenOriginX or child.isDeleted) then
 
                 physics.removeBody(child)
                 child:removeSelf()

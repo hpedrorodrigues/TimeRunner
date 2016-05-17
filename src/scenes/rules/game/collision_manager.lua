@@ -17,7 +17,14 @@ end
 
 local function _control(event)
 
-    if ((event.object1.myName == 'obstacle' and event.object2.myName == 'shot')
+    if ((event.object1.myName == 'crazy_scientist' and event.object2.myName == 'power_up')
+            or (event.object2.myName == 'crazy_scientist' and event.object1.myName == 'power_up')) then
+
+        local powerUp = (event.object1.myName == 'power_up') and event.object1 or event.object2
+
+        powerUp.isDeleted = true
+
+    elseif ((event.object1.myName == 'obstacle' and event.object2.myName == 'shot')
             or (event.object2.myName == 'obstacle' and event.object1.myName == 'shot')) then
 
         local shot = (event.object1.myName == 'shot') and event.object1 or event.object2
