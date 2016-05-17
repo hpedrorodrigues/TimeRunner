@@ -1,4 +1,4 @@
-# Time Runner
+# <p align="center"><img src="./assets/images/time_runner.png?raw=true" alt="Time Runner"/><p align="center">Time Runner</p></p>
 
 [![Build Status](https://travis-ci.org/hpedrorodrigues/TimeRunner.svg?branch=master)](https://travis-ci.org/hpedrorodrigues/TimeRunner)
 
