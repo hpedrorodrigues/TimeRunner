@@ -7,6 +7,9 @@ local listener = require(importations.LISTENER)
 local emittersQuantity = 0
 local emittersList = {}
 
+local powerUpEmitterQuantity = 0
+local powerUpEmitterList = {}
+
 local function _loadParams(filename, baseDir)
 
     local path = system.pathForFile(filename, baseDir)
@@ -30,6 +33,10 @@ end
 
 local function _newPortal()
     return _newEmitter(emitters.PORTAL)
+end
+
+local function _newPowerUp()
+    return _newEmitter(emitters.POWER_UP)
 end
 
 local function _shoot(sprite)
@@ -107,14 +114,86 @@ local function _removeAllEmitters()
     emittersList = {}
 end
 
+local function _generatePowerUp()
+    local random = math.random(1, 1000)
+
+    if (random == 1) then
+        local powerUpEmitter = _newPowerUp()
+
+        powerUpEmitterQuantity = powerUpEmitterQuantity + 1
+
+        physics.addBody(powerUpEmitter, { density = 1, friction = 0 })
+
+        powerUpEmitter.x = display.contentWidth - 50
+        powerUpEmitter.y = math.random(display.contentHeight / 2, display.contentHeight)
+
+        powerUpEmitter:setLinearVelocity(-500, 0)
+
+        powerUpEmitterList[powerUpEmitterQuantity] = powerUpEmitter
+    end
+end
+
+local function _powerUmitterUpdate()
+
+    for i = 1, powerUpEmitterQuantity do
+
+        local currentPosition = i
+        local child = powerUpEmitterList[currentPosition]
+
+        if (child ~= nil) then
+
+            if (child.x < display.screenOriginX) then
+
+                physics.removeBody(child)
+                child:removeSelf()
+                child = nil
+                powerUpEmitterList[currentPosition] = nil
+
+                -- Doing it because is needed but linter not known Corona SDK
+                if (child ~= nil) then
+                    print(child)
+                end
+            end
+        end
+    end
+end
+
+local function _removeAllPowerUpEmitters()
+    for i = 1, powerUpEmitterQuantity do
+
+        local child = powerUpEmitterList[i]
+
+        if (child ~= nil) then
+
+            physics.removeBody(child)
+            child:removeSelf()
+            child = nil
+            powerUpEmitterList[i] = nil
+
+            -- Doing it because is needed but linter not known Corona SDK
+            if (child ~= nil) then
+                print(child)
+            end
+        end
+    end
+
+    powerUpEmitterQuantity = 0
+    powerUpEmitterList = {}
+end
+
 local function _start()
     Runtime:addEventListener(listener.ENTER_FRAME, _emitterUpdate)
+    Runtime:addEventListener(listener.ENTER_FRAME, _powerUmitterUpdate)
+    Runtime:addEventListener(listener.ENTER_FRAME, _generatePowerUp)
 end
 
 local function _cancel()
     Runtime:removeEventListener(listener.ENTER_FRAME, _emitterUpdate)
+    Runtime:removeEventListener(listener.ENTER_FRAME, _powerUmitterUpdate)
+    Runtime:removeEventListener(listener.ENTER_FRAME, _generatePowerUp)
 
     _removeAllEmitters()
+    _removeAllPowerUpEmitters()
 end
 
 return {
@@ -124,5 +203,6 @@ return {
     start = _start,
     cancel = _cancel,
     newPortal = _newPortal,
-    newShot = _newShot
+    newShot = _newShot,
+    newPowerUp = _newPowerUp
 }
