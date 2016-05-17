@@ -18,14 +18,25 @@ function scene:create(event)
     background.x = displayConstants.CENTER_X
     background.y = displayConstants.CENTER_Y
 
-    local backButtonDifference = 60
+    local backButtonConfiguration = {
+        width = 79,
+        height = 78,
+        alphaNormal = .2,
+        alphaClicked = .6,
+        difference = 60
+    }
 
-    local backButton = display.newImageRect(images.BACK_BUTTON, 72, 71)
-    backButton.x = displayConstants.LEFT_SCREEN + backButtonDifference
-    backButton.y = displayConstants.TOP_SCREEN + backButtonDifference
-    backButton:addEventListener(listener.TAP, function()
-        sceneManager.goMenu()
-        someButtonClicked = true
+    local backButton = display.newImageRect(images.BACK_BUTTON, backButtonConfiguration.width, backButtonConfiguration.height)
+    backButton.x = displayConstants.LEFT_SCREEN + backButtonConfiguration.difference
+    backButton.y = displayConstants.TOP_SCREEN + backButtonConfiguration.difference
+    backButton:addEventListener(listener.TOUCH, function(eventButton)
+        if (eventButton.phase == 'began') then
+            backButton.alpha = backButtonConfiguration.alphaClicked
+        elseif (eventButton.phase == 'ended') then
+            backButton.alpha = backButtonConfiguration.alphaNormal
+            sceneManager.goMenu()
+            someButtonClicked = true
+        end
     end)
 
     local gameOverTitle = display.newImageRect(images.GAME_OVER_BUTTON, 680, 168)
