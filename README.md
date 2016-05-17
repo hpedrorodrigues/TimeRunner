@@ -58,6 +58,10 @@ um novo background se adaptando ao novo período de tempo
 
 <p align="center"><img src="./assets/images/time_runner_game.png?raw=true" width="50%" height="50%" alt="Time Runner"/></p>
 
+- Sobre
+
+<p align="center"><img src="./assets/images/time_runner_about.png?raw=true" width="50%" height="50%" alt="Time Runner"/></p>
+
 #### Pontos Importantes
 
 - Um jogo onde você joga como um cientista louco viajante
