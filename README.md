@@ -1,4 +1,4 @@
-# <p align="center">Time Runner</p><p align="center"><img src="./assets/images/time_runner.png?raw=true" width="50%" height="50%" alt="Time Runner"/></p>
+# Time Runner
 
 [![Build Status](https://travis-ci.org/hpedrorodrigues/TimeRunner.svg?branch=master)](https://travis-ci.org/hpedrorodrigues/TimeRunner)
 
@@ -47,6 +47,16 @@ um novo background se adaptando ao novo período de tempo
 
 ![Diagrama de Navegação](assets/images/navigation_diagram.png)
 
+
+#### Imagens
+
+- Menu principal
+
+<p align="center"><img src="./assets/images/time_runner.png?raw=true" width="50%" height="50%" alt="Time Runner"/></p>
+
+- Jogo
+
+<p align="center"><img src="./assets/images/time_runner_game.png?raw=true" width="50%" height="50%" alt="Time Runner"/></p>
 
 #### Pontos Importantes
 
