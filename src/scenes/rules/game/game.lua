@@ -11,7 +11,6 @@ local images = require(importations.IMAGES)
 local widget = require(importations.WIDGET)
 
 local sprite
-local throttleJump
 
 local function _scoreManager()
     return scoreManager
@@ -28,25 +27,8 @@ local function _displayPortal(sp)
 end
 
 local function _playerJump(event)
-    if (throttleJump == nil or throttleJump == false) then
-        throttleJump = true
-
-        timer.performWithDelay(1000, function()
-            throttleJump = false
-        end)
-
-        if (event.phase == 'ended' and sprite.canJump == 0) then
-            sprite.canJump = 1
-
-            sprite:jump()
-
-            timer.performWithDelay(500, function()
-                if (sprite ~= nil) then
-                    sprite.canJump = 0
-                end
-            end)
-        end
-    end
+    sprite:applyLinearImpulse(0, 0, sprite.x, sprite.y)
+    sprite:applyLinearImpulse(0, 120, sprite.x, sprite.y)
 end
 
 local function _clear()
@@ -77,9 +59,6 @@ local function _make(group, sp)
 
     local bottomWall = display.newRect(display.contentWidth / 2, display.contentHeight, display.contentWidth, 0)
 
-    sprite.angularVelocity = 0
-    sprite.isFixedRotation = true
-
     sprite.canJump = 0
 
     physics.start()
@@ -87,6 +66,8 @@ local function _make(group, sp)
 
     physics.addBody(bottomWall, 'static', { density = 1, friction = 0, bounce = 1, filter = filters.bottomWallCollision })
     physics.addBody(sprite, { density = 1, friction = 1, bounce = .2, filter = filters.playerCollision })
+
+    sprite.isFixedRotation = true
 
     lifeManager.createImages(group)
 
@@ -98,10 +79,6 @@ local function _make(group, sp)
 
     scoreManager.create(group)
 
-    function sprite:jump()
-        self:setLinearVelocity(0, 200)
-    end
-
     local jumpDifference = 50
     local largeButtonConfiguration = { size = 200, alpha = .2, alphaNormal = .2, alphaClicked = .6 }
 
@@ -110,14 +87,16 @@ local function _make(group, sp)
     triggerFireLargeButton.y = display.contentHeight - jumpDifference
     triggerFireLargeButton:setFillColor(0, 0, 0, 1)
 
-    triggerFireLargeButton:addEventListener(listener.TOUCH, function(event)
+    local function triggerFireTouchListener(event)
         if (event.phase == 'began') then
             triggerFireLargeButton.alpha = largeButtonConfiguration.alphaClicked
         elseif (event.phase == 'ended') then
             triggerFireLargeButton.alpha = largeButtonConfiguration.alphaNormal
             emitterManager.shoot(sprite)
         end
-    end)
+    end
+
+    triggerFireLargeButton:addEventListener(listener.TOUCH, triggerFireTouchListener)
 
     local triggerFireButton = widget.newButton({
         x = triggerFireLargeButton.x,
@@ -125,25 +104,31 @@ local function _make(group, sp)
         defaultFile = images.ATTACK_BUTTON
     })
 
+    triggerFireButton:addEventListener(listener.TOUCH, triggerFireTouchListener)
+
     local jumpLargeButton = display.newCircle(100, 100, largeButtonConfiguration.size)
     jumpLargeButton.x = display.screenOriginY + jumpDifference
     jumpLargeButton.y = display.contentHeight - jumpDifference
     jumpLargeButton:setFillColor(0, 0, 0, 1)
 
-    jumpLargeButton:addEventListener(listener.TOUCH, function(event)
+    local function jumpTouchListener(event)
         if (event.phase == 'began') then
             jumpLargeButton.alpha = largeButtonConfiguration.alphaClicked
         elseif (event.phase == 'ended') then
             jumpLargeButton.alpha = largeButtonConfiguration.alphaNormal
             _playerJump(event)
         end
-    end)
+    end
+
+    jumpLargeButton:addEventListener(listener.TOUCH, jumpTouchListener)
 
     local jumpButton = widget.newButton({
         x = jumpLargeButton.x,
         y = jumpLargeButton.y,
         defaultFile = images.JUMP_BUTTON
     })
+
+    jumpButton:addEventListener(listener.TOUCH, jumpTouchListener)
 
     local changeAlphaTimer = timer.performWithDelay(100, function(event)
         local alpha = .6

@@ -20,10 +20,10 @@ function scene:create(event)
     local playButton = display.newImageRect(images.PLAY_BUTTON, buttons.width, buttons.height)
     playButton.x = displayConstants.CENTER_X
     playButton.y = displayConstants.CENTER_Y + 20
-    playButton:addEventListener(listener.TOUCH, function(event)
-        if (event.phase == 'began') then
+    playButton:addEventListener(listener.TOUCH, function(eventButton)
+        if (eventButton.phase == 'began') then
             playButton.alpha = buttons.alphaClicked
-        elseif (event.phase == 'ended') then
+        elseif (eventButton.phase == 'ended') then
             playButton.alpha = buttons.alphaNormal
             sceneManager.goGame()
         end
@@ -32,10 +32,10 @@ function scene:create(event)
     local preferencesButton = display.newImageRect(images.PREFERENCES_BUTTON, buttons.width, buttons.height)
     preferencesButton.x = playButton.x
     preferencesButton.y = playButton.y + distance.y
-    preferencesButton:addEventListener(listener.TOUCH, function(event)
-        if (event.phase == 'began') then
+    preferencesButton:addEventListener(listener.TOUCH, function(eventButton)
+        if (eventButton.phase == 'began') then
             preferencesButton.alpha = buttons.alphaClicked
-        elseif (event.phase == 'ended') then
+        elseif (eventButton.phase == 'ended') then
             preferencesButton.alpha = buttons.alphaNormal
             sceneManager.goPreferences()
         end
@@ -44,10 +44,10 @@ function scene:create(event)
     local aboutButton = display.newImageRect(images.ABOUT_BUTTON, buttons.width, buttons.height)
     aboutButton.x = preferencesButton.x
     aboutButton.y = preferencesButton.y + distance.y
-    aboutButton:addEventListener(listener.TOUCH, function(event)
-        if (event.phase == 'began') then
+    aboutButton:addEventListener(listener.TOUCH, function(eventButton)
+        if (eventButton.phase == 'began') then
             aboutButton.alpha = buttons.alphaClicked
-        elseif (event.phase == 'ended') then
+        elseif (eventButton.phase == 'ended') then
             aboutButton.alpha = buttons.alphaNormal
             sceneManager.goAbout()
         end

@@ -28,7 +28,7 @@ local function _createTigerSprite()
 end
 
 local function _createRandomSprites()
-    local randomNumber = math.random(1, 4)
+    local randomNumber = math.random(1, 3)
 
     if (randomNumber == 1 or randomNumber == 2) then
         spritesQuantity = spritesQuantity + 1
@@ -69,10 +69,10 @@ local function _spriteUpdate()
 
             if (child.animalName == 'tiger') then
 
-                child.y = displayConstants.HEIGHT_SCREEN - 50
+                child.y = displayConstants.HEIGHT_SCREEN - 60
             elseif (child.animalName == 'bear') then
 
-                child.y = displayConstants.HEIGHT_SCREEN - 40
+                child.y = displayConstants.HEIGHT_SCREEN - 50
             end
 
             if (child.x <= (display.screenOriginY + buttonsDifference) or child.isDeleted) then
