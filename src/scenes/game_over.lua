@@ -5,7 +5,6 @@ local listener = require(importations.LISTENER)
 local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
-local fonts = require(importations.FONTS)
 local viewUtil = require(importations.VIEW_UTIL)
 
 local scene = composer.newScene()
@@ -29,11 +28,10 @@ function scene:create(event)
         y = displayConstants.LEFT_SCREEN + 200
     })
 
-    local scoreText = display.newText({
+    local scoreText = viewUtil.createText({
         text = 'Score: ' .. event.params.score .. 's',
         x = gameOverTitle.x,
         y = gameOverTitle.y + 135,
-        font = fonts.SYSTEM,
         fontSize = 80
     })
     scoreText:setFillColor(248, 248, 255)
@@ -51,7 +49,7 @@ function scene:create(event)
     local menuButton = viewUtil.createMenuButton({
         imagePath = images.MENU_BUTTON,
         x = playButton.x,
-        y = playButton.y + 130,
+        y = playButton.y + viewUtil.distanceBetweenMenuButtons,
         action = function()
             sceneManager.goMenu()
             someButtonClicked = true

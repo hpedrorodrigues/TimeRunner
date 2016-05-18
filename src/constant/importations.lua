@@ -36,6 +36,5 @@ return {
     INFO = 'src.scenes.rules.about.info',
     ABOUT_CREATOR = 'src.scenes.rules.about.about_creator',
     EMITTERS = 'src.constant.emitters',
-    JSON = 'json',
-    FONTS = 'src.constant.fonts'
+    JSON = 'json'
 }

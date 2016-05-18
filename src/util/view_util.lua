@@ -12,6 +12,16 @@ local function _createImage(object)
     return createdImage
 end
 
+local function _createText(object)
+    return display.newText({
+        text = object.text,
+        x = object.x,
+        y = object.y,
+        font = 'Quicksand-BoldItalic',
+        fontSize = object.fontSize
+    })
+end
+
 local function _createBackButton(action)
     local backButton = _createImage({
         imagePath = images.BACK_BUTTON,
@@ -99,5 +109,6 @@ return {
     createMenuButton = _createMenuButton,
     alphaDefault = 1,
     distanceBetweenMenuButtons = 130,
-    createImage = _createImage
+    createImage = _createImage,
+    createText = _createText
 }

@@ -1,7 +1,7 @@
 local importations = require(IMPORTATIONS)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
-local fonts = require(importations.FONTS)
 local info = require(importations.INFO)
+local viewUtil = require(importations.VIEW_UTIL)
 
 local titleFontSize = 60
 local subtitleFontSize = 35
@@ -10,35 +10,31 @@ local firstDifference = 90
 local difference = 60
 
 local function _developedByGroup(group)
-    local developedBy = display.newText({
+    local developedBy = viewUtil.createText({
         text = info.developedByTitle,
         x = displayConstants.CENTER_X,
         y = displayConstants.TOP_SCREEN + 100,
-        font = fonts.SYSTEM,
         fontSize = titleFontSize
     })
 
-    local developerName = display.newText({
+    local developerName = viewUtil.createText({
         text = info.developerName,
         x = developedBy.x,
         y = developedBy.y + firstDifference,
-        font = fonts.SYSTEM,
         fontSize = subtitleFontSize
     })
 
-    local developerGithubLink = display.newText({
+    local developerGithubLink = viewUtil.createText({
         text = info.developerGithubLink,
         x = displayConstants.CENTER_X,
         y = developerName.y + difference,
-        font = fonts.SYSTEM,
         fontSize = subtitleFontSize
     })
 
-    local developerEmail = display.newText({
+    local developerEmail = viewUtil.createText({
         text = info.developerEmail,
         x = displayConstants.CENTER_X,
         y = developerGithubLink.y + difference,
-        font = fonts.SYSTEM,
         fontSize = subtitleFontSize
     })
 
@@ -49,43 +45,38 @@ local function _developedByGroup(group)
 end
 
 local function _designedByGroup(group)
-    local designedBy = display.newText({
+    local designedBy = viewUtil.createText({
         text = info.designedByTitle,
         x = displayConstants.CENTER_X - 400,
         y = displayConstants.TOP_SCREEN + 400,
-        font = fonts.SYSTEM,
         fontSize = titleFontSize
     })
 
-    local firstDesignerName = display.newText({
+    local firstDesignerName = viewUtil.createText({
         text = info.firstDesignerName,
         x = designedBy.x,
         y = designedBy.y + firstDifference,
-        font = fonts.SYSTEM,
         fontSize = subtitleFontSize
     })
 
-    local firstDesignerGithub = display.newText({
+    local firstDesignerGithub = viewUtil.createText({
         text = info.firstDesignerGithub,
         x = firstDesignerName.x,
         y = firstDesignerName.y + difference,
-        font = fonts.SYSTEM,
         fontSize = subtitleFontSize
     })
 
-    local secondDesignerName = display.newText({
+    local secondDesignerName = viewUtil.createText({
         text = info.secondDesignerName,
         x = firstDesignerGithub.x,
         y = firstDesignerGithub.y + difference,
-        font = fonts.SYSTEM,
         fontSize = subtitleFontSize
     })
 
-    local secondDesignerGithub = display.newText({
+    local secondDesignerGithub = viewUtil.createText({
         text = info.secondDesignerGithub,
         x = secondDesignerName.x,
         y = secondDesignerName.y + difference,
-        font = fonts.SYSTEM,
         fontSize = subtitleFontSize
     })
 
@@ -97,19 +88,17 @@ local function _designedByGroup(group)
 end
 
 local function _songsGroup(group)
-    local songs = display.newText({
+    local songs = viewUtil.createText({
         text = info.songsTitle,
         x = displayConstants.CENTER_X + 300,
         y = displayConstants.TOP_SCREEN + 400,
-        font = fonts.SYSTEM,
         fontSize = titleFontSize
     })
 
-    local songsLink = display.newText({
+    local songsLink = viewUtil.createText({
         text = info.songsLink,
         x = songs.x,
         y = songs.y + firstDifference,
-        font = fonts.SYSTEM,
         fontSize = subtitleFontSize
     })
 
@@ -118,19 +107,17 @@ local function _songsGroup(group)
 end
 
 local function _imagesGroup(group)
-    local images = display.newText({
+    local images = viewUtil.createText({
         text = info.imagesTitle,
         x = displayConstants.CENTER_X + 300,
         y = displayConstants.TOP_SCREEN + 580,
-        font = fonts.SYSTEM,
         fontSize = titleFontSize
     })
 
-    local imagesLink = display.newText({
+    local imagesLink = viewUtil.createText({
         text = info.imagesLink,
         x = images.x,
         y = images.y + firstDifference,
-        font = fonts.SYSTEM,
         fontSize = subtitleFontSize
     })
 

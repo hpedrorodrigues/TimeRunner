@@ -1,7 +1,7 @@
 local importations = require(IMPORTATIONS)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local listener = require(importations.LISTENER)
-local fonts = require(importations.FONTS)
+local viewUtil = require(importations.VIEW_UTIL)
 
 local scoreText
 local group
@@ -26,11 +26,10 @@ local function _createScore(gp)
 
     initialTime = os.time()
 
-    scoreText = display.newText({
+    scoreText = viewUtil.createText({
         text = 'Score',
         x = displayConstants.LEFT_SCREEN + 250,
         y = displayConstants.TOP_SCREEN + 50,
-        font = fonts.SYSTEM,
         fontSize = 35
     })
 
