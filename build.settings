@@ -141,7 +141,7 @@ settings = {
         supportsScreens = {
             smallScreens = true,
             normalScreens = true,
-            largeScreens = true,
+            largeScreens = false,
             xlargeScreens = false
         },
         usesPermissions = {
