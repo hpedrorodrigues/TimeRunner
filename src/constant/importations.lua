@@ -33,6 +33,8 @@ return {
     SCORE_MANAGER_RULES = 'src.scenes.rules.game.score_manager',
     WIDGET = 'widget',
     EMITTER_MANAGER = 'src.scenes.rules.game.emitter_manager',
+    INFO = 'src.scenes.rules.about.info',
+    ABOUT_CREATOR = 'src.scenes.rules.about.about_creator',
     EMITTERS = 'src.constant.emitters',
     JSON = 'json',
     FONTS = 'src.constant.fonts'

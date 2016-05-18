@@ -82,7 +82,7 @@ function scene:create()
     eventUtil.setBackPressed(sceneManager.goMenu)
 end
 
-function scene:destroy(event)
+function scene:destroy()
 
     rules.clear()
 

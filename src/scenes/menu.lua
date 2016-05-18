@@ -7,7 +7,7 @@ local sceneManager = require(importations.SCENE_MANAGER)
 
 local scene = composer.newScene()
 
-function scene:create(event)
+function scene:create()
 
     local sceneGroup = self.view
     local background = display.newImageRect(images.MENU_BACKGROUND, 1800, 900)
@@ -64,7 +64,7 @@ function scene:create(event)
     sceneGroup:insert(gameTitle)
 end
 
-function scene:destroy(event)
+function scene:destroy()
 
     local sceneGroup = self.view
     sceneGroup:removeSelf()

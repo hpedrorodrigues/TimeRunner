@@ -78,7 +78,7 @@ function scene:create(event)
     eventUtil.setBackPressed(sceneManager.goMenu)
 end
 
-function scene:destroy(event)
+function scene:destroy()
 
     local sceneGroup = self.view
     sceneGroup:removeSelf()

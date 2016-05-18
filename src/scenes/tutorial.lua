@@ -8,7 +8,7 @@ local viewUtil = require(importations.VIEW_UTIL)
 
 local scene = composer.newScene()
 
-function scene:create(event)
+function scene:create()
 
     local sceneGroup = self.view
     local background = display.newImage(images.TUTORIAL_BACKGROUND, 700, 400, true)
@@ -21,7 +21,7 @@ function scene:create(event)
     eventUtil.setBackPressed(sceneManager.goMenu)
 end
 
-function scene:destroy(event)
+function scene:destroy()
 
     local sceneGroup = self.view
     sceneGroup:removeSelf()
