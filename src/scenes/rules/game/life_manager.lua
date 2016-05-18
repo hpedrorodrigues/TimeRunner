@@ -1,6 +1,7 @@
 local importations = require(IMPORTATIONS)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
+local viewUtil = require(importations.VIEW_UTIL)
 
 local MAX_LIFES = 5
 
@@ -36,12 +37,16 @@ local function _createImages(group)
     lifeImages = {}
 
     for i = 1, MAX_LIFES do
-        lifeImages[i] = display.newImageRect(images.LIFE, 40, 40)
-        lifeImages[i].y = distance.y
 
-        if (i == 1) then
-            lifeImages[i].x = displayConstants.WIDTH_SCREEN - distance.y
-        else
+        lifeImages[i] = viewUtil.createImage({
+            imagePath = images.LIFE,
+            width = 40,
+            height = 40,
+            x = displayConstants.WIDTH_SCREEN - distance.y,
+            y = distance.y
+        })
+
+        if (i ~= 1) then
             lifeImages[i].x = lifeImages[i - 1].x - distance.x
         end
 

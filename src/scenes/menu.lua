@@ -40,9 +40,13 @@ function scene:create()
         aboutButton.alpha = viewUtil.alphaDefault
     end)
 
-    local gameTitle = display.newImageRect(images.TITLE, 783, 183)
-    gameTitle.x = displayConstants.CENTER_X
-    gameTitle.y = displayConstants.CENTER_Y - 250
+    local gameTitle = viewUtil.createImage({
+        imagePath = images.TITLE,
+        width = 783,
+        height = 183,
+        x = displayConstants.CENTER_X,
+        y = displayConstants.CENTER_Y - 250
+    })
 
     sceneGroup:insert(background)
     sceneGroup:insert(preferencesButton)

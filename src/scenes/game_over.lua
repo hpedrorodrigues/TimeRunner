@@ -21,9 +21,13 @@ function scene:create(event)
         someButtonClicked = true
     end)
 
-    local gameOverTitle = display.newImageRect(images.GAME_OVER_BUTTON, 680, 168)
-    gameOverTitle.x = displayConstants.CENTER_X
-    gameOverTitle.y = display.screenOriginY + 200
+    local gameOverTitle = viewUtil.createImage({
+        imagePath = images.GAME_OVER_BUTTON,
+        width = 680,
+        height = 168,
+        x = displayConstants.CENTER_X,
+        y = displayConstants.LEFT_SCREEN + 200
+    })
 
     local scoreText = display.newText({
         text = 'Score: ' .. event.params.score .. 's',

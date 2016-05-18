@@ -45,9 +45,13 @@ function scene:create()
 
     local backButton = viewUtil.createBackButton(sceneManager.goMenu)
 
-    local gameTitle = display.newImageRect(images.TITLE, 261, 61)
-    gameTitle.x = displayConstants.CENTER_X
-    gameTitle.y = displayConstants.TOP_SCREEN + 50
+    local gameTitle = viewUtil.createImage({
+        imagePath = images.TITLE,
+        width = 261,
+        height = 61,
+        x = displayConstants.CENTER_X,
+        y = displayConstants.TOP_SCREEN + 50
+    })
 
     sprite:play()
 
