@@ -2,6 +2,7 @@ local importations = require(IMPORTATIONS)
 local sceneManager = require(importations.SCENE_MANAGER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local settings = require(importations.SETTINGS)
+local bodyNames = require(importations.BODY_NAMES)
 
 local collisionDelayTime = 2
 
@@ -24,18 +25,18 @@ end
 
 local function _control(event)
 
-    if ((event.object1.myName == 'crazy_scientist' and event.object2.myName == 'power_up')
-            or (event.object2.myName == 'crazy_scientist' and event.object1.myName == 'power_up')) then
+    if ((event.object1.myName == bodyNames.CRAZY_SCIENTIST and event.object2.myName == bodyNames.POWER_UP)
+            or (event.object2.myName == bodyNames.CRAZY_SCIENTIST and event.object1.myName == bodyNames.POWER_UP)) then
 
-        local powerUp = (event.object1.myName == 'power_up') and event.object1 or event.object2
+        local powerUp = (event.object1.myName == bodyNames.POWER_UP) and event.object1 or event.object2
 
         powerUp.isDeleted = true
 
-    elseif ((event.object1.myName == 'obstacle' and event.object2.myName == 'shot')
-            or (event.object2.myName == 'obstacle' and event.object1.myName == 'shot')) then
+    elseif ((event.object1.myName == bodyNames.OBSTACLE and event.object2.myName == bodyNames.SHOT)
+            or (event.object2.myName == bodyNames.OBSTACLE and event.object1.myName == bodyNames.SHOT)) then
 
-        local shot = (event.object1.myName == 'shot') and event.object1 or event.object2
-        local obstacle = (event.object1.myName == 'obstacle') and event.object1 or event.object2
+        local shot = (event.object1.myName == bodyNames.SHOT) and event.object1 or event.object2
+        local obstacle = (event.object1.myName == bodyNames.OBSTACLE) and event.object1 or event.object2
 
         if (isVibrationEnabled) then
             system.vibrate()
@@ -44,11 +45,11 @@ local function _control(event)
         shot.isDeleted = true
         obstacle.isDeleted = true
 
-    elseif ((event.object1.myName == 'obstacle' and event.object2.myName == 'crazy_scientist')
-            or (event.object2.myName == 'obstacle' and event.object1.myName == 'crazy_scientist')) then
+    elseif ((event.object1.myName == bodyNames.OBSTACLE and event.object2.myName == bodyNames.CRAZY_SCIENTIST)
+            or (event.object2.myName == bodyNames.OBSTACLE and event.object1.myName == bodyNames.CRAZY_SCIENTIST)) then
 
-        local sprite = (event.object1.myName == 'crazy_scientist') and event.object1 or event.object2
-        local spriteObstacle = (event.object1.myName == 'obstacle') and event.object1 or event.object2
+        local sprite = (event.object1.myName == bodyNames.CRAZY_SCIENTIST) and event.object1 or event.object2
+        local spriteObstacle = (event.object1.myName == bodyNames.OBSTACLE) and event.object1 or event.object2
 
         if (sprite.died == false) then
             sprite.died = true

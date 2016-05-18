@@ -1,0 +1,8 @@
+return {
+    CRAZY_SCIENTIST = 'CRAZY_SCIENTIST',
+    POWER_UP = 'POWER_UP',
+    OBSTACLE = 'OBSTACLE',
+    SHOT = 'SHOT',
+    BEAR_ANIMAL = 'BEAR',
+    TIGER_ANIMAL = 'TIGER'
+}

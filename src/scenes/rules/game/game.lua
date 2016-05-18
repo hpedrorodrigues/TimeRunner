@@ -50,7 +50,7 @@ local function _clear()
     physics.stop()
 end
 
-local function _createButtons(group)
+local function _createButtons(group, background)
     local buttonsConfiguration = { size = 100, radius = 200, alpha = .2, difference = 50 }
 
     local shootLargeButton = viewUtil.createButtonCircle({
@@ -89,6 +89,11 @@ local function _createButtons(group)
     viewUtil.addTouchEventWithAlphaEffectListener(jumpLargeButton, jumpLargeButton, _playerJump)
     viewUtil.addTouchEventWithAlphaEffectListener(jumpButton, jumpLargeButton, _playerJump)
 
+    viewUtil.addEndedTouchEventListener(background, function()
+        shootLargeButton.alpha = buttonsConfiguration.alpha
+        jumpLargeButton.alpha = buttonsConfiguration.alpha
+    end)
+
     local changeAlphaTimer = timer.performWithDelay(100, function(event)
         local alpha = .6
 
@@ -112,7 +117,7 @@ local function _createButtons(group)
     group:insert(shootLargeButton)
 end
 
-local function _make(group, sp)
+local function _make(group, background, sp)
     sprite = sp
 
     lifeManager.reset()
@@ -144,7 +149,7 @@ local function _make(group, sp)
 
     scoreManager.create(group)
 
-    _createButtons(group)
+    _createButtons(group, background)
 
     Runtime:addEventListener(listener.COLLISION, collisionManager.control)
 end

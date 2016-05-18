@@ -4,6 +4,7 @@ local emitters = require(importations.EMITTERS)
 local physics = require(importations.PHYSICS)
 local listener = require(importations.LISTENER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
+local bodyNames = require(importations.BODY_NAMES)
 
 local emittersQuantity = 0
 local emittersList = {}
@@ -62,7 +63,7 @@ local function _shoot(sprite)
 
     transition.to(group, { x = displayConstants.WIDTH_SCREEN + 150, time = 800 })
 
-    group.myName = 'shot'
+    group.myName = bodyNames.SHOT
 
     emittersList[emittersQuantity] = group
 end
@@ -132,7 +133,7 @@ local function _generatePowerUp()
 
         powerUpEmitterList[powerUpEmitterQuantity] = powerUpEmitter
 
-        powerUpEmitter.myName = 'power_up'
+        powerUpEmitter.myName = bodyNames.POWER_UP
     end
 end
 

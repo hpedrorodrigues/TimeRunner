@@ -60,7 +60,7 @@ function scene:create()
     sceneGroup:insert(backButton)
     sceneGroup:insert(gameTitle)
 
-    rules.apply(sceneGroup, sprite)
+    rules.apply(sceneGroup, background, sprite)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end

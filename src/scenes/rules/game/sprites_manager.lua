@@ -5,6 +5,7 @@ local physics = require(importations.PHYSICS)
 local listener = require(importations.LISTENER)
 local filters = require(importations.FILTER_RULES)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
+local bodyNames = require(importations.BODY_NAMES)
 
 local sprites = {}
 local spritesQuantity = 0
@@ -35,19 +36,19 @@ local function _createRandomSprites()
 
         if (randomNumber == 1) then
             sprites[spritesQuantity] = _createBearSprite()
-            sprites[spritesQuantity].animalName = 'bear'
+            sprites[spritesQuantity].animalName = bodyNames.BEAR_ANIMAL
             sprites[spritesQuantity].x = display.contentWidth - buttonsDifference
             sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 40
         elseif (randomNumber == 2) then
             sprites[spritesQuantity] = _createTigerSprite()
-            sprites[spritesQuantity].animalName = 'tiger'
+            sprites[spritesQuantity].animalName = bodyNames.TIGER_ANIMAL
             sprites[spritesQuantity].x = display.contentWidth - buttonsDifference
             sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 50
         end
 
         local sprite = sprites[spritesQuantity]
 
-        sprite.myName = 'obstacle'
+        sprite.myName = bodyNames.OBSTACLE
         sprite:play()
 
         physics.addBody(sprite, { density = 1, friction = 0.4, bounce = 1, filter = filters.earthObstacleCollision })
@@ -67,10 +68,10 @@ local function _spriteUpdate()
 
             child:translate(translateVelocity, 0)
 
-            if (child.animalName == 'tiger') then
+            if (child.animalName == bodyNames.TIGER_ANIMAL) then
 
                 child.y = displayConstants.HEIGHT_SCREEN - 60
-            elseif (child.animalName == 'bear') then
+            elseif (child.animalName == bodyNames.BEAR_ANIMAL) then
 
                 child.y = displayConstants.HEIGHT_SCREEN - 50
             end

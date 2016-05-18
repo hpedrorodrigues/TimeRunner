@@ -36,5 +36,6 @@ return {
     I18N = 'src.constant.i18n',
     ABOUT_CREATOR = 'src.scenes.rules.about.about_creator',
     EMITTERS = 'src.constant.emitters',
-    JSON = 'json'
+    JSON = 'json',
+    BODY_NAMES = 'src.scenes.rules.game.body_names'
 }

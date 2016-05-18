@@ -2,6 +2,7 @@ local importations = require(IMPORTATIONS)
 local spriteSequenceNames = require(importations.SPRITE_SEQUENCE)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
+local bodyNames = require(importations.BODY_NAMES)
 
 local function _create()
 
@@ -20,7 +21,7 @@ local function _create()
     local healthSheet = graphics.newImageSheet(images.CRAZY_SCIENTIST_SPRITE, imageSheetOptions)
     local sprite = display.newSprite(healthSheet, spriteSequence)
 
-    sprite.myName = 'crazy_scientist'
+    sprite.myName = bodyNames.CRAZY_SCIENTIST
     sprite.died = false
 
     sprite:setSequence(spriteSequenceNames.RUNNING)
