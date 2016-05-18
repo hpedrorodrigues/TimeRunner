@@ -2,6 +2,7 @@ local importations = require(IMPORTATIONS)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
 local listener = require(importations.LISTENER)
+local widget = require(importations.WIDGET)
 
 local function _createImage(object)
     local createdImage = display.newImageRect(object.imagePath, object.width, object.height)
@@ -10,6 +11,25 @@ local function _createImage(object)
     createdImage.y = object.y
 
     return createdImage
+end
+
+local function _createWidgetImage(object)
+    return widget.newButton({
+        x = object.x,
+        y = object.y,
+        defaultFile = object.imagePath
+    })
+end
+
+local function _createButtonCircle(object)
+    local circleButton = display.newCircle(object.size, object.size, object.radius)
+
+    circleButton.x = object.x
+    circleButton.y = object.y
+
+    circleButton:setFillColor(0, 0, 0, 1)
+
+    return circleButton
 end
 
 local function _createText(object)
@@ -76,6 +96,22 @@ local function _addEndedTouchEventListener(object, action)
     _addTouchEventListener(object, action, 'ended')
 end
 
+local function _addTouchEventWithAlphaEffectListener(object, objectToChange, action)
+    object:addEventListener(listener.TOUCH, function(eventButton)
+        if (eventButton.phase == 'began') then
+
+            objectToChange.alpha = .6
+        elseif (eventButton.phase == 'ended') then
+
+            objectToChange.alpha = .2
+
+            if (action ~= nil) then
+                action(eventButton)
+            end
+        end
+    end)
+end
+
 local function _createMenuButton(object)
     local menuButton = _createImage({
         imagePath = object.imagePath,
@@ -106,9 +142,12 @@ return {
     createBackground = _createBackground,
     addBeganTouchEventListener = _addBeganTouchEventListener,
     addEndedTouchEventListener = _addEndedTouchEventListener,
+    addTouchEventWithAlphaEffectListener = _addTouchEventWithAlphaEffectListener,
     createMenuButton = _createMenuButton,
     alphaDefault = 1,
     distanceBetweenMenuButtons = 130,
     createImage = _createImage,
+    createWidgetImage = _createWidgetImage,
+    createButtonCircle = _createButtonCircle,
     createText = _createText
 }

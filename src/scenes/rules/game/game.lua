@@ -8,7 +8,8 @@ local collisionManager = require(importations.COLLISION_MANAGER_RULES)
 local scoreManager = require(importations.SCORE_MANAGER_RULES)
 local emitterManager = require(importations.EMITTER_MANAGER)
 local images = require(importations.IMAGES)
-local widget = require(importations.WIDGET)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
+local viewUtil = require(importations.VIEW_UTIL)
 
 local sprite
 
@@ -26,7 +27,7 @@ local function _displayPortal(sp)
     end)
 end
 
-local function _playerJump(event)
+local function _playerJump()
     sprite:applyLinearImpulse(0, 0, sprite.x, sprite.y)
     sprite:applyLinearImpulse(0, 120, sprite.x, sprite.y)
 end
@@ -47,6 +48,68 @@ local function _clear()
     end
 
     physics.stop()
+end
+
+local function _createButtons(group)
+    local buttonsConfiguration = { size = 100, radius = 200, alpha = .2, difference = 50 }
+
+    local shootLargeButton = viewUtil.createButtonCircle({
+        size = buttonsConfiguration.size,
+        radius = buttonsConfiguration.radius,
+        x = display.contentWidth - buttonsConfiguration.difference,
+        y = display.contentHeight - buttonsConfiguration.difference
+    })
+
+    local shootButton = viewUtil.createWidgetImage({
+        x = shootLargeButton.x,
+        y = shootLargeButton.y,
+        imagePath = images.ATTACK_BUTTON
+    })
+
+    local shootAction = function()
+        emitterManager.shoot(sprite)
+    end
+
+    viewUtil.addTouchEventWithAlphaEffectListener(shootLargeButton, shootLargeButton, shootAction)
+    viewUtil.addTouchEventWithAlphaEffectListener(shootButton, shootLargeButton, shootAction)
+
+    local jumpLargeButton = viewUtil.createButtonCircle({
+        size = buttonsConfiguration.size,
+        radius = buttonsConfiguration.radius,
+        x = displayConstants.TOP_SCREEN + buttonsConfiguration.difference,
+        y = display.contentHeight - buttonsConfiguration.difference
+    })
+
+    local jumpButton = viewUtil.createWidgetImage({
+        x = jumpLargeButton.x,
+        y = jumpLargeButton.y,
+        imagePath = images.JUMP_BUTTON
+    })
+
+    viewUtil.addTouchEventWithAlphaEffectListener(jumpLargeButton, jumpLargeButton, _playerJump)
+    viewUtil.addTouchEventWithAlphaEffectListener(jumpButton, jumpLargeButton, _playerJump)
+
+    local changeAlphaTimer = timer.performWithDelay(100, function(event)
+        local alpha = .6
+
+        if (event.count % 2 == 0) then
+            alpha = buttonsConfiguration.alpha
+        end
+
+        shootLargeButton.alpha = alpha
+        jumpLargeButton.alpha = alpha
+    end, 10)
+
+    timer.performWithDelay(2000, function()
+        timer.cancel(changeAlphaTimer)
+        shootLargeButton.alpha = buttonsConfiguration.alpha
+        jumpLargeButton.alpha = buttonsConfiguration.alpha
+    end)
+
+    group:insert(jumpButton)
+    group:insert(jumpLargeButton)
+    group:insert(shootButton)
+    group:insert(shootLargeButton)
 end
 
 local function _make(group, sp)
@@ -79,78 +142,7 @@ local function _make(group, sp)
 
     scoreManager.create(group)
 
-    local jumpDifference = 50
-    local largeButtonConfiguration = { size = 200, alpha = .2, alphaNormal = .2, alphaClicked = .6 }
-
-    local triggerFireLargeButton = display.newCircle(100, 100, largeButtonConfiguration.size)
-    triggerFireLargeButton.x = display.contentWidth - jumpDifference
-    triggerFireLargeButton.y = display.contentHeight - jumpDifference
-    triggerFireLargeButton:setFillColor(0, 0, 0, 1)
-
-    local function triggerFireTouchListener(event)
-        if (event.phase == 'began') then
-            triggerFireLargeButton.alpha = largeButtonConfiguration.alphaClicked
-        elseif (event.phase == 'ended') then
-            triggerFireLargeButton.alpha = largeButtonConfiguration.alphaNormal
-            emitterManager.shoot(sprite)
-        end
-    end
-
-    triggerFireLargeButton:addEventListener(listener.TOUCH, triggerFireTouchListener)
-
-    local triggerFireButton = widget.newButton({
-        x = triggerFireLargeButton.x,
-        y = triggerFireLargeButton.y,
-        defaultFile = images.ATTACK_BUTTON
-    })
-
-    triggerFireButton:addEventListener(listener.TOUCH, triggerFireTouchListener)
-
-    local jumpLargeButton = display.newCircle(100, 100, largeButtonConfiguration.size)
-    jumpLargeButton.x = display.screenOriginY + jumpDifference
-    jumpLargeButton.y = display.contentHeight - jumpDifference
-    jumpLargeButton:setFillColor(0, 0, 0, 1)
-
-    local function jumpTouchListener(event)
-        if (event.phase == 'began') then
-            jumpLargeButton.alpha = largeButtonConfiguration.alphaClicked
-        elseif (event.phase == 'ended') then
-            jumpLargeButton.alpha = largeButtonConfiguration.alphaNormal
-            _playerJump(event)
-        end
-    end
-
-    jumpLargeButton:addEventListener(listener.TOUCH, jumpTouchListener)
-
-    local jumpButton = widget.newButton({
-        x = jumpLargeButton.x,
-        y = jumpLargeButton.y,
-        defaultFile = images.JUMP_BUTTON
-    })
-
-    jumpButton:addEventListener(listener.TOUCH, jumpTouchListener)
-
-    local changeAlphaTimer = timer.performWithDelay(100, function(event)
-        local alpha = .6
-
-        if (event.count % 2 == 0) then
-            alpha = largeButtonConfiguration.alpha
-        end
-
-        triggerFireLargeButton.alpha = alpha
-        jumpLargeButton.alpha = alpha
-    end, 10)
-
-    timer.performWithDelay(2000, function()
-        timer.cancel(changeAlphaTimer)
-        triggerFireLargeButton.alpha = largeButtonConfiguration.alpha
-        jumpLargeButton.alpha = largeButtonConfiguration.alpha
-    end)
-
-    group:insert(jumpButton)
-    group:insert(jumpLargeButton)
-    group:insert(triggerFireButton)
-    group:insert(triggerFireLargeButton)
+    _createButtons(group)
 
     Runtime:addEventListener(listener.COLLISION, collisionManager.control)
 end

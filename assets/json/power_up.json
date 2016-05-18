@@ -13,7 +13,7 @@
   "rotationEnd": -3600,
   "startColorVarianceBlue": 1,
   "rotatePerSecondVariance": 0,
-  "particleLifespan": 0,
+  "particleLifespan": 0.05,
   "minRadius": 0,
   "configName": "power_up",
   "tangentialAcceleration": 0,

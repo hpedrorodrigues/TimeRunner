@@ -3,6 +3,7 @@ local json = require(importations.JSON)
 local emitters = require(importations.EMITTERS)
 local physics = require(importations.PHYSICS)
 local listener = require(importations.LISTENER)
+local displayConstants = require(importations.DISPLAY_CONSTANTS)
 
 local emittersQuantity = 0
 local emittersList = {}
@@ -59,7 +60,7 @@ local function _shoot(sprite)
     group.anchorChildren = true
     group.gravityScale = 0
 
-    transition.to(group, { x = display.contentWidth + 150, time = 800 })
+    transition.to(group, { x = displayConstants.WIDTH_SCREEN + 150, time = 800 })
 
     group.myName = 'shot'
 
@@ -75,7 +76,7 @@ local function _emitterUpdate()
 
         if (child ~= nil) then
 
-            if (child.x >= display.contentWidth or child.isDeleted) then
+            if (child.x >= displayConstants.WIDTH_SCREEN or child.isDeleted) then
 
                 physics.removeBody(child)
                 child:removeSelf()
@@ -124,7 +125,7 @@ local function _generatePowerUp()
 
         physics.addBody(powerUpEmitter, { density = 1, friction = 0 })
 
-        powerUpEmitter.x = display.contentWidth - 50
+        powerUpEmitter.x = displayConstants.WIDTH_SCREEN - 50
         powerUpEmitter.y = math.random(display.contentHeight / 2, display.contentHeight)
 
         powerUpEmitter:setLinearVelocity(-500, 0)
@@ -144,7 +145,7 @@ local function _powerUmitterUpdate()
 
         if (child ~= nil) then
 
-            if (child.x < display.screenOriginX or child.isDeleted) then
+            if (child.x < displayConstants.LEFT_SCREEN or child.isDeleted) then
 
                 physics.removeBody(child)
                 child:removeSelf()

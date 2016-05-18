@@ -75,7 +75,7 @@ local function _spriteUpdate()
                 child.y = displayConstants.HEIGHT_SCREEN - 50
             end
 
-            if (child.x <= (display.screenOriginY + buttonsDifference) or child.isDeleted) then
+            if (child.x <= (displayConstants.TOP_SCREEN + buttonsDifference) or child.isDeleted) then
 
                 physics.removeBody(child)
                 group:remove(child)
