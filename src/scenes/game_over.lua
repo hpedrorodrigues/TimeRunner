@@ -25,42 +25,37 @@ function scene:create(event)
     gameOverTitle.x = displayConstants.CENTER_X
     gameOverTitle.y = display.screenOriginY + 200
 
-    local scoreDifference = 80
-
-    local scoreTitle = display.newImageRect(images.SCORE_BUTTON, 237, 104)
-    scoreTitle.x = gameOverTitle.x - scoreDifference
-    scoreTitle.y = gameOverTitle.y + 150
-
     local scoreText = display.newText({
-        text = event.params.score .. 's',
-        x = gameOverTitle.x + scoreDifference,
+        text = 'Score: ' .. event.params.score .. 's',
+        x = gameOverTitle.x,
         y = gameOverTitle.y + 135,
         font = fonts.SYSTEM,
-        fontSize = 70
+        fontSize = 80
     })
-    scoreText:setFillColor(0, 0, 0, 0.5)
+    scoreText:setFillColor(248, 248, 255)
 
-    local buttons = { width = 411, height = 102 }
+    local playButton = viewUtil.createMenuButton({
+        imagePath = images.PLAY_BUTTON,
+        x = displayConstants.CENTER_X,
+        y = scoreText.y + 180,
+        action = function()
+            sceneManager.goGame()
+            someButtonClicked = true
+        end
+    })
 
-    local playButton = display.newImageRect(images.PLAY_BUTTON, buttons.width, buttons.height)
-    playButton.x = displayConstants.CENTER_X
-    playButton.y = scoreText.y + 180
-    playButton:addEventListener(listener.TAP, function()
-        sceneManager.goGame()
-        someButtonClicked = true
-    end)
-
-    local menuButton = display.newImageRect(images.MENU_BUTTON, buttons.width, buttons.height)
-    menuButton.x = playButton.x
-    menuButton.y = playButton.y + 130
-    menuButton:addEventListener(listener.TAP, function()
-        sceneManager.goMenu()
-        someButtonClicked = true
-    end)
+    local menuButton = viewUtil.createMenuButton({
+        imagePath = images.MENU_BUTTON,
+        x = playButton.x,
+        y = playButton.y + 130,
+        action = function()
+            sceneManager.goMenu()
+            someButtonClicked = true
+        end
+    })
 
     sceneGroup:insert(background)
     sceneGroup:insert(gameOverTitle)
-    sceneGroup:insert(scoreTitle)
     sceneGroup:insert(playButton)
     sceneGroup:insert(menuButton)
     sceneGroup:insert(backButton)
