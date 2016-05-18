@@ -12,6 +12,6 @@ application = {
         scale = "letterbox",
         xAlign = "left",
         yAlign = "top",
-        shaderPrecision = "highp"
+        shaderPrecision = "mediump"
     }
 }
