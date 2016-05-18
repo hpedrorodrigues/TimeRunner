@@ -9,6 +9,7 @@ local widget = require(importations.WIDGET)
 local settings = require(importations.SETTINGS)
 local soundUtil = require(importations.SOUND_UTIL)
 local fonts = require(importations.FONTS)
+local viewUtil = require(importations.VIEW_UTIL)
 
 local scene = composer.newScene()
 
@@ -19,25 +20,7 @@ function scene:create(event)
     background.x = displayConstants.CENTER_X
     background.y = displayConstants.CENTER_Y
 
-    local backButtonConfiguration = {
-        width = 79,
-        height = 78,
-        alphaNormal = .2,
-        alphaClicked = .6,
-        difference = 60
-    }
-
-    local backButton = display.newImageRect(images.BACK_BUTTON, backButtonConfiguration.width, backButtonConfiguration.height)
-    backButton.x = displayConstants.LEFT_SCREEN + backButtonConfiguration.difference
-    backButton.y = displayConstants.TOP_SCREEN + backButtonConfiguration.difference
-    backButton:addEventListener(listener.TOUCH, function(eventButton)
-        if (eventButton.phase == 'began') then
-            backButton.alpha = backButtonConfiguration.alphaClicked
-        elseif (eventButton.phase == 'ended') then
-            backButton.alpha = backButtonConfiguration.alphaNormal
-            sceneManager.goMenu()
-        end
-    end)
+    local backButton = viewUtil.createBackButton(sceneManager.goMenu)
 
     local leftSwitches = displayConstants.LEFT_SCREEN + 100
 

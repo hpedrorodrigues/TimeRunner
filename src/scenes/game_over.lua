@@ -6,6 +6,7 @@ local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local fonts = require(importations.FONTS)
+local viewUtil = require(importations.VIEW_UTIL)
 
 local scene = composer.newScene()
 local screenTime = 5000
@@ -18,25 +19,9 @@ function scene:create(event)
     background.x = displayConstants.CENTER_X
     background.y = displayConstants.CENTER_Y
 
-    local backButtonConfiguration = {
-        width = 79,
-        height = 78,
-        alphaNormal = .2,
-        alphaClicked = .6,
-        difference = 60
-    }
-
-    local backButton = display.newImageRect(images.BACK_BUTTON, backButtonConfiguration.width, backButtonConfiguration.height)
-    backButton.x = displayConstants.LEFT_SCREEN + backButtonConfiguration.difference
-    backButton.y = displayConstants.TOP_SCREEN + backButtonConfiguration.difference
-    backButton:addEventListener(listener.TOUCH, function(eventButton)
-        if (eventButton.phase == 'began') then
-            backButton.alpha = backButtonConfiguration.alphaClicked
-        elseif (eventButton.phase == 'ended') then
-            backButton.alpha = backButtonConfiguration.alphaNormal
-            sceneManager.goMenu()
-            someButtonClicked = true
-        end
+    local backButton = viewUtil.createBackButton(function()
+        sceneManager.goMenu()
+        someButtonClicked = true
     end)
 
     local gameOverTitle = display.newImageRect(images.GAME_OVER_BUTTON, 680, 168)

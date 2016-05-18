@@ -4,6 +4,7 @@ return {
     CONSTANT_UTIL = 'src.util.constant_util',
     DISPLAY_CONSTANTS = 'src.constant.display',
     COLLISION_UTIL = 'src.util.collision_util',
+    VIEW_UTIL = 'src.util.view_util',
     EVENT_UTIL = 'src.util.event_util',
     SWIPE_UTIL = 'src.util.swipe_util',
     MEMORY_UTIL = 'src.util.memory_util',
