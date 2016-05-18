@@ -13,7 +13,7 @@ function scene:create()
 
     local sceneGroup = self.view
     local background = viewUtil.createBackground(images.ABOUT_BACKGROUND, 1800, 900)
-    local backButton = viewUtil.createBackButton(sceneManager.goMenu)
+    local backButton = viewUtil.createBackButton(background, sceneManager.goMenu)
 
     sceneGroup:insert(background)
     sceneGroup:insert(backButton)

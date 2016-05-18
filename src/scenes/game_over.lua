@@ -15,7 +15,7 @@ function scene:create(event)
 
     local sceneGroup = self.view
     local background = viewUtil.createBackground(images.GAME_OVER_BACKGROUND, 1440, 790)
-    local backButton = viewUtil.createBackButton(function()
+    local backButton = viewUtil.createBackButton(background, function()
         sceneManager.goMenu()
         someButtonClicked = true
     end)

@@ -125,7 +125,7 @@ local function _generatePowerUp()
 
         physics.addBody(powerUpEmitter, { density = 1, friction = 0 })
 
-        powerUpEmitter.x = displayConstants.WIDTH_SCREEN - 50
+        powerUpEmitter.x = displayConstants.WIDTH_SCREEN - 20
         powerUpEmitter.y = math.random(display.contentHeight / 2, display.contentHeight)
 
         powerUpEmitter:setLinearVelocity(-500, 0)

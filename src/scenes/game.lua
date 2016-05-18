@@ -43,7 +43,7 @@ function scene:create()
 
     infinitelyScrollingBackground()
 
-    local backButton = viewUtil.createBackButton(sceneManager.goMenu)
+    local backButton = viewUtil.createBackButton(background, sceneManager.goMenu)
 
     local gameTitle = viewUtil.createImage({
         imagePath = images.TITLE,

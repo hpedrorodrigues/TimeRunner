@@ -3,7 +3,7 @@ local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
 local viewUtil = require(importations.VIEW_UTIL)
 
-local MAX_LIFES = 5
+local MAX_LIFES = 3
 
 local currentLife
 local lifeImages

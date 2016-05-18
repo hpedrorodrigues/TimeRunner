@@ -97,7 +97,7 @@ local function _songsGroup(group)
 
     local songsLink = viewUtil.createText({
         text = info.songsLink,
-        x = songs.x,
+        x = songs.x - 10,
         y = songs.y + firstDifference,
         fontSize = subtitleFontSize
     })

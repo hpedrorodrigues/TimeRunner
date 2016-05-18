@@ -42,32 +42,6 @@ local function _createText(object)
     })
 end
 
-local function _createBackButton(action)
-    local backButton = _createImage({
-        imagePath = images.BACK_BUTTON,
-        width = 79,
-        height = 78,
-        x = displayConstants.LEFT_SCREEN + 60,
-        y = displayConstants.TOP_SCREEN + 60
-    })
-
-    backButton:addEventListener(listener.TOUCH, function(eventButton)
-        if (eventButton.phase == 'began') then
-
-            backButton.alpha = .6
-        elseif (eventButton.phase == 'ended') then
-
-            backButton.alpha = .2
-
-            if (action ~= nil) then
-                action()
-            end
-        end
-    end)
-
-    return backButton
-end
-
 local function _createBackground(imagePath, width, height)
     return _createImage({
         imagePath = imagePath,
@@ -135,6 +109,36 @@ local function _createMenuButton(object)
     end)
 
     return menuButton
+end
+
+local function _createBackButton(background, action)
+    local backButton = _createImage({
+        imagePath = images.BACK_BUTTON,
+        width = 79,
+        height = 78,
+        x = displayConstants.LEFT_SCREEN + 60,
+        y = displayConstants.TOP_SCREEN + 60
+    })
+
+    backButton:addEventListener(listener.TOUCH, function(eventButton)
+        if (eventButton.phase == 'began') then
+
+            backButton.alpha = .6
+        elseif (eventButton.phase == 'ended') then
+
+            backButton.alpha = .2
+
+            if (action ~= nil) then
+                action()
+            end
+        end
+    end)
+
+    _addEndedTouchEventListener(background, function()
+        backButton.alpha = 1
+    end)
+
+    return backButton
 end
 
 return {
