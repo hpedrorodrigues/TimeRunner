@@ -2,6 +2,7 @@ local importations = require(IMPORTATIONS)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local listener = require(importations.LISTENER)
 local viewUtil = require(importations.VIEW_UTIL)
+local i18n = require(importations.I18N)
 
 local scoreText
 local group
@@ -10,7 +11,7 @@ local score
 
 local function _refresh()
     score = os.time() - initialTime
-    scoreText.text = 'Score: ' .. tostring(score) .. 's'
+    scoreText.text = i18n.score .. ': ' .. tostring(score) .. 's'
 end
 
 local function _score()
@@ -27,7 +28,7 @@ local function _createScore(gp)
     initialTime = os.time()
 
     scoreText = viewUtil.createText({
-        text = 'Score',
+        text = i18n.score,
         x = displayConstants.LEFT_SCREEN + 250,
         y = displayConstants.TOP_SCREEN + 50,
         fontSize = 35

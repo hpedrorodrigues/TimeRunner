@@ -7,6 +7,7 @@ local database = databaseManager.database()
 
 local FIRST_ACCESS_KEY = 'first_access'
 local ENABLE_SOUND_KEY = 'enable_sound'
+local ENABLE_VIBRATION_KEY = 'enable_vibration'
 
 local TRUE = 1
 local FALSE = 0
@@ -14,7 +15,8 @@ local FALSE = 0
 local function _insertInitialValues()
     database:exec(databaseConstants.formatInitialSettingsScript({
         firstAccessKey = FIRST_ACCESS_KEY,
-        enableSoundKey = ENABLE_SOUND_KEY
+        enableSoundKey = ENABLE_SOUND_KEY,
+        enableVibrationKey = ENABLE_VIBRATION_KEY
     }))
 end
 
@@ -74,11 +76,32 @@ local function _isSoundEnabled()
     return _getSettingByKey(ENABLE_SOUND_KEY) == TRUE
 end
 
+-- Enable Vibration
+
+local function _setEnableVibration(value)
+    _setSettingByKey(ENABLE_VIBRATION_KEY, value)
+end
+
+local function _enableVibration()
+    _setEnableVibration(TRUE)
+end
+
+local function _disableVibration()
+    _setEnableVibration(FALSE)
+end
+
+local function _isVibrationEnabled()
+    return _getSettingByKey(ENABLE_VIBRATION_KEY) == TRUE
+end
+
 return {
     insertInitialValues = _insertInitialValues,
     enableSound = _enableSound,
     disableSound = _disableSound,
     isSoundEnabled = _isSoundEnabled,
+    enableVibration = _enableVibration,
+    disableVibration = _disableVibration,
+    isVibrationEnabled = _isVibrationEnabled,
     insertFirstAccess = _insertFirstAccess,
     hasFirstAccess = _hasFirstAccess,
     showAllSettings = _showAllSettings

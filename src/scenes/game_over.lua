@@ -6,6 +6,7 @@ local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local viewUtil = require(importations.VIEW_UTIL)
+local i18n = require(importations.I18N)
 
 local scene = composer.newScene()
 local screenTime = 5000
@@ -29,7 +30,7 @@ function scene:create(event)
     })
 
     local scoreText = viewUtil.createText({
-        text = 'Score: ' .. event.params.score .. 's',
+        text = i18n.score .. ': ' .. event.params.score .. 's',
         x = gameOverTitle.x,
         y = gameOverTitle.y + 135,
         fontSize = 80

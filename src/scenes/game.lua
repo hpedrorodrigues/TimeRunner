@@ -13,7 +13,7 @@ local scene = composer.newScene()
 local defaultDisplayConfiguration = display.getDefault()
 
 local sprite
-local transitionTime = 2000
+local transitionTime = 1700
 local transitionHandler
 
 function scene:create()

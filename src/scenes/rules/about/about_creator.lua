@@ -1,6 +1,6 @@
 local importations = require(IMPORTATIONS)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
-local info = require(importations.INFO)
+local i18n = require(importations.I18N)
 local viewUtil = require(importations.VIEW_UTIL)
 
 local titleFontSize = 60
@@ -11,28 +11,28 @@ local difference = 60
 
 local function _developedByGroup(group)
     local developedBy = viewUtil.createText({
-        text = info.developedByTitle,
+        text = i18n.developedByTitle,
         x = displayConstants.CENTER_X,
         y = displayConstants.TOP_SCREEN + 100,
         fontSize = titleFontSize
     })
 
     local developerName = viewUtil.createText({
-        text = info.developerName,
+        text = i18n.developerName,
         x = developedBy.x,
         y = developedBy.y + firstDifference,
         fontSize = subtitleFontSize
     })
 
     local developerGithubLink = viewUtil.createText({
-        text = info.developerGithubLink,
+        text = i18n.developerGithubLink,
         x = displayConstants.CENTER_X,
         y = developerName.y + difference,
         fontSize = subtitleFontSize
     })
 
     local developerEmail = viewUtil.createText({
-        text = info.developerEmail,
+        text = i18n.developerEmail,
         x = displayConstants.CENTER_X,
         y = developerGithubLink.y + difference,
         fontSize = subtitleFontSize
@@ -46,35 +46,35 @@ end
 
 local function _designedByGroup(group)
     local designedBy = viewUtil.createText({
-        text = info.designedByTitle,
+        text = i18n.designedByTitle,
         x = displayConstants.CENTER_X - 400,
         y = displayConstants.TOP_SCREEN + 400,
         fontSize = titleFontSize
     })
 
     local firstDesignerName = viewUtil.createText({
-        text = info.firstDesignerName,
+        text = i18n.firstDesignerName,
         x = designedBy.x,
         y = designedBy.y + firstDifference,
         fontSize = subtitleFontSize
     })
 
     local firstDesignerGithub = viewUtil.createText({
-        text = info.firstDesignerGithub,
+        text = i18n.firstDesignerGithub,
         x = firstDesignerName.x,
         y = firstDesignerName.y + difference,
         fontSize = subtitleFontSize
     })
 
     local secondDesignerName = viewUtil.createText({
-        text = info.secondDesignerName,
+        text = i18n.secondDesignerName,
         x = firstDesignerGithub.x,
         y = firstDesignerGithub.y + difference,
         fontSize = subtitleFontSize
     })
 
     local secondDesignerGithub = viewUtil.createText({
-        text = info.secondDesignerGithub,
+        text = i18n.secondDesignerGithub,
         x = secondDesignerName.x,
         y = secondDesignerName.y + difference,
         fontSize = subtitleFontSize
@@ -89,14 +89,14 @@ end
 
 local function _songsGroup(group)
     local songs = viewUtil.createText({
-        text = info.songsTitle,
+        text = i18n.songsTitle,
         x = displayConstants.CENTER_X + 300,
         y = displayConstants.TOP_SCREEN + 400,
         fontSize = titleFontSize
     })
 
     local songsLink = viewUtil.createText({
-        text = info.songsLink,
+        text = i18n.songsLink,
         x = songs.x - 10,
         y = songs.y + firstDifference,
         fontSize = subtitleFontSize
@@ -108,14 +108,14 @@ end
 
 local function _imagesGroup(group)
     local images = viewUtil.createText({
-        text = info.imagesTitle,
+        text = i18n.imagesTitle,
         x = displayConstants.CENTER_X + 300,
         y = displayConstants.TOP_SCREEN + 580,
         fontSize = titleFontSize
     })
 
     local imagesLink = viewUtil.createText({
-        text = info.imagesLink,
+        text = i18n.imagesLink,
         x = images.x,
         y = images.y + firstDifference,
         fontSize = subtitleFontSize

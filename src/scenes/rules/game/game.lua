@@ -137,6 +137,8 @@ local function _make(group, sp)
     spritesManager.setGroup(group)
     spritesManager.create()
 
+    collisionManager.start()
+
     collisionManager.setLifeManager(lifeManager)
     collisionManager.setScoreManager(scoreManager)
 

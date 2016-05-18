@@ -5,6 +5,8 @@ local function _set()
 
     display.setDefault('anchorX', 0.5)
     display.setDefault('anchorY', 0.5)
+
+    system.activate('multitouch')
 end
 
 return {

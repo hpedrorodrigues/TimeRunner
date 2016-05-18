@@ -9,6 +9,7 @@ local widget = require(importations.WIDGET)
 local settings = require(importations.SETTINGS)
 local soundUtil = require(importations.SOUND_UTIL)
 local viewUtil = require(importations.VIEW_UTIL)
+local i18n = require(importations.I18N)
 
 local scene = composer.newScene()
 
@@ -18,10 +19,10 @@ function scene:create()
     local background = viewUtil.createBackground(images.PREFERENCES_BACKGROUND, 1800, 900)
     local backButton = viewUtil.createBackButton(background, sceneManager.goMenu)
 
-    local leftSwitches = displayConstants.LEFT_SCREEN + 100
+    local switches = { x = displayConstants.LEFT_SCREEN + 100, titleDistance = 200 }
 
     local soundSwitch = widget.newSwitch({
-        left = leftSwitches,
+        left = switches.x,
         top = 200,
         style = 'onOff',
         id = 'soundSwitch',
@@ -42,9 +43,33 @@ function scene:create()
     })
 
     local soundTitle = viewUtil.createText({
-        text = 'Enable sound',
-        x = soundSwitch.x + 200,
+        text = i18n.enableSound,
+        x = soundSwitch.x + switches.titleDistance,
         y = soundSwitch.y,
+        fontSize = 40
+    })
+
+    local vibrationSwitch = widget.newSwitch({
+        left = switches.x,
+        top = soundSwitch.y + 50,
+        style = 'onOff',
+        id = 'soundSwitch',
+        initialSwitchState = settings.isVibrationEnabled(),
+        onPress = function(onPressEvent)
+            local switch = onPressEvent.target
+
+            if (switch.isOn) then
+                settings.disableVibration()
+            else
+                settings.enableVibration()
+            end
+        end
+    })
+
+    local vibrationTitle = viewUtil.createText({
+        text = i18n.enableVibration,
+        x = soundTitle.x + 40,
+        y = vibrationSwitch.y,
         fontSize = 40
     })
 
@@ -52,6 +77,8 @@ function scene:create()
     sceneGroup:insert(backButton)
     sceneGroup:insert(soundSwitch)
     sceneGroup:insert(soundTitle)
+    sceneGroup:insert(vibrationSwitch)
+    sceneGroup:insert(vibrationTitle)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end

@@ -1,11 +1,18 @@
 local importations = require(IMPORTATIONS)
 local sceneManager = require(importations.SCENE_MANAGER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
+local settings = require(importations.SETTINGS)
 
 local collisionDelayTime = 2
 
 local lifeManager
 local scoreManager
+
+local isVibrationEnabled
+
+local function _start()
+    isVibrationEnabled = settings.isVibrationEnabled()
+end
 
 local function _setLifeManager(lm)
     lifeManager = lm
@@ -30,7 +37,9 @@ local function _control(event)
         local shot = (event.object1.myName == 'shot') and event.object1 or event.object2
         local obstacle = (event.object1.myName == 'obstacle') and event.object1 or event.object2
 
-        system.vibrate()
+        if (isVibrationEnabled) then
+            system.vibrate()
+        end
 
         shot.isDeleted = true
         obstacle.isDeleted = true
@@ -51,7 +60,9 @@ local function _control(event)
             sprite.died = false
         end)
 
-        system.vibrate()
+        if (isVibrationEnabled) then
+            system.vibrate()
+        end
 
         lifeManager.setVisibilityFromCurrentLife(false)
 
@@ -74,5 +85,6 @@ end
 return {
     setLifeManager = _setLifeManager,
     setScoreManager = _setScoreManager,
-    control = _control
+    control = _control,
+    start = _start
 }
