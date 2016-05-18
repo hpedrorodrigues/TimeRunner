@@ -16,10 +16,7 @@ local scene = composer.newScene()
 function scene:create()
 
     local sceneGroup = self.view
-    local background = display.newImageRect(images.PREFERENCES_BACKGROUND, 1800, 900)
-    background.x = displayConstants.CENTER_X
-    background.y = displayConstants.CENTER_Y
-
+    local background = viewUtil.createBackground(images.PREFERENCES_BACKGROUND, 1800, 900)
     local backButton = viewUtil.createBackButton(sceneManager.goMenu)
 
     local leftSwitches = displayConstants.LEFT_SCREEN + 100

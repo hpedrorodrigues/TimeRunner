@@ -37,6 +37,16 @@ local function _createBackButton(action)
     return backButton
 end
 
+local function _createBackground(imagePath, width, height)
+    local background = display.newImageRect(imagePath, width, height)
+
+    background.x = displayConstants.CENTER_X
+    background.y = displayConstants.CENTER_Y
+
+    return background
+end
+
 return {
-    createBackButton = _createBackButton
+    createBackButton = _createBackButton,
+    createBackground = _createBackground
 }

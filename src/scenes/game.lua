@@ -23,33 +23,13 @@ function scene:create()
 
     sprite = spriteManager.create()
 
-    local navigationStatusBarSize = 300
-
-    local background = display.newRect(display.contentCenterX,
-        display.contentCenterY,
-        display.contentWidth + navigationStatusBarSize,
-        display.contentHeight)
+    local background = viewUtil.createBackground(images.MAIN_SCENE, 1472, 828)
     background.fill = { type = 'image', filename = images.MAIN_SCENE }
 
     local transitionHandler
 
     local function infinitelyScrollingBackground()
         local fill = background.fill;
-
-        if (rules.scoreManager().score() % 300 == 0) then
-
-            transitionTime = transitionTime - 100
-
-            local random = math.random(1, 3)
-
-            if (random == 1) then
-                fill.filename = images.MAIN_SCENE
-            elseif (random == 2) then
-                fill.filename = images.MAIN_SCENE
-            else
-                fill.filename = images.MAIN_SCENE
-            end
-        end
 
         transitionHandler = transition.to(fill, {
             time = transitionTime,

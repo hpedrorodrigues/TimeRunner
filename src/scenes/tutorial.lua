@@ -11,8 +11,7 @@ local scene = composer.newScene()
 function scene:create()
 
     local sceneGroup = self.view
-    local background = display.newImage(images.TUTORIAL_BACKGROUND, 700, 400, true)
-
+    local background = viewUtil.createBackground(images.TUTORIAL_BACKGROUND, 1800, 900)
     local backButton = viewUtil.createBackButton(sceneManager.goMenu)
 
     sceneGroup:insert(background)

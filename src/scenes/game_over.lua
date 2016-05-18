@@ -15,10 +15,7 @@ local someButtonClicked = false
 function scene:create(event)
 
     local sceneGroup = self.view
-    local background = display.newImageRect(images.GAME_OVER_BACKGROUND, 1440, 790)
-    background.x = displayConstants.CENTER_X
-    background.y = displayConstants.CENTER_Y
-
+    local background = viewUtil.createBackground(images.GAME_OVER_BACKGROUND, 1440, 790)
     local backButton = viewUtil.createBackButton(function()
         sceneManager.goMenu()
         someButtonClicked = true

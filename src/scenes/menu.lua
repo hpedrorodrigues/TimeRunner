@@ -4,15 +4,14 @@ local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
 local listener = require(importations.LISTENER)
 local sceneManager = require(importations.SCENE_MANAGER)
+local viewUtil = require(importations.VIEW_UTIL)
 
 local scene = composer.newScene()
 
 function scene:create()
 
     local sceneGroup = self.view
-    local background = display.newImageRect(images.MENU_BACKGROUND, 1800, 900)
-    background.x = displayConstants.CENTER_X
-    background.y = displayConstants.CENTER_Y
+    local background = viewUtil.createBackground(images.MENU_BACKGROUND, 1800, 900)
 
     local distance = { y = 130 }
     local buttons = { width = 411, height = 102, alphaNormal = 1, alphaClicked = .5 }

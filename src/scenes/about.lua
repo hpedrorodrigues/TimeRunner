@@ -4,7 +4,6 @@ local images = require(importations.IMAGES)
 local listener = require(importations.LISTENER)
 local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
-local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local viewUtil = require(importations.VIEW_UTIL)
 local aboutCreator = require(importations.ABOUT_CREATOR)
 
@@ -13,11 +12,7 @@ local scene = composer.newScene()
 function scene:create()
 
     local sceneGroup = self.view
-    local background = display.newImageRect(images.ABOUT_BACKGROUND, 1800, 900)
-
-    background.x = displayConstants.CENTER_X
-    background.y = displayConstants.CENTER_Y
-
+    local background = viewUtil.createBackground(images.ABOUT_BACKGROUND, 1800, 900)
     local backButton = viewUtil.createBackButton(sceneManager.goMenu)
 
     sceneGroup:insert(background)
