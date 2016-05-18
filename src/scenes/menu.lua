@@ -13,43 +13,31 @@ function scene:create()
     local sceneGroup = self.view
     local background = viewUtil.createBackground(images.MENU_BACKGROUND, 1800, 900)
 
-    local distance = { y = 130 }
-    local buttons = { width = 411, height = 102, alphaNormal = 1, alphaClicked = .5 }
+    local playButton = viewUtil.createMenuButton({
+        imagePath = images.PLAY_BUTTON,
+        x = displayConstants.CENTER_X,
+        y = displayConstants.CENTER_Y + 20,
+        action = sceneManager.goGame
+    })
 
-    local playButton = display.newImageRect(images.PLAY_BUTTON, buttons.width, buttons.height)
-    playButton.x = displayConstants.CENTER_X
-    playButton.y = displayConstants.CENTER_Y + 20
-    playButton:addEventListener(listener.TOUCH, function(eventButton)
-        if (eventButton.phase == 'began') then
-            playButton.alpha = buttons.alphaClicked
-        elseif (eventButton.phase == 'ended') then
-            playButton.alpha = buttons.alphaNormal
-            sceneManager.goGame()
-        end
-    end)
+    local preferencesButton = viewUtil.createMenuButton({
+        imagePath = images.PREFERENCES_BUTTON,
+        x = playButton.x,
+        y = playButton.y + viewUtil.distanceBetweenMenuButtons,
+        action = sceneManager.goPreferences
+    })
 
-    local preferencesButton = display.newImageRect(images.PREFERENCES_BUTTON, buttons.width, buttons.height)
-    preferencesButton.x = playButton.x
-    preferencesButton.y = playButton.y + distance.y
-    preferencesButton:addEventListener(listener.TOUCH, function(eventButton)
-        if (eventButton.phase == 'began') then
-            preferencesButton.alpha = buttons.alphaClicked
-        elseif (eventButton.phase == 'ended') then
-            preferencesButton.alpha = buttons.alphaNormal
-            sceneManager.goPreferences()
-        end
-    end)
+    local aboutButton = viewUtil.createMenuButton({
+        imagePath = images.ABOUT_BUTTON,
+        x = preferencesButton.x,
+        y = preferencesButton.y + viewUtil.distanceBetweenMenuButtons,
+        action = sceneManager.goAbout
+    })
 
-    local aboutButton = display.newImageRect(images.ABOUT_BUTTON, buttons.width, buttons.height)
-    aboutButton.x = preferencesButton.x
-    aboutButton.y = preferencesButton.y + distance.y
-    aboutButton:addEventListener(listener.TOUCH, function(eventButton)
-        if (eventButton.phase == 'began') then
-            aboutButton.alpha = buttons.alphaClicked
-        elseif (eventButton.phase == 'ended') then
-            aboutButton.alpha = buttons.alphaNormal
-            sceneManager.goAbout()
-        end
+    viewUtil.addEndedTouchEventListener(background, function()
+        playButton.alpha = viewUtil.alphaDefault
+        preferencesButton.alpha = viewUtil.alphaDefault
+        aboutButton.alpha = viewUtil.alphaDefault
     end)
 
     local gameTitle = display.newImageRect(images.TITLE, 783, 183)

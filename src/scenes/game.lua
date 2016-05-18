@@ -14,6 +14,7 @@ local defaultDisplayConfiguration = display.getDefault()
 
 local sprite
 local transitionTime = 2000
+local transitionHandler
 
 function scene:create()
 
@@ -25,8 +26,6 @@ function scene:create()
 
     local background = viewUtil.createBackground(images.MAIN_SCENE, 1472, 828)
     background.fill = { type = 'image', filename = images.MAIN_SCENE }
-
-    local transitionHandler
 
     local function infinitelyScrollingBackground()
         local fill = background.fill;
