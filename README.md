@@ -98,6 +98,8 @@ mas com um único ponto de venda interessante.
 #### Tecnologias utilizadas
 
 - Corona Simulator - Version 2016.2830 (2016.2.18)
+- Travis CI
+- IntelliJ IDEA
 
 
 #### License
