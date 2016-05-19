@@ -5,7 +5,6 @@ local listener = require(importations.LISTENER)
 local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
-local widget = require(importations.WIDGET)
 local settings = require(importations.SETTINGS)
 local soundUtil = require(importations.SOUND_UTIL)
 local viewUtil = require(importations.VIEW_UTIL)
@@ -13,28 +12,27 @@ local i18n = require(importations.I18N)
 
 local scene = composer.newScene()
 
+local soundView
+local vibrationView
+
 function scene:create()
     local sceneGroup = self.view
 
     local background = viewUtil.createBackground(images.PREFERENCES_BACKGROUND, 1800, 900)
     local backButton = viewUtil.createBackButton(background, sceneManager.goMenu)
 
-    local switches = { x = displayConstants.LEFT_SCREEN + 100, titleDistance = 200 }
-
-    local soundSwitch = widget.newSwitch({
-        left = switches.x,
-        top = 200,
-        style = 'onOff',
-        id = 'soundSwitch',
-        initialSwitchState = settings.isSoundEnabled(),
-        onPress = function(onPressEvent)
-            local switch = onPressEvent.target
-
-            if (switch.isOn) then
+    soundView = viewUtil.createMenuItem({
+        text = (settings.isSoundEnabled()) and i18n.yes or i18n.no,
+        x = displayConstants.LEFT_SCREEN + 200,
+        y = 200,
+        action = function()
+            if (settings.isSoundEnabled()) then
+                soundView.text.text = i18n.no
 
                 settings.disableSound()
                 soundUtil.cancel(backgroundSound)
             else
+                soundView.text.text = i18n.yes
 
                 settings.enableSound()
                 backgroundSound = soundUtil.playBackgroundSound()
@@ -44,23 +42,23 @@ function scene:create()
 
     local soundTitle = viewUtil.createText({
         text = i18n.enableSound,
-        x = soundSwitch.x + switches.titleDistance,
-        y = soundSwitch.y,
+        x = soundView.button.x + 250,
+        y = soundView.button.y,
         fontSize = 40
     })
 
-    local vibrationSwitch = widget.newSwitch({
-        left = switches.x,
-        top = soundSwitch.y + 50,
-        style = 'onOff',
-        id = 'soundSwitch',
-        initialSwitchState = settings.isVibrationEnabled(),
-        onPress = function(onPressEvent)
-            local switch = onPressEvent.target
+    vibrationView = viewUtil.createMenuItem({
+        text = (settings.isVibrationEnabled()) and i18n.yes or i18n.no,
+        x = displayConstants.LEFT_SCREEN + 200,
+        y = soundView.button.x + 100,
+        action = function()
+            if (settings.isVibrationEnabled()) then
+                vibrationView.text.text = i18n.no
 
-            if (switch.isOn) then
                 settings.disableVibration()
             else
+                vibrationView.text.text = i18n.yes
+
                 settings.enableVibration()
             end
         end
@@ -68,16 +66,24 @@ function scene:create()
 
     local vibrationTitle = viewUtil.createText({
         text = i18n.enableVibration,
-        x = soundTitle.x + 40,
-        y = vibrationSwitch.y,
+        x = vibrationView.button.x + 290,
+        y = vibrationView.button.y,
         fontSize = 40
     })
 
+    soundView.button.width = 205.5
+    soundView.button.height = 51
+
+    vibrationView.button.width = 205.5
+    vibrationView.button.height = 51
+
     sceneGroup:insert(background)
     sceneGroup:insert(backButton)
-    sceneGroup:insert(soundSwitch)
+    sceneGroup:insert(soundView.button)
+    sceneGroup:insert(soundView.text)
     sceneGroup:insert(soundTitle)
-    sceneGroup:insert(vibrationSwitch)
+    sceneGroup:insert(vibrationView.button)
+    sceneGroup:insert(vibrationView.text)
     sceneGroup:insert(vibrationTitle)
 
     eventUtil.setBackPressed(sceneManager.goMenu)

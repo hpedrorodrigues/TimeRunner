@@ -95,6 +95,8 @@ local function _createMenuButton(object)
         y = object.y
     })
 
+    menuButton.action = object.action
+
     menuButton:addEventListener(listener.TOUCH, function(eventButton)
         if (eventButton.phase == 'began') then
 
@@ -102,8 +104,8 @@ local function _createMenuButton(object)
         elseif (eventButton.phase == 'ended') then
             menuButton.alpha = 1
 
-            if (object.action ~= nil) then
-                object.action(eventButton)
+            if (menuButton.action ~= nil) then
+                menuButton.action(eventButton)
             end
         end
     end)

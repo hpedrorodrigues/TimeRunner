@@ -20,7 +20,9 @@ if (system.getPreference('locale', 'identifier') == 'pt_BR') then
         playTitle = 'Jogar',
         preferencesTitle = 'Configurações',
         aboutTitle = 'Sobre',
-        menuTitle = 'Menu'
+        menuTitle = 'Menu',
+        yes = 'Sim',
+        no = 'Não'
     }
 else
     return {
@@ -44,6 +46,8 @@ else
         playTitle = 'Play',
         preferencesTitle = 'Preferences',
         aboutTitle = 'About',
-        menuTitle = 'Menu'
+        menuTitle = 'Menu',
+        yes = 'Yes',
+        no = 'No'
     }
 end
