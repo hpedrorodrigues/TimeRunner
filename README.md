@@ -11,8 +11,8 @@
 * [Regras do Jogo](#regras-do-jogo)
 * [Imagens](#imagens)
 * [Diagrama de Navegação](#diagrama-de-navegação)
-* [Tabela de colisão](#tabela-de-colisão)
-* [Pontos Importantes](#pontos-importantes)
+* [Tabela de Colisão](#tabela-de-colisão)
+* [Idéia Inicial](#idéia-inicial)
 * [Anotações](#anotações)
 * [Licença](#license)
 
@@ -69,7 +69,8 @@ um novo background se adaptando ao novo período de tempo
 
 <p align="center"><img src="./assets/images/collision_table.png?raw=true" width="75%" height="75%" alt="Tabela de colisão"/></p>
 
-#### Pontos Importantes
+
+#### Idéia inicial
 
 - Um jogo onde você joga como um cientista louco viajante
 - Você toca na tela para saltar sobre obstáculos e desliza para derrubar inimigos
