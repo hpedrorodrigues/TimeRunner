@@ -137,10 +137,21 @@ local function _apply(group, background, sp)
     local bottomWall = display.newRect(bottomWallInfo.x, bottomWallInfo.y, bottomWallInfo.width, bottomWallInfo.height)
     bottomWall.myName = bodyNames.BOTTOM_WALL
 
+    local leftWallInfo = {
+        x = displayConstants.LEFT_SCREEN + 120,
+        y = displayConstants.CENTER_Y,
+        width = 0,
+        height = displayConstants.HEIGHT_SCREEN
+    }
+
+    local leftWall = display.newRect(leftWallInfo.x, leftWallInfo.y, leftWallInfo.width, leftWallInfo.height)
+    leftWall.myName = bodyNames.LEFT_WALL
+
     physics.start()
     physics.setGravity(0, 9.8)
 
     physics.addBody(bottomWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.bottomWallCollision })
+    physics.addBody(leftWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.leftWallCollision })
     physics.addBody(sprite, 'dynamic', { friction = 0.5, bounce = 0, filter = filters.playerCollision })
 
     sprite.isFixedRotation = true

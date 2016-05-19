@@ -4,6 +4,7 @@ return {
     OBSTACLE = 'OBSTACLE',
     SHOT = 'SHOT',
     BOTTOM_WALL = 'BOTTOM_WALL',
+    LEFT_WALL = 'LEFT_WALL',
     BEAR_ANIMAL = 'BEAR',
     TIGER_ANIMAL = 'TIGER'
 }
