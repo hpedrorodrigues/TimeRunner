@@ -29,6 +29,7 @@ return {
     FILTER_RULES = 'src.scenes.rules.game.filters',
     SPRITES_MANAGER_RULES = 'src.scenes.rules.game.sprites_manager',
     LIFE_MANAGER_RULES = 'src.scenes.rules.game.life_manager',
+    SHOOT_MANAGER_RULES = 'src.scenes.rules.game.shoot_manager',
     COLLISION_MANAGER_RULES = 'src.scenes.rules.game.collision_manager',
     SCORE_MANAGER_RULES = 'src.scenes.rules.game.score_manager',
     WIDGET = 'widget',

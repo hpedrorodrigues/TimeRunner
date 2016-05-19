@@ -7,6 +7,7 @@ local collisionDelayTime = 2
 
 local lifeManager
 local scoreManager
+local shootManager
 
 local isVibrationEnabled
 
@@ -20,6 +21,10 @@ end
 
 local function _setScoreManager(sm)
     scoreManager = sm
+end
+
+local function _setShootManager(sm)
+    shootManager = sm
 end
 
 local function _isBodies(event, firstBodyName, secondBodyName)
@@ -43,6 +48,8 @@ local function _control(event)
         local powerUp = _getBody(event, bodyNames.POWER_UP)
 
         powerUp.isDeleted = true
+
+        shootManager.increase()
 
     elseif (_isBodies(event, bodyNames.CRAZY_SCIENTIST, bodyNames.OBSTACLE)) then
 
@@ -95,6 +102,7 @@ end
 return {
     setLifeManager = _setLifeManager,
     setScoreManager = _setScoreManager,
+    setShootManager = _setShootManager,
     control = _control,
     start = _start
 }

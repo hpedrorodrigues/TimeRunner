@@ -11,6 +11,7 @@ local images = require(importations.IMAGES)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local viewUtil = require(importations.VIEW_UTIL)
 local bodyNames = require(importations.BODY_NAMES)
+local shootManager = require(importations.SHOOT_MANAGER_RULES)
 
 local sprite
 
@@ -157,6 +158,9 @@ local function _apply(group, background, sp)
     sprite.isFixedRotation = true
     sprite.inAir = true
 
+    shootManager.start()
+    shootManager.createProgressView(group)
+
     lifeManager.createImages(group)
 
     spritesManager.setGroup(group)
@@ -165,6 +169,9 @@ local function _apply(group, background, sp)
     collisionManager.start()
     collisionManager.setLifeManager(lifeManager)
     collisionManager.setScoreManager(scoreManager)
+    collisionManager.setShootManager(shootManager)
+
+    emitterManager.setShootManager(shootManager)
 
     scoreManager.create(group)
 

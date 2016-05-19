@@ -13,6 +13,12 @@ local emittersList = {}
 local powerUpEmitterQuantity = 0
 local powerUpEmitterList = {}
 
+local shootManager
+
+local function _setShootManager(sm)
+    shootManager = sm
+end
+
 local function _loadParams(filename, baseDir)
     local path = system.pathForFile(filename, baseDir)
 
@@ -42,29 +48,34 @@ local function _newPowerUp()
 end
 
 local function _shoot(sprite)
-    local group = display.newGroup()
-    group.x = sprite.x
-    group.y = sprite.y + 20
+    if (shootManager.current() > 0) then
 
-    local emitterFireshot = _newShot()
-    emitterFireshot.x = group.x
-    emitterFireshot.y = group.y
+        local group = display.newGroup()
+        group.x = sprite.x
+        group.y = sprite.y + 20
 
-    emittersQuantity = emittersQuantity + 1
+        local emitterFireshot = _newShot()
+        emitterFireshot.x = group.x
+        emitterFireshot.y = group.y
 
-    group:insert(emitterFireshot)
+        emittersQuantity = emittersQuantity + 1
 
-    physics.addBody(group, 'dynamic', { density = 1, friction = 0, filter = filters.shootCollision })
+        group:insert(emitterFireshot)
 
-    group.isbullet = true
-    group.anchorChildren = true
-    group.gravityScale = 0
+        physics.addBody(group, 'dynamic', { density = 1, friction = 0, filter = filters.shootCollision })
 
-    transition.to(group, { x = displayConstants.WIDTH_SCREEN + 150, time = 800 })
+        group.isbullet = true
+        group.anchorChildren = true
+        group.gravityScale = 0
 
-    group.myName = bodyNames.SHOT
+        transition.to(group, { x = displayConstants.WIDTH_SCREEN + 150, time = 800 })
 
-    emittersList[emittersQuantity] = group
+        group.myName = bodyNames.SHOT
+
+        emittersList[emittersQuantity] = group
+
+        shootManager.decrease()
+    end
 end
 
 local function _emitterUpdate()
@@ -207,5 +218,6 @@ return {
     cancel = _cancel,
     newPortal = _newPortal,
     newShot = _newShot,
-    newPowerUp = _newPowerUp
+    newPowerUp = _newPowerUp,
+    setShootManager = _setShootManager
 }
