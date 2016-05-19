@@ -40,9 +40,9 @@ de reação do jogador.
 
 * Ao ser atingido por um obstáculo o jogador perderá o jogo
 * A pontuação do jogador será o seu tempo no jogo em segundos
-* O jogador poderá ser atingido apenas 5 vezes por um obstáculo
-* A cada 300s o jogo trocará de tempo, ou seja, o cenário irá mudar pra um
-um novo background se adaptando ao novo período de tempo
+* O jogador poderá ser atingido apenas 3 vezes por um obstáculo
+* O jogador poderá disparar bolas de poder nos obstáculos, mas seu poder tem um limite,
+e ele terá que esperar um power up para reestabelecer suas energias
 
 
 #### Imagens
