@@ -122,12 +122,14 @@ local function _generatePowerUp()
 
         powerUpEmitterQuantity = powerUpEmitterQuantity + 1
 
-        physics.addBody(powerUpEmitter, 'dynamic', { friction = 0.5, bounce = 0, filter = filters.powerUpCollision })
+        physics.addBody(powerUpEmitter, 'dynamic', { density = 1, friction = 0, filter = filters.powerUpCollision })
+
+        powerUpEmitter.gravityScale = 0
 
         powerUpEmitter.x = displayConstants.WIDTH_SCREEN - 20
         powerUpEmitter.y = math.random(displayConstants.HEIGHT_SCREEN / 2, displayConstants.HEIGHT_SCREEN)
 
-        powerUpEmitter:setLinearVelocity(-500, 30)
+        transition.to(powerUpEmitter, { x = displayConstants.LEFT_SCREEN - 50, time = 4000 })
 
         powerUpEmitterList[powerUpEmitterQuantity] = powerUpEmitter
 
@@ -142,8 +144,6 @@ local function _powerUmitterUpdate()
         local child = powerUpEmitterList[currentPosition]
 
         if (child ~= nil) then
-
-            child:setLinearVelocity(-500, 30)
 
             if (child.x < displayConstants.LEFT_SCREEN or child.isDeleted) then
 
