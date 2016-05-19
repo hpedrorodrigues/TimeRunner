@@ -16,7 +16,11 @@ if (system.getPreference('locale', 'identifier') == 'pt_BR') then
         imagesLink = 'wallpaper.zone/night-background-images',
         score = 'Pontuação',
         enableSound = 'Habilitar som',
-        enableVibration = 'Habilitar vibração'
+        enableVibration = 'Habilitar vibração',
+        playTitle = 'Jogar',
+        preferencesTitle = 'Configurações',
+        aboutTitle = 'Sobre',
+        menuTitle = 'Menu'
     }
 else
     return {
@@ -36,6 +40,10 @@ else
         imagesLink = 'wallpaper.zone/night-background-images',
         score = 'Score',
         enableSound = 'Enable sound',
-        enableVibration = 'Enable vibration'
+        enableVibration = 'Enable vibration',
+        playTitle = 'Play',
+        preferencesTitle = 'Preferences',
+        aboutTitle = 'About',
+        menuTitle = 'Menu'
     }
 end

@@ -18,13 +18,10 @@ return {
     TUTORIAL_BACKGROUND = BACKGROUNDS_PATH .. 'tutorial.png',
     GAME_OVER_BACKGROUND = BACKGROUNDS_PATH .. 'game_over.png',
     GAME_OVER_BUTTON = BUTTONS_PATH .. 'game_over.png',
-    PLAY_BUTTON = BUTTONS_PATH .. 'play.png',
-    PREFERENCES_BUTTON = BUTTONS_PATH .. 'preferences.png',
-    ABOUT_BUTTON = BUTTONS_PATH .. 'about.png',
     BACK_BUTTON = BUTTONS_PATH .. 'back.png',
-    MENU_BUTTON = BUTTONS_PATH .. 'menu.png',
     JUMP_BUTTON = BUTTONS_PATH .. 'jump.png',
     ATTACK_BUTTON = BUTTONS_PATH .. 'attack.png',
     TITLE = GENERAL_PATH .. 'title.png',
-    SWITCH_BUTTON = BUTTONS_PATH .. 'switch.png'
+    SWITCH_BUTTON = BUTTONS_PATH .. 'switch.png',
+    BUTTON = BUTTONS_PATH .. 'button.png'
 }

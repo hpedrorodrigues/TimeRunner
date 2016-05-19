@@ -37,8 +37,8 @@ function scene:create(event)
     })
     scoreText:setFillColor(248, 248, 255)
 
-    local playButton = viewUtil.createMenuButton({
-        imagePath = images.PLAY_BUTTON,
+    local playView = viewUtil.createMenuItem({
+        text = i18n.playTitle,
         x = displayConstants.CENTER_X,
         y = scoreText.y + 180,
         action = function()
@@ -47,10 +47,10 @@ function scene:create(event)
         end
     })
 
-    local menuButton = viewUtil.createMenuButton({
-        imagePath = images.MENU_BUTTON,
-        x = playButton.x,
-        y = playButton.y + viewUtil.distanceBetweenMenuButtons,
+    local menuView = viewUtil.createMenuItem({
+        text = i18n.menuTitle,
+        x = playView.button.x,
+        y = playView.button.y + viewUtil.distanceBetweenMenuButtons,
         action = function()
             sceneManager.goMenu()
             someButtonClicked = true
@@ -59,8 +59,10 @@ function scene:create(event)
 
     sceneGroup:insert(background)
     sceneGroup:insert(gameOverTitle)
-    sceneGroup:insert(playButton)
-    sceneGroup:insert(menuButton)
+    sceneGroup:insert(playView.button)
+    sceneGroup:insert(playView.text)
+    sceneGroup:insert(menuView.button)
+    sceneGroup:insert(menuView.text)
     sceneGroup:insert(backButton)
     sceneGroup:insert(scoreText)
 

@@ -5,6 +5,7 @@ local images = require(importations.IMAGES)
 local listener = require(importations.LISTENER)
 local sceneManager = require(importations.SCENE_MANAGER)
 local viewUtil = require(importations.VIEW_UTIL)
+local i18n = require(importations.I18N)
 
 local scene = composer.newScene()
 
@@ -13,31 +14,31 @@ function scene:create()
 
     local background = viewUtil.createBackground(images.MENU_BACKGROUND, 1800, 900)
 
-    local playButton = viewUtil.createMenuButton({
-        imagePath = images.PLAY_BUTTON,
+    local playView = viewUtil.createMenuItem({
+        text = i18n.playTitle,
         x = displayConstants.CENTER_X,
         y = displayConstants.CENTER_Y + 20,
         action = sceneManager.goGame
     })
 
-    local preferencesButton = viewUtil.createMenuButton({
-        imagePath = images.PREFERENCES_BUTTON,
-        x = playButton.x,
-        y = playButton.y + viewUtil.distanceBetweenMenuButtons,
+    local preferencesView = viewUtil.createMenuItem({
+        text = i18n.preferencesTitle,
+        x = playView.button.x,
+        y = playView.button.y + viewUtil.distanceBetweenMenuButtons,
         action = sceneManager.goPreferences
     })
 
-    local aboutButton = viewUtil.createMenuButton({
-        imagePath = images.ABOUT_BUTTON,
-        x = preferencesButton.x,
-        y = preferencesButton.y + viewUtil.distanceBetweenMenuButtons,
+    local aboutView = viewUtil.createMenuItem({
+        text = i18n.aboutTitle,
+        x = preferencesView.button.x,
+        y = preferencesView.button.y + viewUtil.distanceBetweenMenuButtons,
         action = sceneManager.goAbout
     })
 
     viewUtil.addEndedTouchEventListener(background, function()
-        playButton.alpha = viewUtil.alphaDefault
-        preferencesButton.alpha = viewUtil.alphaDefault
-        aboutButton.alpha = viewUtil.alphaDefault
+        playView.button.alpha = viewUtil.alphaDefault
+        preferencesView.button.alpha = viewUtil.alphaDefault
+        aboutView.button.alpha = viewUtil.alphaDefault
     end)
 
     local gameTitle = viewUtil.createImage({
@@ -49,9 +50,12 @@ function scene:create()
     })
 
     sceneGroup:insert(background)
-    sceneGroup:insert(preferencesButton)
-    sceneGroup:insert(aboutButton)
-    sceneGroup:insert(playButton)
+    sceneGroup:insert(preferencesView.button)
+    sceneGroup:insert(preferencesView.text)
+    sceneGroup:insert(aboutView.button)
+    sceneGroup:insert(aboutView.text)
+    sceneGroup:insert(playView.button)
+    sceneGroup:insert(playView.text)
     sceneGroup:insert(gameTitle)
 end
 

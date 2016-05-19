@@ -111,6 +111,21 @@ local function _createMenuButton(object)
     return menuButton
 end
 
+local function _createMenuItem(object)
+    object.imagePath = images.BUTTON
+    object.fontSize = 40
+
+    local menuButton = _createMenuButton(object)
+    local menuText = _createText(object)
+
+    menuText:setTextColor(.8, .8, .8)
+
+    return {
+        button = menuButton,
+        text = menuText
+    }
+end
+
 local function _createBackButton(background, action)
     local backButton = _createImage({
         imagePath = images.BACK_BUTTON,
@@ -153,5 +168,6 @@ return {
     createImage = _createImage,
     createWidgetImage = _createWidgetImage,
     createButtonCircle = _createButtonCircle,
-    createText = _createText
+    createText = _createText,
+    createMenuItem = _createMenuItem
 }
