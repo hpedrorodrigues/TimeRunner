@@ -62,12 +62,12 @@ um novo background se adaptando ao novo período de tempo
 
 #### Diagrama de navegação
 
-<p align="center"><img src="./assets/images/navigation_diagram.png?raw=true" width="50%" height="50%" alt="Diagrama de navegação"/></p>
+<p align="center"><img src="./assets/images/navigation_diagram.png?raw=true" width="75%" height="75%" alt="Diagrama de navegação"/></p>
 
 
 #### Tabela de colisão
 
-<p align="center"><img src="./assets/images/collision_table.png?raw=true" width="50%" height="50%" alt="Tabela de colisão"/></p>
+<p align="center"><img src="./assets/images/collision_table.png?raw=true" width="75%" height="75%" alt="Tabela de colisão"/></p>
 
 #### Pontos Importantes
 
