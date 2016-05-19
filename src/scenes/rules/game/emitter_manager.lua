@@ -5,6 +5,7 @@ local physics = require(importations.PHYSICS)
 local listener = require(importations.LISTENER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local bodyNames = require(importations.BODY_NAMES)
+local filters = require(importations.FILTER_RULES)
 
 local emittersQuantity = 0
 local emittersList = {}
@@ -53,7 +54,7 @@ local function _shoot(sprite)
 
     group:insert(emitterFireshot)
 
-    physics.addBody(group, { density = 1, friction = 0 })
+    physics.addBody(group, 'dynamic', { density = 1, friction = 0, filter = filters.shootCollision })
 
     group.isbullet = true
     group.anchorChildren = true
@@ -121,12 +122,12 @@ local function _generatePowerUp()
 
         powerUpEmitterQuantity = powerUpEmitterQuantity + 1
 
-        physics.addBody(powerUpEmitter, { density = 1, friction = 0 })
+        physics.addBody(powerUpEmitter, 'dynamic', { friction = 0.5, bounce = 0, filter = filters.powerUpCollision })
 
         powerUpEmitter.x = displayConstants.WIDTH_SCREEN - 20
         powerUpEmitter.y = math.random(displayConstants.HEIGHT_SCREEN / 2, displayConstants.HEIGHT_SCREEN)
 
-        powerUpEmitter:setLinearVelocity(-500, 0)
+        powerUpEmitter:setLinearVelocity(-500, 30)
 
         powerUpEmitterList[powerUpEmitterQuantity] = powerUpEmitter
 
@@ -141,6 +142,8 @@ local function _powerUmitterUpdate()
         local child = powerUpEmitterList[currentPosition]
 
         if (child ~= nil) then
+
+            child:setLinearVelocity(-500, 30)
 
             if (child.x < displayConstants.LEFT_SCREEN or child.isDeleted) then
 

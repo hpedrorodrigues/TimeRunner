@@ -12,7 +12,7 @@ local spritesQuantity = 0
 local delay = 800
 local group = {}
 local spritesTimer
-local translateVelocity = -22
+local translateVelocity = -18
 
 local buttonsDifference = 130
 
