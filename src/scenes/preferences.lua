@@ -14,8 +14,8 @@ local i18n = require(importations.I18N)
 local scene = composer.newScene()
 
 function scene:create()
-
     local sceneGroup = self.view
+
     local background = viewUtil.createBackground(images.PREFERENCES_BACKGROUND, 1800, 900)
     local backButton = viewUtil.createBackButton(background, sceneManager.goMenu)
 
@@ -84,8 +84,8 @@ function scene:create()
 end
 
 function scene:destroy()
-
     local sceneGroup = self.view
+
     sceneGroup:removeSelf()
     sceneGroup = nil
 

@@ -13,8 +13,8 @@ local screenTime = 5000
 local someButtonClicked = false
 
 function scene:create(event)
-
     local sceneGroup = self.view
+
     local background = viewUtil.createBackground(images.GAME_OVER_BACKGROUND, 1440, 790)
     local backButton = viewUtil.createBackButton(background, function()
         sceneManager.goMenu()
@@ -74,8 +74,8 @@ function scene:create(event)
 end
 
 function scene:destroy()
-
     local sceneGroup = self.view
+
     sceneGroup:removeSelf()
     sceneGroup = nil
 

@@ -9,8 +9,8 @@ local viewUtil = require(importations.VIEW_UTIL)
 local scene = composer.newScene()
 
 function scene:create()
-
     local sceneGroup = self.view
+
     local background = viewUtil.createBackground(images.TUTORIAL_BACKGROUND, 1800, 900)
     local backButton = viewUtil.createBackButton(background, sceneManager.goMenu)
 
@@ -21,8 +21,8 @@ function scene:create()
 end
 
 function scene:destroy()
-
     local sceneGroup = self.view
+
     sceneGroup:removeSelf()
     sceneGroup = nil
 

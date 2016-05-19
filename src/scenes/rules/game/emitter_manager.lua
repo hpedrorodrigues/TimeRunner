@@ -13,7 +13,6 @@ local powerUpEmitterQuantity = 0
 local powerUpEmitterList = {}
 
 local function _loadParams(filename, baseDir)
-
     local path = system.pathForFile(filename, baseDir)
 
     local file = io.open(path, 'r')
@@ -42,7 +41,6 @@ local function _newPowerUp()
 end
 
 local function _shoot(sprite)
-
     local group = display.newGroup()
     group.x = sprite.x
     group.y = sprite.y + 20
@@ -69,7 +67,6 @@ local function _shoot(sprite)
 end
 
 local function _emitterUpdate()
-
     for i = 1, emittersQuantity do
 
         local currentPosition = i
@@ -127,7 +124,7 @@ local function _generatePowerUp()
         physics.addBody(powerUpEmitter, { density = 1, friction = 0 })
 
         powerUpEmitter.x = displayConstants.WIDTH_SCREEN - 20
-        powerUpEmitter.y = math.random(display.contentHeight / 2, display.contentHeight)
+        powerUpEmitter.y = math.random(displayConstants.HEIGHT_SCREEN / 2, displayConstants.HEIGHT_SCREEN)
 
         powerUpEmitter:setLinearVelocity(-500, 0)
 
@@ -138,7 +135,6 @@ local function _generatePowerUp()
 end
 
 local function _powerUmitterUpdate()
-
     for i = 1, powerUpEmitterQuantity do
 
         local currentPosition = i

@@ -9,8 +9,8 @@ local viewUtil = require(importations.VIEW_UTIL)
 local scene = composer.newScene()
 
 function scene:create()
-
     local sceneGroup = self.view
+
     local background = viewUtil.createBackground(images.MENU_BACKGROUND, 1800, 900)
 
     local playButton = viewUtil.createMenuButton({
@@ -56,8 +56,8 @@ function scene:create()
 end
 
 function scene:destroy()
-
     local sceneGroup = self.view
+
     sceneGroup:removeSelf()
     sceneGroup = nil
 

@@ -37,12 +37,12 @@ local function _createRandomSprites()
         if (randomNumber == 1) then
             sprites[spritesQuantity] = _createBearSprite()
             sprites[spritesQuantity].animalName = bodyNames.BEAR_ANIMAL
-            sprites[spritesQuantity].x = display.contentWidth - buttonsDifference
+            sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN - buttonsDifference
             sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 40
         elseif (randomNumber == 2) then
             sprites[spritesQuantity] = _createTigerSprite()
             sprites[spritesQuantity].animalName = bodyNames.TIGER_ANIMAL
-            sprites[spritesQuantity].x = display.contentWidth - buttonsDifference
+            sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN - buttonsDifference
             sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 50
         end
 
@@ -58,7 +58,6 @@ local function _createRandomSprites()
 end
 
 local function _spriteUpdate()
-
     for i = 1, spritesQuantity do
 
         local currentPosition = i

@@ -24,7 +24,6 @@ local function _setScoreManager(sm)
 end
 
 local function _control(event)
-
     if ((event.object1.myName == bodyNames.CRAZY_SCIENTIST and event.object2.myName == bodyNames.POWER_UP)
             or (event.object2.myName == bodyNames.CRAZY_SCIENTIST and event.object1.myName == bodyNames.POWER_UP)) then
 

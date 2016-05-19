@@ -17,7 +17,6 @@ local transitionTime = 2000
 local transitionHandler
 
 function scene:create()
-
     local sceneGroup = self.view
 
     display.setDefault('textureWrapX', 'mirroredRepeat')
@@ -66,10 +65,10 @@ function scene:create()
 end
 
 function scene:destroy()
-
     rules.clear()
 
     local sceneGroup = self.view
+
     sceneGroup:removeSelf()
     sceneGroup = nil
 

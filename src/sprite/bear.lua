@@ -3,7 +3,6 @@ local spriteSequenceNames = require(importations.SPRITE_SEQUENCE)
 local images = require(importations.IMAGES)
 
 local function _create()
-
     local imageSheetOptions = { width = 168.8, height = 94, numFrames = 8 }
 
     local spriteSequence = {

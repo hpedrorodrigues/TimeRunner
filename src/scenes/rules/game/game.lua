@@ -33,7 +33,6 @@ local function _playerJump()
 end
 
 local function _clear()
-
     spritesManager.cancel()
     scoreManager.destroy()
     emitterManager.cancel()
@@ -56,8 +55,8 @@ local function _createButtons(group, background)
     local shootLargeButton = viewUtil.createButtonCircle({
         size = buttonsConfiguration.size,
         radius = buttonsConfiguration.radius,
-        x = display.contentWidth - buttonsConfiguration.difference,
-        y = display.contentHeight - buttonsConfiguration.difference
+        x = displayConstants.WIDTH_SCREEN - buttonsConfiguration.difference,
+        y = displayConstants.HEIGHT_SCREEN - buttonsConfiguration.difference
     })
 
     local shootButton = viewUtil.createWidgetImage({
@@ -77,7 +76,7 @@ local function _createButtons(group, background)
         size = buttonsConfiguration.size,
         radius = buttonsConfiguration.radius,
         x = displayConstants.TOP_SCREEN + buttonsConfiguration.difference,
-        y = display.contentHeight - buttonsConfiguration.difference
+        y = displayConstants.HEIGHT_SCREEN - buttonsConfiguration.difference
     })
 
     local jumpButton = viewUtil.createWidgetImage({
@@ -117,7 +116,7 @@ local function _createButtons(group, background)
     group:insert(shootLargeButton)
 end
 
-local function _make(group, background, sp)
+local function _apply(group, background, sp)
     sprite = sp
 
     lifeManager.reset()
@@ -125,7 +124,14 @@ local function _make(group, background, sp)
 
     _displayPortal(sprite)
 
-    local bottomWall = display.newRect(display.contentWidth / 2, display.contentHeight, display.contentWidth, 0)
+    local bottomWallInfo = {
+        x = displayConstants.WIDTH_SCREEN / 2,
+        y = displayConstants.HEIGHT_SCREEN,
+        width = displayConstants.WIDTH_SCREEN,
+        height = 0
+    }
+
+    local bottomWall = display.newRect(bottomWallInfo.x, bottomWallInfo.y, bottomWallInfo.width, bottomWallInfo.height)
 
     sprite.canJump = 0
 
@@ -143,7 +149,6 @@ local function _make(group, background, sp)
     spritesManager.create()
 
     collisionManager.start()
-
     collisionManager.setLifeManager(lifeManager)
     collisionManager.setScoreManager(scoreManager)
 
@@ -155,7 +160,7 @@ local function _make(group, background, sp)
 end
 
 return {
-    apply = _make,
+    apply = _apply,
     clear = _clear,
     scoreManager = _scoreManager
 }
