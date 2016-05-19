@@ -52,12 +52,12 @@ Veja imagens do jogo [aqui](./docs/IMAGES.md).
 
 #### Diagrama de navegação
 
-<p align="center"><img src="./assets/images/navigation_diagram.png?raw=true" width="75%" height="75%" alt="Diagrama de navegação"/></p>
+<p align="center"><img src="./assets/images/docs/navigation_diagram.png?raw=true" width="75%" height="75%" alt="Diagrama de navegação"/></p>
 
 
 #### Tabela de colisão
 
-<p align="center"><img src="./assets/images/collision_table.png?raw=true" width="75%" height="75%" alt="Tabela de colisão"/></p>
+<p align="center"><img src="./assets/images/docs/collision_table.png?raw=true" width="75%" height="75%" alt="Tabela de colisão"/></p>
 
 
 #### Idéia inicial
