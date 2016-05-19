@@ -49,25 +49,25 @@ um novo background se adaptando ao novo período de tempo
 
 - Menu principal
 
-<p align="center"><img src="./assets/images/time_runner.png?raw=true" width="50%" height="50%" alt="Time Runner"/></p>
+<p align="center"><img src="./assets/images/time_runner.png?raw=true" width="50%" height="50%" alt="Menu Principal"/></p>
 
 - Jogo
 
-<p align="center"><img src="./assets/images/time_runner_game.png?raw=true" width="50%" height="50%" alt="Time Runner"/></p>
+<p align="center"><img src="./assets/images/time_runner_game.png?raw=true" width="50%" height="50%" alt="Jogo"/></p>
 
 - Sobre
 
-<p align="center"><img src="./assets/images/time_runner_about.png?raw=true" width="50%" height="50%" alt="Time Runner"/></p>
+<p align="center"><img src="./assets/images/time_runner_about.png?raw=true" width="50%" height="50%" alt="Sobre"/></p>
 
 
 #### Diagrama de navegação
 
-![Diagrama de Navegação](assets/images/navigation_diagram.png)
+<p align="center"><img src="./assets/images/navigation_diagram.png?raw=true" width="50%" height="50%" alt="Diagrama de navegação"/></p>
 
 
 #### Tabela de colisão
 
-![Tabela de Colisão](assets/images/collision_table.png)
+<p align="center"><img src="./assets/images/collision_table.png?raw=true" width="50%" height="50%" alt="Tabela de colisão"/></p>
 
 #### Pontos Importantes
 
