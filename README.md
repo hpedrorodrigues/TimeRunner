@@ -9,9 +9,9 @@
 * [Objetivo Geral](#objetivo-geral)
 * [Objetivos Específicos](#objetivos-específicos)
 * [Regras do Jogo](#regras-do-jogo)
+* [Imagens](#imagens)
 * [Diagrama de Navegação](#diagrama-de-navegação)
 * [Tabela de colisão](#tabela-de-colisão)
-* [Imagens](#imagens)
 * [Pontos Importantes](#pontos-importantes)
 * [Anotações](#anotações)
 * [Licença](#license)
@@ -45,16 +45,6 @@ de reação do jogador.
 um novo background se adaptando ao novo período de tempo
 
 
-#### Diagrama de navegação
-
-![Diagrama de Navegação](assets/images/navigation_diagram.png)
-
-
-#### Tabela de colisão
-
-![Tabela de Colisão](assets/images/collision_table.png)
-
-
 #### Imagens
 
 - Menu principal
@@ -68,6 +58,16 @@ um novo background se adaptando ao novo período de tempo
 - Sobre
 
 <p align="center"><img src="./assets/images/time_runner_about.png?raw=true" width="50%" height="50%" alt="Time Runner"/></p>
+
+
+#### Diagrama de navegação
+
+![Diagrama de Navegação](assets/images/navigation_diagram.png)
+
+
+#### Tabela de colisão
+
+![Tabela de Colisão](assets/images/collision_table.png)
 
 #### Pontos Importantes
 
