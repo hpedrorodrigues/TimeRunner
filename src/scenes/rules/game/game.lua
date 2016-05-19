@@ -85,7 +85,7 @@ local function _createButtons(group, background)
     local function playerJump(event)
         if (sprite.inAir == false) then
             sprite.inAir = true
-            sprite:setLinearVelocity(0, -300)
+            sprite:setLinearVelocity(0, -350)
         end
     end
 
@@ -153,7 +153,7 @@ local function _apply(group, background, sp)
 
     physics.addBody(bottomWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.bottomWallCollision })
     physics.addBody(leftWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.leftWallCollision })
-    physics.addBody(sprite, 'dynamic', { friction = 0.5, bounce = 0, filter = filters.playerCollision })
+    physics.addBody(sprite, 'dynamic', { density = 3, friction = 0.5, bounce = 0, filter = filters.playerCollision })
 
     sprite.isFixedRotation = true
     sprite.inAir = true
