@@ -38,12 +38,12 @@ local function _createRandomSprites()
             sprites[spritesQuantity] = _createBearSprite()
             sprites[spritesQuantity].animalName = bodyNames.BEAR_ANIMAL
             sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN - buttonsDifference
-            sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 40
+            sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 70
         elseif (randomNumber == 2) then
             sprites[spritesQuantity] = _createTigerSprite()
             sprites[spritesQuantity].animalName = bodyNames.TIGER_ANIMAL
             sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN - buttonsDifference
-            sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 50
+            sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 55
         end
 
         local sprite = sprites[spritesQuantity]
@@ -51,7 +51,7 @@ local function _createRandomSprites()
         sprite.myName = bodyNames.OBSTACLE
         sprite:play()
 
-        physics.addBody(sprite, { density = 1, friction = 0.4, bounce = 1, filter = filters.earthObstacleCollision })
+        physics.addBody(sprite, { friction = 0.5, bounce = 0, filter = filters.earthObstacleCollision })
 
         sprite:translate(translateVelocity, 0)
     end
@@ -66,14 +66,6 @@ local function _spriteUpdate()
         if (child ~= nil) then
 
             child:translate(translateVelocity, 0)
-
-            if (child.animalName == bodyNames.TIGER_ANIMAL) then
-
-                child.y = displayConstants.HEIGHT_SCREEN - 60
-            elseif (child.animalName == bodyNames.BEAR_ANIMAL) then
-
-                child.y = displayConstants.HEIGHT_SCREEN - 50
-            end
 
             if (child.x <= (displayConstants.TOP_SCREEN + buttonsDifference) or child.isDeleted) then
 

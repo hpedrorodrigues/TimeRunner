@@ -10,6 +10,7 @@ local emitterManager = require(importations.EMITTER_MANAGER)
 local images = require(importations.IMAGES)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local viewUtil = require(importations.VIEW_UTIL)
+local bodyNames = require(importations.BODY_NAMES)
 
 local sprite
 
@@ -25,11 +26,6 @@ local function _displayPortal(sp)
     timer.performWithDelay(2000, function()
         emitter:stop()
     end)
-end
-
-local function _playerJump()
-    sprite:applyLinearImpulse(0, 0, sprite.x, sprite.y)
-    sprite:applyLinearImpulse(0, 120, sprite.x, sprite.y)
 end
 
 local function _clear()
@@ -85,8 +81,15 @@ local function _createButtons(group, background)
         imagePath = images.JUMP_BUTTON
     })
 
-    viewUtil.addTouchEventWithAlphaEffectListener(jumpLargeButton, jumpLargeButton, _playerJump)
-    viewUtil.addTouchEventWithAlphaEffectListener(jumpButton, jumpLargeButton, _playerJump)
+    local function playerJump(event)
+        if (sprite.inAir == false) then
+            sprite.inAir = true
+            sprite:setLinearVelocity(0, -300)
+        end
+    end
+
+    viewUtil.addTouchEventWithAlphaEffectListener(jumpLargeButton, jumpLargeButton, playerJump)
+    viewUtil.addTouchEventWithAlphaEffectListener(jumpButton, jumpLargeButton, playerJump)
 
     viewUtil.addEndedTouchEventListener(background, function()
         shootLargeButton.alpha = buttonsConfiguration.alpha
@@ -126,22 +129,22 @@ local function _apply(group, background, sp)
 
     local bottomWallInfo = {
         x = displayConstants.WIDTH_SCREEN / 2,
-        y = displayConstants.HEIGHT_SCREEN,
+        y = displayConstants.HEIGHT_SCREEN - 20,
         width = displayConstants.WIDTH_SCREEN,
         height = 0
     }
 
     local bottomWall = display.newRect(bottomWallInfo.x, bottomWallInfo.y, bottomWallInfo.width, bottomWallInfo.height)
-
-    sprite.canJump = 0
+    bottomWall.myName = bodyNames.BOTTOM_WALL
 
     physics.start()
     physics.setGravity(0, 9.8)
 
-    physics.addBody(bottomWall, 'static', { density = 1, friction = 0, bounce = 1, filter = filters.bottomWallCollision })
-    physics.addBody(sprite, { density = 1, friction = 1, bounce = .2, filter = filters.playerCollision })
+    physics.addBody(bottomWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.bottomWallCollision })
+    physics.addBody(sprite, 'dynamic', { friction = 0.5, bounce = 0, filter = filters.playerCollision })
 
     sprite.isFixedRotation = true
+    sprite.inAir = true
 
     lifeManager.createImages(group)
 
