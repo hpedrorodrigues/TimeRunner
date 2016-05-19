@@ -7,7 +7,6 @@ local collisionDelayTime = 2
 
 local lifeManager
 local scoreManager
-local bottomWallvsPlayerAction
 
 local isVibrationEnabled
 
@@ -21,10 +20,6 @@ end
 
 local function _setScoreManager(sm)
     scoreManager = sm
-end
-
-local function _setBottomWallvsPlayerAction(action)
-    bottomWallvsPlayerAction = action
 end
 
 local function _isBodies(event, firstBodyName, secondBodyName)
@@ -101,6 +96,5 @@ return {
     setLifeManager = _setLifeManager,
     setScoreManager = _setScoreManager,
     control = _control,
-    start = _start,
-    setBottomWallvsPlayerAction = _setBottomWallvsPlayerAction
+    start = _start
 }
