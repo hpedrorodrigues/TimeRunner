@@ -60,6 +60,7 @@ function scene:create()
                 vibrationView.text.text = i18n.yes
 
                 settings.enableVibration()
+                system.vibrate()
             end
         end
     })
