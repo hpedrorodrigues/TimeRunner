@@ -10,6 +10,7 @@
 * [Objetivos Específicos](#objetivos-específicos)
 * [Regras do Jogo](#regras-do-jogo)
 * [Diagrama de Navegação](#diagrama-de-navegação)
+* [Tabela de colisão](#tabela-de-colisão)
 * [Imagens](#imagens)
 * [Pontos Importantes](#pontos-importantes)
 * [Anotações](#anotações)
@@ -47,6 +48,11 @@ um novo background se adaptando ao novo período de tempo
 #### Diagrama de navegação
 
 ![Diagrama de Navegação](assets/images/navigation_diagram.png)
+
+
+#### Tabela de colisão
+
+![Tabela de Colisão](assets/images/collision_table.png)
 
 
 #### Imagens
