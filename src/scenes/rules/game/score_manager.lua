@@ -1,32 +1,33 @@
 local importations = require(IMPORTATIONS)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
-local listener = require(importations.LISTENER)
 local viewUtil = require(importations.VIEW_UTIL)
 local i18n = require(importations.I18N)
 
+local BEAR_SCORE = 5
+local TIGER_SCORE = 10
+
 local scoreText
-local group
-local initialTime
-local score
+local currentScore
 
-local function _refresh()
-    score = os.time() - initialTime
-    scoreText.text = i18n.score .. ': ' .. tostring(score) .. 's'
+local function _increase(score)
+    currentScore = currentScore + score
+    scoreText.text = i18n.score .. ': ' .. tostring(currentScore)
 end
 
-local function _score()
-    if (score == nil) then
-        return 0
-    else
-        return score
-    end
+local function _start()
+    currentScore = 0
+    _increase(currentScore)
 end
 
-local function _createScore(gp)
-    group = gp
+local function _increaseBearScore()
+    _increase(BEAR_SCORE)
+end
 
-    initialTime = os.time()
+local function _increaseTigerScore()
+    _increase(TIGER_SCORE)
+end
 
+local function _createScoreView(group)
     scoreText = viewUtil.createText({
         text = i18n.score,
         x = displayConstants.LEFT_SCREEN + 250,
@@ -35,25 +36,16 @@ local function _createScore(gp)
     })
 
     group:insert(scoreText)
-
-    Runtime:addEventListener(listener.ENTER_FRAME, _refresh)
 end
 
-local function _destroyScore()
-    group:remove(scoreText)
-    scoreText:removeSelf()
-    scoreText = nil
-
-    -- Doing it because is needed but linter not known Corona SDK
-    if (scoreText ~= nil) then
-        print(scoreText)
-    end
-
-    Runtime:removeEventListener(listener.ENTER_FRAME, _refresh)
+local function _currentScore()
+    return currentScore
 end
 
 return {
-    create = _createScore,
-    destroy = _destroyScore,
-    score = _score
+    start = _start,
+    createScoreView = _createScoreView,
+    currentScore = _currentScore,
+    increaseBearScore = _increaseBearScore,
+    increaseTigerScore = _increaseTigerScore
 }

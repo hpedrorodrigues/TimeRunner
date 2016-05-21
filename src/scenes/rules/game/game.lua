@@ -31,7 +31,6 @@ end
 
 local function _clear()
     spritesManager.cancel()
-    scoreManager.destroy()
     emitterManager.cancel()
 
     Runtime:removeEventListener(listener.COLLISION, collisionManager.control)
@@ -150,7 +149,7 @@ local function _apply(group, background, sp)
 
     physics.start()
     physics.setGravity(0, 9.8)
---    physics.setDrawMode('hybrid')
+    --    physics.setDrawMode('hybrid')
 
     physics.addBody(bottomWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.bottomWallCollision })
     physics.addBody(leftWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.leftWallCollision })
@@ -174,7 +173,8 @@ local function _apply(group, background, sp)
 
     emitterManager.setShootManager(shootManager)
 
-    scoreManager.create(group)
+    scoreManager.createScoreView(group)
+    scoreManager.start()
 
     _createButtons(group, background)
 

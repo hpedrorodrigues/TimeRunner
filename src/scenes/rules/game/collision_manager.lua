@@ -3,8 +3,6 @@ local sceneManager = require(importations.SCENE_MANAGER)
 local settings = require(importations.SETTINGS)
 local bodyNames = require(importations.BODY_NAMES)
 
-local collisionDelayTime = 2
-
 local lifeManager
 local scoreManager
 local shootManager
@@ -76,11 +74,7 @@ local function _control(event)
         if (not lifeManager.hasLife()) then
 
             lifeManager.reset()
-
-            timer.performWithDelay(collisionDelayTime, function()
-
-                sceneManager.goGameOver(scoreManager.score())
-            end)
+            sceneManager.goGameOver(scoreManager.currentScore())
         end
 
         spriteObstacle.isDeleted = true
@@ -89,6 +83,14 @@ local function _control(event)
 
         local shot = _getBody(event, bodyNames.SHOT)
         local obstacle = _getBody(event, bodyNames.OBSTACLE)
+
+        if (obstacle.animalName == bodyNames.TIGER_ANIMAL) then
+
+            scoreManager.increaseTigerScore()
+        elseif (obstacle.animalName == bodyNames.BEAR_ANIMAL) then
+
+            scoreManager.increaseBearScore()
+        end
 
         if (isVibrationEnabled) then
             system.vibrate()

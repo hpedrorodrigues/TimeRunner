@@ -30,7 +30,7 @@ function scene:create(event)
     })
 
     local scoreText = viewUtil.createText({
-        text = i18n.score .. ': ' .. event.params.score .. 's',
+        text = i18n.score .. ': ' .. event.params.score,
         x = gameOverTitle.x,
         y = gameOverTitle.y + 135,
         fontSize = 80
