@@ -4,6 +4,8 @@ local images = require(importations.IMAGES)
 local spriteUtil = require(importations.SPRITE_UTIL)
 local spriteSize = require(importations.SPRITE_SIZE)
 
+local spriteTime = 1000
+
 local function _create(size)
     size = (size == nil) and spriteSize.SMALL or size
 
@@ -37,7 +39,7 @@ local function _create(size)
                 name = spriteSequenceNames.RUNNING,
                 start = 1,
                 count = framesCount - 1,
-                time = 1000,
+                time = spriteTime,
                 loopCount = 0
             }
         }
@@ -67,7 +69,7 @@ local function _create(size)
                 name = spriteSequenceNames.RUNNING,
                 start = 1,
                 count = framesCount - 1,
-                time = 1000,
+                time = spriteTime,
                 loopCount = 0
             }
         }

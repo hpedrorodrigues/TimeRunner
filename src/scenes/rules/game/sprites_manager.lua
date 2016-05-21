@@ -17,7 +17,7 @@ local group = {}
 local spritesTimer
 local translateVelocity = -18
 
-local buttonsDifference = 130
+local buttonsDifference = 90
 
 local function _setGroup(gp)
     group = gp
@@ -54,7 +54,7 @@ local function _createRandomSprites()
             sprites[spritesQuantity] = _createTigerSprite()
             sprites[spritesQuantity].animalName = bodyNames.TIGER_ANIMAL
             sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN - buttonsDifference
-            sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 55
+            sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 80
         end
 
         local sprite = sprites[spritesQuantity]
@@ -78,7 +78,11 @@ local function _spriteUpdate()
 
             child:translate(translateVelocity, 0)
 
-            if (child.x <= (displayConstants.TOP_SCREEN + buttonsDifference) or child.isDeleted) then
+            if (child.animalName == bodyNames.TIGER_ANIMAL) then
+                child.y = displayConstants.HEIGHT_SCREEN - 80
+            end
+
+            if (child.x <= (displayConstants.LEFT_SCREEN + buttonsDifference) or child.isDeleted) then
 
                 physics.removeBody(child)
                 group:remove(child)

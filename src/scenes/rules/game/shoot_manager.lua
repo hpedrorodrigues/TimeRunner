@@ -4,7 +4,7 @@ local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local viewUtil = require(importations.VIEW_UTIL)
 
 local INITIAL_POWER_UP_VALUE = 100
-local POWER_UP_VALUE = 50
+local POWER_UP_VALUE = 10
 local MAX_POWER_UP_VALUE = 100
 
 local currentPowerUpValue
