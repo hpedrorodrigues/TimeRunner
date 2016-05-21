@@ -8,6 +8,7 @@ local database = databaseManager.database()
 local FIRST_ACCESS_KEY = 'first_access'
 local ENABLE_SOUND_KEY = 'enable_sound'
 local ENABLE_VIBRATION_KEY = 'enable_vibration'
+local ENABLE_LARGE_SPRITES_KEY = 'enable_large_sprites'
 
 local TRUE = 1
 local FALSE = 0
@@ -16,7 +17,8 @@ local function _insertInitialValues()
     database:exec(databaseConstants.formatInitialSettingsScript({
         firstAccessKey = FIRST_ACCESS_KEY,
         enableSoundKey = ENABLE_SOUND_KEY,
-        enableVibrationKey = ENABLE_VIBRATION_KEY
+        enableVibrationKey = ENABLE_VIBRATION_KEY,
+        enableLargeSpritesKey = ENABLE_LARGE_SPRITES_KEY
     }))
 end
 
@@ -94,6 +96,24 @@ local function _isVibrationEnabled()
     return _getSettingByKey(ENABLE_VIBRATION_KEY) == TRUE
 end
 
+-- Enable Large Sprites
+
+local function _setEnableLargeSprites(value)
+    _setSettingByKey(ENABLE_LARGE_SPRITES_KEY, value)
+end
+
+local function _enableLargeSprites()
+    _setEnableLargeSprites(TRUE)
+end
+
+local function _disableLargeSprites()
+    _setEnableLargeSprites(FALSE)
+end
+
+local function _isLargeSpritesEnabled()
+    return _getSettingByKey(ENABLE_LARGE_SPRITES_KEY) == TRUE
+end
+
 return {
     insertInitialValues = _insertInitialValues,
     enableSound = _enableSound,
@@ -102,6 +122,9 @@ return {
     enableVibration = _enableVibration,
     disableVibration = _disableVibration,
     isVibrationEnabled = _isVibrationEnabled,
+    enableLargeSprites = _enableLargeSprites,
+    disableLargeSprites = _disableLargeSprites,
+    isLargeSpritesEnabled = _isLargeSpritesEnabled,
     insertFirstAccess = _insertFirstAccess,
     hasFirstAccess = _hasFirstAccess,
     showAllSettings = _showAllSettings

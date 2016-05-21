@@ -9,11 +9,15 @@ local fileUtil = require(importations.FILE_UTIL)
 local constantUtil = require(importations.CONSTANT_UTIL)
 local memoryUtil = require(importations.MEMORY_UTIL)
 
+googleAnalytics = require(importations.GOOGLE_ANALYTICS)
+
 database.init()
 
 local settings = require(importations.SETTINGS)
 
 defaults.set()
+
+googleAnalytics.init('Time Runner', 'UA-66231011-2')
 
 if (settings.hasFirstAccess()) then
     sceneManager.goMenu()

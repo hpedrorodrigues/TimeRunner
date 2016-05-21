@@ -52,7 +52,7 @@ local function _shoot(sprite)
 
         local group = display.newGroup()
         group.x = sprite.x
-        group.y = sprite.y + 20
+        group.y = sprite.y
 
         local emitterFireshot = _newShot()
         emitterFireshot.x = group.x

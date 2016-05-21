@@ -5,6 +5,6 @@ luacheck --no-unused-args \
   --no-cache \
   --ignore 512 \
   --globals IMPORTATIONS backgroundSound application \
-  --read-globals system Runtime native transition timer graphics audio display
+  --read-globals system Runtime native transition timer graphics audio display googleAnalytics collectgarbage
 
 # busted --verbose --coverage

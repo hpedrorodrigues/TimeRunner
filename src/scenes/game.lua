@@ -6,8 +6,8 @@ local images = require(importations.IMAGES)
 local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
-local spriteManager = require(importations.CRAZY_SCIENTIST_SPRITE)
 local viewUtil = require(importations.VIEW_UTIL)
+local spritesManager = require(importations.SPRITES_MANAGER_RULES)
 
 local scene = composer.newScene()
 local defaultDisplayConfiguration = display.getDefault()
@@ -21,7 +21,7 @@ function scene:create()
 
     display.setDefault('textureWrapX', 'mirroredRepeat')
 
-    sprite = spriteManager.create()
+    sprite = spritesManager.createCrazyScientist()
 
     local background = viewUtil.createBackground(images.MAIN_SCENE, 1472, 828)
     background.fill = { type = 'image', filename = images.MAIN_SCENE }

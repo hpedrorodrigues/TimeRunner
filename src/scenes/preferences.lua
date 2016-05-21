@@ -14,6 +14,7 @@ local scene = composer.newScene()
 
 local soundView
 local vibrationView
+local largeSpritesView
 
 function scene:create()
     local sceneGroup = self.view
@@ -37,6 +38,8 @@ function scene:create()
                 settings.enableSound()
                 backgroundSound = soundUtil.playBackgroundSound()
             end
+
+            googleAnalytics.logEvent('UserAction', 'Sound', 'enable', (settings.isSoundEnabled()) and 1 or 0)
         end
     })
 
@@ -50,7 +53,7 @@ function scene:create()
     vibrationView = viewUtil.createMenuItem({
         text = (settings.isVibrationEnabled()) and i18n.yes or i18n.no,
         x = displayConstants.LEFT_SCREEN + 200,
-        y = soundView.button.x + 100,
+        y = soundView.button.y + 100,
         action = function()
             if (settings.isVibrationEnabled()) then
                 vibrationView.text.text = i18n.no
@@ -62,6 +65,8 @@ function scene:create()
                 settings.enableVibration()
                 system.vibrate()
             end
+
+            googleAnalytics.logEvent('UserAction', 'Vibration', 'enable', (settings.isVibrationEnabled()) and 1 or 0)
         end
     })
 
@@ -72,11 +77,40 @@ function scene:create()
         fontSize = 40
     })
 
+    largeSpritesView = viewUtil.createMenuItem({
+        text = (settings.isLargeSpritesEnabled()) and i18n.yes or i18n.no,
+        x = displayConstants.LEFT_SCREEN + 200,
+        y = vibrationView.button.y + 100,
+        action = function()
+            if (settings.isLargeSpritesEnabled()) then
+                largeSpritesView.text.text = i18n.no
+
+                settings.disableLargeSprites()
+            else
+                largeSpritesView.text.text = i18n.yes
+
+                settings.enableLargeSprites()
+            end
+
+            googleAnalytics.logEvent('UserAction', 'Large Sprites', 'enable', (settings.isLargeSpritesEnabled()) and 1 or 0)
+        end
+    })
+
+    local largeSpritesTitle = viewUtil.createText({
+        text = i18n.enableLargeSprites,
+        x = largeSpritesView.button.x + 372,
+        y = largeSpritesView.button.y,
+        fontSize = 40
+    })
+
     soundView.button.width = 205.5
     soundView.button.height = 51
 
     vibrationView.button.width = 205.5
     vibrationView.button.height = 51
+
+    largeSpritesView.button.width = 205.5
+    largeSpritesView.button.height = 51
 
     sceneGroup:insert(background)
     sceneGroup:insert(backButton)
@@ -86,6 +120,9 @@ function scene:create()
     sceneGroup:insert(vibrationView.button)
     sceneGroup:insert(vibrationView.text)
     sceneGroup:insert(vibrationTitle)
+    sceneGroup:insert(largeSpritesView.button)
+    sceneGroup:insert(largeSpritesView.text)
+    sceneGroup:insert(largeSpritesTitle)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end

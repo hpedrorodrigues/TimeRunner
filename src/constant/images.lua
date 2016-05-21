@@ -8,9 +8,11 @@ local GENERAL_PATH = BASE_IMAGE_PATH .. 'general/'
 
 return {
     LIFE = GENERAL_PATH .. 'life.png',
-    CRAZY_SCIENTIST_SPRITE = SPRITES_PATH .. 'crazy_scientist.png',
+    CRAZY_SCIENTIST_SPRITE = SPRITES_PATH .. 'rsz_crazy_scientist.png',
     BEAR_SPRITE = SPRITES_PATH .. 'bear.png',
+    RSZ_BEAR_SPRITE = SPRITES_PATH .. 'rsz_bear.png',
     TIGER_SPRITE = SPRITES_PATH .. 'tiger.png',
+    RSZ_TIGER_SPRITE = SPRITES_PATH .. 'rsz_tiger.png',
     MAIN_SCENE = SCENES_PATH .. 'main.jpg',
     PREFERENCES_BACKGROUND = BACKGROUNDS_PATH .. 'preferences.png',
     MENU_BACKGROUND = BACKGROUNDS_PATH .. 'menu.png',

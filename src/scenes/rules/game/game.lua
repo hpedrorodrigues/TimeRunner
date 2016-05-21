@@ -150,10 +150,11 @@ local function _apply(group, background, sp)
 
     physics.start()
     physics.setGravity(0, 9.8)
+--    physics.setDrawMode('hybrid')
 
     physics.addBody(bottomWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.bottomWallCollision })
     physics.addBody(leftWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.leftWallCollision })
-    physics.addBody(sprite, 'dynamic', { density = 3, friction = 0.5, bounce = 0, filter = filters.playerCollision })
+    physics.addBody(sprite, 'dynamic', { density = 50, friction = 0.3, bounce = 0, filter = filters.playerCollision })
 
     sprite.isFixedRotation = true
     sprite.inAir = true

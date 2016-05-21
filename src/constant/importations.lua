@@ -38,5 +38,8 @@ return {
     ABOUT_CREATOR = 'src.scenes.rules.about.about_creator',
     EMITTERS = 'src.constant.emitters',
     JSON = 'json',
-    BODY_NAMES = 'src.scenes.rules.game.body_names'
+    BODY_NAMES = 'src.scenes.rules.game.body_names',
+    GOOGLE_ANALYTICS = 'plugin.googleAnalytics',
+    SPRITE_UTIL = 'src.util.sprite_util',
+    SPRITE_SIZE = 'src.sprite.sprite_size'
 }

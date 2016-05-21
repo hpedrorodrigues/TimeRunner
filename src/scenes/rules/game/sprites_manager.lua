@@ -6,6 +6,9 @@ local listener = require(importations.LISTENER)
 local filters = require(importations.FILTER_RULES)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local bodyNames = require(importations.BODY_NAMES)
+local crazyScientistSpriteManager = require(importations.CRAZY_SCIENTIST_SPRITE)
+local spriteSize = require(importations.SPRITE_SIZE)
+local settings = require(importations.SETTINGS)
 
 local sprites = {}
 local spritesQuantity = 0
@@ -20,12 +23,20 @@ local function _setGroup(gp)
     group = gp
 end
 
+local function _largeSpritesValue()
+    return settings.isLargeSpritesEnabled() and spriteSize.LARGE or spriteSize.SMALL
+end
+
+local function _createCrazyScientist()
+    return crazyScientistSpriteManager.create(_largeSpritesValue())
+end
+
 local function _createBearSprite()
-    return bearSpriteManager.create()
+    return bearSpriteManager.create(_largeSpritesValue())
 end
 
 local function _createTigerSprite()
-    return tigerSpriteManager.create()
+    return tigerSpriteManager.create(_largeSpritesValue())
 end
 
 local function _createRandomSprites()
@@ -123,5 +134,6 @@ end
 return {
     create = _create,
     setGroup = _setGroup,
-    cancel = _cancel
+    cancel = _cancel,
+    createCrazyScientist = _createCrazyScientist
 }
