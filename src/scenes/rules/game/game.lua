@@ -14,6 +14,7 @@ local bodyManager = require(importations.BODY_MANAGER)
 local shootManager = require(importations.SHOOT_MANAGER_RULES)
 
 local sprite
+local initialDelayTime = 2000
 
 local function _scoreManager()
     return scoreManager
@@ -24,7 +25,7 @@ local function _displayPortal(sp)
     emitter.x = sp.x
     emitter.y = sp.y + 50
 
-    timer.performWithDelay(2000, function()
+    timer.performWithDelay(initialDelayTime, function()
         emitter:stop()
     end)
 end
@@ -107,7 +108,7 @@ local function _createButtons(group, background)
         jumpLargeButton.alpha = alpha
     end, 10)
 
-    timer.performWithDelay(2000, function()
+    timer.performWithDelay(initialDelayTime, function()
         timer.cancel(changeAlphaTimer)
         shootLargeButton.alpha = buttonsConfiguration.alpha
         jumpLargeButton.alpha = buttonsConfiguration.alpha
@@ -164,7 +165,10 @@ local function _apply(group, background, sp)
     lifeManager.createImages(group)
 
     spritesManager.setGroup(group)
-    spritesManager.create()
+
+    timer.performWithDelay(initialDelayTime, function()
+        spritesManager.create()
+    end)
 
     collisionManager.start()
     collisionManager.setLifeManager(lifeManager)
