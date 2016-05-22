@@ -13,6 +13,7 @@ local shootTextView
 
 local function _start()
     currentPowerUpValue = INITIAL_POWER_UP_VALUE
+    viewUtil.setTheme()
 end
 
 local function _current()

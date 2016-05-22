@@ -73,8 +73,10 @@ local function _control(event)
 
         if (not lifeManager.hasLife()) then
 
-            lifeManager.reset()
-            sceneManager.goGameOver(scoreManager.currentScore())
+            timer.performWithDelay(200, function()
+                lifeManager.reset()
+                sceneManager.goGameOver(scoreManager.currentScore())
+            end)
         end
 
         spriteObstacle.isDeleted = true

@@ -40,7 +40,9 @@ return {
     EMITTERS = 'src.constant.emitters',
     JSON = 'json',
     BODY_MANAGER = 'src.scenes.rules.game.body_manager',
-    GOOGLE_ANALYTICS = 'plugin.googleAnalytics',
     SPRITE_UTIL = 'src.util.sprite_util',
-    SPRITE_SIZE = 'src.sprite.sprite_size'
+    SPRITE_SIZE = 'src.sprite.sprite_size',
+    GOOGLE_ANALYTICS = 'plugin.googleAnalytics',
+    ADS = 'plugin.coronaAds',
+    ADS_MANAGER = 'src.third_party.ads_manager'
 }

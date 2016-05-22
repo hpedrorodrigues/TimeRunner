@@ -9,6 +9,7 @@ local settings = require(importations.SETTINGS)
 local soundUtil = require(importations.SOUND_UTIL)
 local viewUtil = require(importations.VIEW_UTIL)
 local i18n = require(importations.I18N)
+local adsManager = require(importations.ADS_MANAGER)
 
 local scene = composer.newScene()
 
@@ -112,6 +113,9 @@ function scene:create()
     largeSpritesView.button.width = 205.5
     largeSpritesView.button.height = 51
 
+    adsManager.set(adsManager.SUPPORTED_SCREENS.PREFERENCES)
+    adsManager.start()
+
     sceneGroup:insert(background)
     sceneGroup:insert(backButton)
     sceneGroup:insert(soundView.button)
@@ -128,6 +132,8 @@ function scene:create()
 end
 
 function scene:destroy()
+    adsManager.hide()
+
     local sceneGroup = self.view
 
     sceneGroup:removeSelf()

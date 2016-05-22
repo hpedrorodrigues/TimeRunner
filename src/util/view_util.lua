@@ -4,6 +4,10 @@ local images = require(importations.IMAGES)
 local listener = require(importations.LISTENER)
 local widget = require(importations.WIDGET)
 
+local function _setTheme()
+    widget.setTheme('widget_theme_android_holo_dark')
+end
+
 local function _createImage(object)
     local createdImage = display.newImageRect(object.imagePath, object.width, object.height)
 
@@ -14,6 +18,7 @@ local function _createImage(object)
 end
 
 local function _createWidgetImage(object)
+    _setTheme()
     return widget.newButton({
         x = object.x,
         y = object.y,
@@ -171,5 +176,6 @@ return {
     createWidgetImage = _createWidgetImage,
     createButtonCircle = _createButtonCircle,
     createText = _createText,
-    createMenuItem = _createMenuItem
+    createMenuItem = _createMenuItem,
+    setTheme = _setTheme
 }

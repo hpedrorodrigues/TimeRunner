@@ -7,6 +7,7 @@ local sceneManager = require(importations.SCENE_MANAGER)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local viewUtil = require(importations.VIEW_UTIL)
 local i18n = require(importations.I18N)
+local adsManager = require(importations.ADS_MANAGER)
 
 local scene = composer.newScene()
 
@@ -46,6 +47,9 @@ function scene:create(event)
         action = sceneManager.goMenu
     })
 
+    adsManager.set(adsManager.SUPPORTED_SCREENS.GAME_OVER)
+    adsManager.start()
+
     sceneGroup:insert(background)
     sceneGroup:insert(gameOverTitle)
     sceneGroup:insert(playView.button)
@@ -59,6 +63,8 @@ function scene:create(event)
 end
 
 function scene:destroy()
+    adsManager.hide()
+
     local sceneGroup = self.view
 
     sceneGroup:removeSelf()
