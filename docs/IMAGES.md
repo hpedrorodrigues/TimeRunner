@@ -15,3 +15,7 @@
 - Configurações
 
 <p align="center"><img src="./../assets/images/docs/time_runner_settings.png?raw=true" width="50%" height="50%" alt="Configurações"/></p>
+
+- Fim de Jogo
+
+<p align="center"><img src="./../assets/images/docs/time_runner_game_over.png?raw=true" width="50%" height="50%" alt="Fim de Jogo"/></p>
