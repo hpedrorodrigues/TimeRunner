@@ -9,17 +9,12 @@ local viewUtil = require(importations.VIEW_UTIL)
 local i18n = require(importations.I18N)
 
 local scene = composer.newScene()
-local screenTime = 5000
-local someButtonClicked = false
 
 function scene:create(event)
     local sceneGroup = self.view
 
     local background = viewUtil.createBackground(images.GAME_OVER_BACKGROUND, 1440, 790)
-    local backButton = viewUtil.createBackButton(background, function()
-        sceneManager.goMenu()
-        someButtonClicked = true
-    end)
+    local backButton = viewUtil.createBackButton(background, sceneManager.goMenu)
 
     local gameOverTitle = viewUtil.createImage({
         imagePath = images.GAME_OVER_BUTTON,
@@ -41,20 +36,14 @@ function scene:create(event)
         text = i18n.playTitle,
         x = displayConstants.CENTER_X,
         y = scoreText.y + 180,
-        action = function()
-            sceneManager.goGame()
-            someButtonClicked = true
-        end
+        action = sceneManager.goGame
     })
 
     local menuView = viewUtil.createMenuItem({
         text = i18n.menuTitle,
         x = playView.button.x,
         y = playView.button.y + viewUtil.distanceBetweenMenuButtons,
-        action = function()
-            sceneManager.goMenu()
-            someButtonClicked = true
-        end
+        action = sceneManager.goMenu
     })
 
     sceneGroup:insert(background)
@@ -65,12 +54,6 @@ function scene:create(event)
     sceneGroup:insert(menuView.text)
     sceneGroup:insert(backButton)
     sceneGroup:insert(scoreText)
-
-    timer.performWithDelay(screenTime, function()
-        if (not someButtonClicked) then
-            sceneManager.goMenu()
-        end
-    end)
 
     eventUtil.setBackPressed(sceneManager.goMenu)
 end

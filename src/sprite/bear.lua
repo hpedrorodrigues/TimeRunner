@@ -7,8 +7,6 @@ local spriteSize = require(importations.SPRITE_SIZE)
 local spriteTime = 1000
 
 local function _create(size)
-    size = (size == nil) and spriteSize.SMALL or size
-
     local sheetData
     local spriteSequence
     local imagePath

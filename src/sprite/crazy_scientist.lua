@@ -2,15 +2,13 @@ local importations = require(IMPORTATIONS)
 local spriteSequenceNames = require(importations.SPRITE_SEQUENCE)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
-local bodyNames = require(importations.BODY_NAMES)
+local bodyManager = require(importations.BODY_MANAGER)
 local spriteUtil = require(importations.SPRITE_UTIL)
 local spriteSize = require(importations.SPRITE_SIZE)
 
 local spriteTime = 1000
 
 local function _create(size)
-    size = (size == nil) and spriteSize.SMALL or size
-
     local sheetData
     local spriteSequence
     local imagePath
@@ -86,7 +84,7 @@ local function _create(size)
 
     sprite:setSequence(spriteSequenceNames.RUNNING)
 
-    sprite.myName = bodyNames.CRAZY_SCIENTIST
+    sprite.myName = bodyManager.NAME.CRAZY_SCIENTIST
     sprite.died = false
 
     sprite.x = displayConstants.LEFT_SCREEN + 150

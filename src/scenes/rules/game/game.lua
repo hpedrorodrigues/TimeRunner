@@ -10,7 +10,7 @@ local emitterManager = require(importations.EMITTER_MANAGER)
 local images = require(importations.IMAGES)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local viewUtil = require(importations.VIEW_UTIL)
-local bodyNames = require(importations.BODY_NAMES)
+local bodyManager = require(importations.BODY_MANAGER)
 local shootManager = require(importations.SHOOT_MANAGER_RULES)
 
 local sprite
@@ -135,7 +135,7 @@ local function _apply(group, background, sp)
     }
 
     local bottomWall = display.newRect(bottomWallInfo.x, bottomWallInfo.y, bottomWallInfo.width, bottomWallInfo.height)
-    bottomWall.myName = bodyNames.BOTTOM_WALL
+    bottomWall.myName = bodyManager.NAME.BOTTOM_WALL
 
     local leftWallInfo = {
         x = displayConstants.LEFT_SCREEN + 120,
@@ -145,7 +145,7 @@ local function _apply(group, background, sp)
     }
 
     local leftWall = display.newRect(leftWallInfo.x, leftWallInfo.y, leftWallInfo.width, leftWallInfo.height)
-    leftWall.myName = bodyNames.LEFT_WALL
+    leftWall.myName = bodyManager.NAME.LEFT_WALL
 
     physics.start()
     physics.setGravity(0, 9.8)

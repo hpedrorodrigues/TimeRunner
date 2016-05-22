@@ -1,7 +1,7 @@
 local importations = require(IMPORTATIONS)
 local sceneManager = require(importations.SCENE_MANAGER)
 local settings = require(importations.SETTINGS)
-local bodyNames = require(importations.BODY_NAMES)
+local bodyManager = require(importations.BODY_MANAGER)
 
 local lifeManager
 local scoreManager
@@ -35,24 +35,24 @@ local function _getBody(event, bodyName)
 end
 
 local function _control(event)
-    if (_isBodies(event, bodyNames.CRAZY_SCIENTIST, bodyNames.BOTTOM_WALL)) then
+    if (_isBodies(event, bodyManager.NAME.CRAZY_SCIENTIST, bodyManager.NAME.BOTTOM_WALL)) then
 
-        local sprite = _getBody(event, bodyNames.CRAZY_SCIENTIST)
+        local sprite = _getBody(event, bodyManager.NAME.CRAZY_SCIENTIST)
 
         sprite.inAir = false
 
-    elseif (_isBodies(event, bodyNames.CRAZY_SCIENTIST, bodyNames.POWER_UP)) then
+    elseif (_isBodies(event, bodyManager.NAME.CRAZY_SCIENTIST, bodyManager.NAME.POWER_UP)) then
 
-        local powerUp = _getBody(event, bodyNames.POWER_UP)
+        local powerUp = _getBody(event, bodyManager.NAME.POWER_UP)
 
         powerUp.isDeleted = true
 
         shootManager.increase()
 
-    elseif (_isBodies(event, bodyNames.CRAZY_SCIENTIST, bodyNames.OBSTACLE)) then
+    elseif (_isBodies(event, bodyManager.NAME.CRAZY_SCIENTIST, bodyManager.NAME.OBSTACLE)) then
 
-        local sprite = _getBody(event, bodyNames.CRAZY_SCIENTIST)
-        local spriteObstacle = _getBody(event, bodyNames.OBSTACLE)
+        local sprite = _getBody(event, bodyManager.NAME.CRAZY_SCIENTIST)
+        local spriteObstacle = _getBody(event, bodyManager.NAME.OBSTACLE)
 
         if (sprite.died == false) then
             sprite.died = true
@@ -79,17 +79,21 @@ local function _control(event)
 
         spriteObstacle.isDeleted = true
 
-    elseif (_isBodies(event, bodyNames.OBSTACLE, bodyNames.SHOT)) then
+    elseif (_isBodies(event, bodyManager.NAME.OBSTACLE, bodyManager.NAME.SHOT)) then
 
-        local shot = _getBody(event, bodyNames.SHOT)
-        local obstacle = _getBody(event, bodyNames.OBSTACLE)
+        local shot = _getBody(event, bodyManager.NAME.SHOT)
+        local obstacle = _getBody(event, bodyManager.NAME.OBSTACLE)
 
-        if (obstacle.animalName == bodyNames.TIGER_ANIMAL) then
+        if (obstacle.animalName == bodyManager.ANIMAL_NAME.TIGER) then
 
             scoreManager.increaseTigerScore()
-        elseif (obstacle.animalName == bodyNames.BEAR_ANIMAL) then
+        elseif (obstacle.animalName == bodyManager.ANIMAL_NAME.BEAR) then
 
             scoreManager.increaseBearScore()
+
+        elseif (obstacle.animalName == bodyManager.ANIMAL_NAME.BIRD) then
+
+            scoreManager.increaseBirdScore()
         end
 
         if (isVibrationEnabled) then

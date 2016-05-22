@@ -24,6 +24,7 @@ return {
     COMPOSER = 'composer',
     CRAZY_SCIENTIST_SPRITE = 'src.sprite.crazy_scientist',
     BEAR_SPRITE = 'src.sprite.bear',
+    BIRD_SPRITE = 'src.sprite.bird',
     TIGER_SPRITE = 'src.sprite.tiger',
     GAME_RULES = 'src.scenes.rules.game.game',
     FILTER_RULES = 'src.scenes.rules.game.filters',
@@ -38,7 +39,7 @@ return {
     ABOUT_CREATOR = 'src.scenes.rules.about.about_creator',
     EMITTERS = 'src.constant.emitters',
     JSON = 'json',
-    BODY_NAMES = 'src.scenes.rules.game.body_names',
+    BODY_MANAGER = 'src.scenes.rules.game.body_manager',
     GOOGLE_ANALYTICS = 'plugin.googleAnalytics',
     SPRITE_UTIL = 'src.util.sprite_util',
     SPRITE_SIZE = 'src.sprite.sprite_size'

@@ -5,6 +5,7 @@ local i18n = require(importations.I18N)
 
 local BEAR_SCORE = 5
 local TIGER_SCORE = 10
+local BIRD_SCORE = 15
 
 local scoreText
 local currentScore
@@ -27,6 +28,10 @@ local function _increaseTigerScore()
     _increase(TIGER_SCORE)
 end
 
+local function _increaseBirdScore()
+    _increase(BIRD_SCORE)
+end
+
 local function _createScoreView(group)
     scoreText = viewUtil.createText({
         text = i18n.score,
@@ -47,5 +52,6 @@ return {
     createScoreView = _createScoreView,
     currentScore = _currentScore,
     increaseBearScore = _increaseBearScore,
-    increaseTigerScore = _increaseTigerScore
+    increaseTigerScore = _increaseTigerScore,
+    increaseBirdScore = _increaseBirdScore
 }

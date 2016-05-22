@@ -1,11 +1,12 @@
 local importations = require(IMPORTATIONS)
 local bearSpriteManager = require(importations.BEAR_SPRITE)
+local birdSpriteManager = require(importations.BIRD_SPRITE)
 local tigerSpriteManager = require(importations.TIGER_SPRITE)
 local physics = require(importations.PHYSICS)
 local listener = require(importations.LISTENER)
 local filters = require(importations.FILTER_RULES)
 local displayConstants = require(importations.DISPLAY_CONSTANTS)
-local bodyNames = require(importations.BODY_NAMES)
+local bodyManager = require(importations.BODY_MANAGER)
 local crazyScientistSpriteManager = require(importations.CRAZY_SCIENTIST_SPRITE)
 local spriteSize = require(importations.SPRITE_SIZE)
 local settings = require(importations.SETTINGS)
@@ -16,8 +17,6 @@ local delay = 800
 local group = {}
 local spritesTimer
 local translateVelocity = -18
-
-local buttonsDifference = 90
 
 local function _setGroup(gp)
     group = gp
@@ -35,34 +34,58 @@ local function _createBearSprite()
     return bearSpriteManager.create(_largeSpritesValue())
 end
 
+local function _createBirdSprite()
+    return birdSpriteManager.create(_largeSpritesValue())
+end
+
 local function _createTigerSprite()
     return tigerSpriteManager.create(_largeSpritesValue())
 end
 
 local function _createRandomSprites()
-    local randomNumber = math.random(1, 3)
+    local randomNumber = math.random(1, 4)
 
-    if (randomNumber == 1 or randomNumber == 2) then
+    if (randomNumber < 4) then
         spritesQuantity = spritesQuantity + 1
 
         if (randomNumber == 1) then
+
             sprites[spritesQuantity] = _createBearSprite()
-            sprites[spritesQuantity].animalName = bodyNames.BEAR_ANIMAL
-            sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN - buttonsDifference
+            sprites[spritesQuantity].animalName = bodyManager.ANIMAL_NAME.BEAR
+            sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN
             sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 70
+            sprites[spritesQuantity].type = bodyManager.TYPE.EARTH
         elseif (randomNumber == 2) then
+
             sprites[spritesQuantity] = _createTigerSprite()
-            sprites[spritesQuantity].animalName = bodyNames.TIGER_ANIMAL
-            sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN - buttonsDifference
+            sprites[spritesQuantity].animalName = bodyManager.ANIMAL_NAME.TIGER
+            sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN
             sprites[spritesQuantity].y = displayConstants.HEIGHT_SCREEN - 80
+            sprites[spritesQuantity].type = bodyManager.TYPE.EARTH
+        elseif (randomNumber == 3) then
+
+            sprites[spritesQuantity] = _createBirdSprite()
+            sprites[spritesQuantity].animalName = bodyManager.ANIMAL_NAME.BIRD
+            sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN
+            sprites[spritesQuantity].y = math.random(displayConstants.TOP_SCREEN + 200, displayConstants.HEIGHT_SCREEN - 300)
+            sprites[spritesQuantity].initialY = sprites[spritesQuantity].y
+            sprites[spritesQuantity].type = bodyManager.TYPE.AIR
         end
 
         local sprite = sprites[spritesQuantity]
 
-        sprite.myName = bodyNames.OBSTACLE
+        sprite.myName = bodyManager.NAME.OBSTACLE
         sprite:play()
 
-        physics.addBody(sprite, { friction = 0.5, bounce = 0, filter = filters.earthObstacleCollision })
+        local filter
+
+        if (sprite.type == bodyManager.TYPE.AIR) then
+            filter = filters.airObstacleCollision
+        else
+            filter = filters.earthObstacleCollision
+        end
+
+        physics.addBody(sprite, { friction = 0.5, bounce = 0, filter = filter })
 
         sprite:translate(translateVelocity, 0)
     end
@@ -78,11 +101,15 @@ local function _spriteUpdate()
 
             child:translate(translateVelocity, 0)
 
-            if (child.animalName == bodyNames.TIGER_ANIMAL) then
+            if (child.animalName == bodyManager.ANIMAL_NAME.TIGER) then
+
                 child.y = displayConstants.HEIGHT_SCREEN - 80
+            elseif (child.animalName == bodyManager.ANIMAL_NAME.BIRD) then
+
+                child.y = child.initialY
             end
 
-            if (child.x <= (displayConstants.LEFT_SCREEN + buttonsDifference) or child.isDeleted) then
+            if (child.x <= displayConstants.LEFT_SCREEN or child.isDeleted) then
 
                 physics.removeBody(child)
                 group:remove(child)
