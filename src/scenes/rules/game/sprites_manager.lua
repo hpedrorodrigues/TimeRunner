@@ -1,6 +1,7 @@
 local importations = require(IMPORTATIONS)
 local bearSpriteManager = require(importations.BEAR_SPRITE)
 local birdSpriteManager = require(importations.BIRD_SPRITE)
+local eagleSpriteManager = require(importations.EAGLE_SPRITE)
 local tigerSpriteManager = require(importations.TIGER_SPRITE)
 local physics = require(importations.PHYSICS)
 local listener = require(importations.LISTENER)
@@ -38,14 +39,19 @@ local function _createBirdSprite()
     return birdSpriteManager.create(_largeSpritesValue())
 end
 
+local function _createEagleSprite()
+    return eagleSpriteManager.create(_largeSpritesValue())
+end
+
 local function _createTigerSprite()
     return tigerSpriteManager.create(_largeSpritesValue())
 end
 
 local function _createRandomSprites()
-    local randomNumber = math.random(1, 4)
+    local max = 5
+    local randomNumber = math.random(1, max)
 
-    if (randomNumber < 4) then
+    if (randomNumber < max) then
         spritesQuantity = spritesQuantity + 1
 
         if (randomNumber == 1) then
@@ -66,6 +72,15 @@ local function _createRandomSprites()
 
             sprites[spritesQuantity] = _createBirdSprite()
             sprites[spritesQuantity].animalName = bodyManager.ANIMAL_NAME.BIRD
+            sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN
+            sprites[spritesQuantity].y = math.random(displayConstants.TOP_SCREEN + 200, displayConstants.HEIGHT_SCREEN - 300)
+            sprites[spritesQuantity].initialY = sprites[spritesQuantity].y
+            sprites[spritesQuantity].type = bodyManager.TYPE.AIR
+
+        elseif (randomNumber == 4) then
+
+            sprites[spritesQuantity] = _createEagleSprite()
+            sprites[spritesQuantity].animalName = bodyManager.ANIMAL_NAME.EAGLE
             sprites[spritesQuantity].x = displayConstants.WIDTH_SCREEN
             sprites[spritesQuantity].y = math.random(displayConstants.TOP_SCREEN + 200, displayConstants.HEIGHT_SCREEN - 300)
             sprites[spritesQuantity].initialY = sprites[spritesQuantity].y
@@ -104,7 +119,7 @@ local function _spriteUpdate()
             if (child.animalName == bodyManager.ANIMAL_NAME.TIGER) then
 
                 child.y = displayConstants.HEIGHT_SCREEN - 80
-            elseif (child.animalName == bodyManager.ANIMAL_NAME.BIRD) then
+            elseif (child.type == bodyManager.TYPE.AIR) then
 
                 child.y = child.initialY
             end

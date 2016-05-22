@@ -10,7 +10,8 @@ return {
     ANIMAL_NAME = {
         BEAR = 'BEAR',
         TIGER = 'TIGER',
-        BIRD = 'BIRD'
+        BIRD = 'BIRD',
+        EAGLE = 'EAGLE'
     },
     TYPE = {
         EARTH = 'EARTH',

@@ -37,9 +37,9 @@ end
 local function _control(event)
     if (_isBodies(event, bodyManager.NAME.CRAZY_SCIENTIST, bodyManager.NAME.BOTTOM_WALL)) then
 
-        local sprite = _getBody(event, bodyManager.NAME.CRAZY_SCIENTIST)
+        local crazyScientist = _getBody(event, bodyManager.NAME.CRAZY_SCIENTIST)
 
-        sprite.inAir = false
+        crazyScientist.inAir = false
 
     elseif (_isBodies(event, bodyManager.NAME.CRAZY_SCIENTIST, bodyManager.NAME.POWER_UP)) then
 
@@ -51,16 +51,16 @@ local function _control(event)
 
     elseif (_isBodies(event, bodyManager.NAME.CRAZY_SCIENTIST, bodyManager.NAME.OBSTACLE)) then
 
-        local sprite = _getBody(event, bodyManager.NAME.CRAZY_SCIENTIST)
-        local spriteObstacle = _getBody(event, bodyManager.NAME.OBSTACLE)
+        local crazyScientist = _getBody(event, bodyManager.NAME.CRAZY_SCIENTIST)
+        local enemy = _getBody(event, bodyManager.NAME.OBSTACLE)
 
-        if (sprite.died == false) then
-            sprite.died = true
+        if (crazyScientist.died == false) then
+            crazyScientist.died = true
         end
 
         timer.performWithDelay(200, function()
-            transition.to(sprite, { alpha = 1, timer = 250 })
-            sprite.died = false
+            transition.to(crazyScientist, { alpha = 1, timer = 250 })
+            crazyScientist.died = false
         end)
 
         if (isVibrationEnabled) then
@@ -79,31 +79,21 @@ local function _control(event)
             end)
         end
 
-        spriteObstacle.isDeleted = true
+        enemy.isDeleted = true
 
     elseif (_isBodies(event, bodyManager.NAME.OBSTACLE, bodyManager.NAME.SHOT)) then
 
         local shot = _getBody(event, bodyManager.NAME.SHOT)
-        local obstacle = _getBody(event, bodyManager.NAME.OBSTACLE)
+        local enemy = _getBody(event, bodyManager.NAME.OBSTACLE)
 
-        if (obstacle.animalName == bodyManager.ANIMAL_NAME.TIGER) then
-
-            scoreManager.increaseTigerScore()
-        elseif (obstacle.animalName == bodyManager.ANIMAL_NAME.BEAR) then
-
-            scoreManager.increaseBearScore()
-
-        elseif (obstacle.animalName == bodyManager.ANIMAL_NAME.BIRD) then
-
-            scoreManager.increaseBirdScore()
-        end
+        scoreManager.increaseByAnimalName(enemy.animalName)
 
         if (isVibrationEnabled) then
             system.vibrate()
         end
 
         shot.isDeleted = true
-        obstacle.isDeleted = true
+        enemy.isDeleted = true
     end
 end
 

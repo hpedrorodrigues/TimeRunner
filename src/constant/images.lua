@@ -14,6 +14,8 @@ return {
     RSZ_BEAR_SPRITE = SPRITES_PATH .. 'rsz_bear.png',
     BIRD_SPRITE = SPRITES_PATH .. 'bird.png',
     RSZ_BIRD_SPRITE = SPRITES_PATH .. 'rsz_bird.png',
+    EAGLE_SPRITE = SPRITES_PATH .. 'eagle.png',
+    RSZ_EAGLE_SPRITE = SPRITES_PATH .. 'rsz_eagle.png',
     TIGER_SPRITE = SPRITES_PATH .. 'tiger.png',
     RSZ_TIGER_SPRITE = SPRITES_PATH .. 'rsz_tiger.png',
     MAIN_SCENE = SCENES_PATH .. 'main.jpg',

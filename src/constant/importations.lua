@@ -25,6 +25,7 @@ return {
     CRAZY_SCIENTIST_SPRITE = 'src.sprite.crazy_scientist',
     BEAR_SPRITE = 'src.sprite.bear',
     BIRD_SPRITE = 'src.sprite.bird',
+    EAGLE_SPRITE = 'src.sprite.eagle',
     TIGER_SPRITE = 'src.sprite.tiger',
     GAME_RULES = 'src.scenes.rules.game.game',
     FILTER_RULES = 'src.scenes.rules.game.filters',
