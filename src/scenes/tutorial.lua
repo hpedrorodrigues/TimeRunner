@@ -5,6 +5,7 @@ local listener = require(importations.LISTENER)
 local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
 local viewUtil = require(importations.VIEW_UTIL)
+--local tutorialCreator = require(importations.TUTORIAL_CREATOR)
 
 local scene = composer.newScene()
 

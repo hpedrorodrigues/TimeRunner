@@ -38,6 +38,7 @@ return {
     EMITTER_MANAGER = 'src.scenes.rules.game.emitter_manager',
     I18N = 'src.constant.i18n',
     ABOUT_CREATOR = 'src.scenes.rules.about.about_creator',
+    TUTORIAL_CREATOR = 'src.scenes.rules.tutorial.tutorial_creator',
     EMITTERS = 'src.constant.emitters',
     JSON = 'json',
     BODY_MANAGER = 'src.scenes.rules.game.body_manager',

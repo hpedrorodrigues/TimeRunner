@@ -116,6 +116,12 @@ function scene:create()
     adsManager.set(adsManager.SUPPORTED_SCREENS.PREFERENCES)
     adsManager.start()
 
+    viewUtil.addEndedTouchEventListener(background, function()
+        soundView.button.alpha = viewUtil.alphaDefault
+        vibrationView.button.alpha = viewUtil.alphaDefault
+        largeSpritesView.button.alpha = viewUtil.alphaDefault
+    end)
+
     sceneGroup:insert(background)
     sceneGroup:insert(backButton)
     sceneGroup:insert(soundView.button)

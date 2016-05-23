@@ -47,6 +47,8 @@ local function _clear()
 end
 
 local function _createButtons(group, background)
+    viewUtil.start()
+
     local buttonsConfiguration = { size = 100, radius = 200, alpha = .2, difference = 50 }
 
     local shootLargeButton = viewUtil.createButtonCircle({
@@ -85,7 +87,7 @@ local function _createButtons(group, background)
     local function playerJump(event)
         if (sprite.inAir == false) then
             sprite.inAir = true
-            sprite:setLinearVelocity(0, -350)
+            sprite:setLinearVelocity(0, -550)
         end
     end
 
@@ -149,12 +151,12 @@ local function _apply(group, background, sp)
     leftWall.myName = bodyManager.NAME.LEFT_WALL
 
     physics.start()
-    physics.setGravity(0, 9.8)
+    physics.setGravity(0, 15)
     --    physics.setDrawMode('hybrid')
 
     physics.addBody(bottomWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.bottomWallCollision })
     physics.addBody(leftWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.leftWallCollision })
-    physics.addBody(sprite, 'dynamic', { density = 50, friction = 0.3, bounce = 0, filter = filters.playerCollision })
+    physics.addBody(sprite, 'dynamic', { density = 100, friction = 0.3, bounce = 0, filter = filters.playerCollision })
 
     sprite.isFixedRotation = true
     sprite.inAir = true

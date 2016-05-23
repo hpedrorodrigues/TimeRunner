@@ -4,80 +4,40 @@ local displayConstants = require(importations.DISPLAY_CONSTANTS)
 local images = require(importations.IMAGES)
 local bodyManager = require(importations.BODY_MANAGER)
 local spriteUtil = require(importations.SPRITE_UTIL)
-local spriteSize = require(importations.SPRITE_SIZE)
 
 local spriteTime = 1000
 
-local function _create(size)
-    local sheetData
-    local spriteSequence
-    local imagePath
+local function _create()
+    local imagePath = images.RSZ_CRAZY_SCIENTIST_SPRITE
 
-    if (size == spriteSize.LARGE) then
+    local frames = {
+        { x = 58, y = 0, width = 60, height = 122 },
+        { width = 78 },
+        { width = 96 },
+        { width = 78 },
+        { x = 0, y = 122, width = 58, height = 126 },
+        { width = 74 },
+        { width = 94 },
+        { width = 82 }
+    }
 
-        imagePath = images.CRAZY_SCIENTIST_SPRITE
+    local framesCount = spriteUtil.fillNeededFrameFields(frames)
 
-        local frames = {
-            { x = 72, y = 0, width = 94, height = 180 },
-            { width = 114 },
-            { width = 136 },
-            { width = 111 },
-            { x = 0, y = 180, width = 82, height = 176 },
-            { width = 108 },
-            { width = 130 },
-            { width = 116 }
+    local sheetData = {
+        frames = frames,
+        sheetContentWidth = 370,
+        sheetContentHeight = 265
+    }
+
+    local spriteSequence = {
+        {
+            name = spriteSequenceNames.RUNNING,
+            start = 1,
+            count = framesCount - 1,
+            time = spriteTime,
+            loopCount = 0
         }
-
-        local framesCount = spriteUtil.fillNeededFrameFields(frames)
-
-        sheetData = {
-            frames = frames,
-            sheetContentWidth = 529,
-            sheetContentHeight = 379
-        }
-
-        spriteSequence = {
-            {
-                name = spriteSequenceNames.RUNNING,
-                start = 1,
-                count = framesCount - 1,
-                time = spriteTime,
-                loopCount = 0
-            }
-        }
-
-    else
-        imagePath = images.RSZ_CRAZY_SCIENTIST_SPRITE
-
-        local frames = {
-            { x = 58, y = 0, width = 60, height = 122 },
-            { width = 78 },
-            { width = 96 },
-            { width = 78 },
-            { x = 0, y = 122, width = 58, height = 126 },
-            { width = 74 },
-            { width = 94 },
-            { width = 82 }
-        }
-
-        local framesCount = spriteUtil.fillNeededFrameFields(frames)
-
-        sheetData = {
-            frames = frames,
-            sheetContentWidth = 370,
-            sheetContentHeight = 265
-        }
-
-        spriteSequence = {
-            {
-                name = spriteSequenceNames.RUNNING,
-                start = 1,
-                count = framesCount - 1,
-                time = spriteTime,
-                loopCount = 0
-            }
-        }
-    end
+    }
 
     local healthSheet = graphics.newImageSheet(imagePath, sheetData)
     local sprite = display.newSprite(healthSheet, spriteSequence)
