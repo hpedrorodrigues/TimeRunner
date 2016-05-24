@@ -1,5 +1,6 @@
 local importations = require(IMPORTATIONS)
 local composer = require(importations.COMPOSER)
+local googleAnalyticsManager = require(importations.GOOGLE_ANALYTICS_MANAGER)
 
 local transitionConfiguration = { time = 500, effect = 'crossFade' }
 
@@ -15,7 +16,7 @@ local function _goAbout()
     _removeCurrentScene()
     composer.removeHidden()
     composer.gotoScene('src.scenes.about', transitionConfiguration)
-    googleAnalytics.logScreenName('About')
+    googleAnalyticsManager.logAboutScreen()
 end
 
 local function _goMenu()
@@ -23,7 +24,7 @@ local function _goMenu()
     _removeCurrentScene()
     composer.removeHidden()
     composer.gotoScene('src.scenes.menu', transitionConfiguration)
-    googleAnalytics.logScreenName('Menu')
+    googleAnalyticsManager.logMenuScreen()
 end
 
 local function _goGameOver(score)
@@ -34,28 +35,28 @@ local function _goGameOver(score)
         effect = transitionConfiguration.effect,
         params = { score = score }
     })
-    googleAnalytics.logScreenName('Game Over')
+    googleAnalyticsManager.logGameOverScreen()
 end
 
 local function _goGame()
     _removeCurrentScene()
     composer.removeHidden()
     composer.gotoScene('src.scenes.game', transitionConfiguration)
-    googleAnalytics.logScreenName('Game')
+    googleAnalyticsManager.logGameScreen()
 end
 
 local function _goPreferences()
     _removeCurrentScene()
     composer.removeHidden()
     composer.gotoScene('src.scenes.preferences', transitionConfiguration)
-    googleAnalytics.logScreenName('Preferences')
+    googleAnalyticsManager.logPreferencesScreen()
 end
 
 local function _goTutorial()
     _removeCurrentScene()
     composer.removeHidden()
     composer.gotoScene('src.scenes.tutorial', transitionConfiguration)
-    googleAnalytics.logScreenName('Tutorial')
+    googleAnalyticsManager.logTutorialScreen()
 end
 
 return {

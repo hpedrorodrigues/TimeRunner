@@ -10,6 +10,7 @@ local soundUtil = require(importations.SOUND_UTIL)
 local viewUtil = require(importations.VIEW_UTIL)
 local i18n = require(importations.I18N)
 local adsManager = require(importations.ADS_MANAGER)
+local googleAnalyticsManager = require(importations.GOOGLE_ANALYTICS_MANAGER)
 
 local scene = composer.newScene()
 
@@ -40,13 +41,13 @@ function scene:create()
                 backgroundSound = soundUtil.playBackgroundSound()
             end
 
-            googleAnalytics.logEvent('UserAction', 'Sound', 'enable', (settings.isSoundEnabled()) and 1 or 0)
+            googleAnalyticsManager.logEvent('UserAction', 'Sound', 'enable', settings.isSoundEnabled())
         end
     })
 
     local soundTitle = viewUtil.createText({
         text = i18n.enableSound,
-        x = soundView.button.x + 250,
+        x = soundView.button.x + (i18n.isEnUS and 265 or 250),
         y = soundView.button.y,
         fontSize = 40
     })
@@ -67,7 +68,7 @@ function scene:create()
                 system.vibrate()
             end
 
-            googleAnalytics.logEvent('UserAction', 'Vibration', 'enable', (settings.isVibrationEnabled()) and 1 or 0)
+            googleAnalyticsManager.logEvent('UserAction', 'Vibration', 'enable', settings.isVibrationEnabled())
         end
     })
 
@@ -93,13 +94,13 @@ function scene:create()
                 settings.enableLargeSprites()
             end
 
-            googleAnalytics.logEvent('UserAction', 'Large Sprites', 'enable', (settings.isLargeSpritesEnabled()) and 1 or 0)
+            googleAnalyticsManager.logEvent('UserAction', 'Large Sprites', 'enable', settings.isLargeSpritesEnabled())
         end
     })
 
     local largeSpritesTitle = viewUtil.createText({
         text = i18n.enableLargeSprites,
-        x = largeSpritesView.button.x + 372,
+        x = largeSpritesView.button.x + (i18n.isEnUS and 327 or 372),
         y = largeSpritesView.button.y,
         fontSize = 40
     })

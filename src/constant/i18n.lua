@@ -23,7 +23,8 @@ if (system.getPreference('locale', 'identifier') == 'pt_BR') then
         aboutTitle = 'Sobre',
         menuTitle = 'Menu',
         yes = 'Sim',
-        no = 'Não'
+        no = 'Não',
+        isEnUS = false
     }
 else
     return {
@@ -50,6 +51,7 @@ else
         aboutTitle = 'About',
         menuTitle = 'Menu',
         yes = 'Yes',
-        no = 'No'
+        no = 'No',
+        isEnUS = true
     }
 end

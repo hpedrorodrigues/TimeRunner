@@ -46,5 +46,6 @@ return {
     SPRITE_SIZE = 'src.sprite.sprite_size',
     GOOGLE_ANALYTICS = 'plugin.googleAnalytics',
     ADS = 'plugin.coronaAds',
-    ADS_MANAGER = 'src.third_party.ads_manager'
+    ADS_MANAGER = 'src.third_party.ads_manager',
+    GOOGLE_ANALYTICS_MANAGER = 'src.third_party.google_analytics_manager'
 }

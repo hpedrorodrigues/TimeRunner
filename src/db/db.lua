@@ -6,7 +6,7 @@ local strings = require(importations.STRINGS)
 
 local db
 
-local function _init()
+local function _start()
     local dbPath = system.pathForFile(databaseConstants.DATABASE_NAME, system.DocumentsDirectory)
     db = sqlite3.open(dbPath)
 
@@ -33,6 +33,6 @@ end
 
 return {
     database = _database,
-    init = _init,
+    start = _start,
     printSqliteVersion = _printSqliteVersion
 }

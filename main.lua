@@ -8,16 +8,13 @@ local soundUtil = require(importations.SOUND_UTIL)
 local fileUtil = require(importations.FILE_UTIL)
 local constantUtil = require(importations.CONSTANT_UTIL)
 local memoryUtil = require(importations.MEMORY_UTIL)
-
-googleAnalytics = require(importations.GOOGLE_ANALYTICS)
-
-database.init()
-
+local googleAnalyticsManager = require(importations.GOOGLE_ANALYTICS_MANAGER)
 local settings = require(importations.SETTINGS)
 
+database.start()
+settings.start()
 defaults.set()
-
-googleAnalytics.init('Time Runner', 'UA-66231011-2')
+googleAnalyticsManager.start()
 
 if (settings.hasFirstAccess()) then
     sceneManager.goMenu()

@@ -3,7 +3,7 @@ local databaseConstants = require(importations.DATABASE_CONSTANTS)
 local databaseManager = require(importations.DATABASE)
 local strings = require(importations.STRINGS)
 
-local database = databaseManager.database()
+local database
 
 local FIRST_ACCESS_KEY = 'first_access'
 local ENABLE_SOUND_KEY = 'enable_sound'
@@ -12,6 +12,10 @@ local ENABLE_LARGE_SPRITES_KEY = 'enable_large_sprites'
 
 local TRUE = 1
 local FALSE = 0
+
+local function _start()
+    database = databaseManager.database()
+end
 
 local function _insertInitialValues()
     database:exec(databaseConstants.formatInitialSettingsScript({
@@ -115,6 +119,7 @@ local function _isLargeSpritesEnabled()
 end
 
 return {
+    start = _start,
     insertInitialValues = _insertInitialValues,
     enableSound = _enableSound,
     disableSound = _disableSound,
