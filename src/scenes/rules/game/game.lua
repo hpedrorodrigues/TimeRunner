@@ -15,6 +15,7 @@ local shootManager = require(importations.SHOOT_MANAGER_RULES)
 
 local sprite
 local initialDelayTime = 2000
+local spritesCreationTimer
 
 local function _scoreManager()
     return scoreManager
@@ -33,6 +34,10 @@ end
 local function _clear()
     spritesManager.cancel()
     emitterManager.cancel()
+
+    if (spritesCreationTimer ~= nil) then
+        timer.cancel(spritesCreationTimer)
+    end
 
     Runtime:removeEventListener(listener.COLLISION, collisionManager.control)
 
@@ -152,7 +157,7 @@ local function _apply(group, background, sp)
 
     physics.start()
     physics.setGravity(0, 15)
-    --    physics.setDrawMode('hybrid')
+--        physics.setDrawMode('hybrid')
 
     physics.addBody(bottomWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.bottomWallCollision })
     physics.addBody(leftWall, 'static', { friction = 0.5, bounce = 0.3, filter = filters.leftWallCollision })
@@ -168,7 +173,7 @@ local function _apply(group, background, sp)
 
     spritesManager.setGroup(group)
 
-    timer.performWithDelay(initialDelayTime, function()
+    spritesCreationTimer = timer.performWithDelay(initialDelayTime, function()
         spritesManager.create()
     end)
 

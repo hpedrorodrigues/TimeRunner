@@ -171,7 +171,10 @@ local function _create()
 end
 
 local function _cancel()
-    timer.cancel(spritesTimer)
+    if (spritesTimer ~= nil) then
+        timer.cancel(spritesTimer)
+    end
+
     Runtime:removeEventListener(listener.ENTER_FRAME, _spriteUpdate)
 
     _removeAllSprites()

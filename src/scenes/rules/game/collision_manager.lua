@@ -88,10 +88,6 @@ local function _control(event)
 
         scoreManager.increaseByAnimalName(enemy.animalName)
 
-        if (isVibrationEnabled) then
-            system.vibrate()
-        end
-
         shot.isDeleted = true
         enemy.isDeleted = true
     end
