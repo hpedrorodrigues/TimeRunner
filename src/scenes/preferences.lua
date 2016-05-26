@@ -114,8 +114,7 @@ function scene:create()
     largeSpritesView.button.width = 205.5
     largeSpritesView.button.height = 51
 
-    adsManager.set(adsManager.SUPPORTED_SCREENS.PREFERENCES)
-    adsManager.start()
+    adsManager.show(adsManager.SUPPORTED_SCREENS.PREFERENCES)
 
     viewUtil.addEndedTouchEventListener(background, function()
         soundView.button.alpha = viewUtil.alphaDefault

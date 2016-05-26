@@ -6,6 +6,7 @@ local eventUtil = require(importations.EVENT_UTIL)
 local sceneManager = require(importations.SCENE_MANAGER)
 local viewUtil = require(importations.VIEW_UTIL)
 local aboutCreator = require(importations.ABOUT_CREATOR)
+local adsManager = require(importations.ADS_MANAGER)
 
 local scene = composer.newScene()
 
@@ -23,10 +24,14 @@ function scene:create()
     aboutCreator.songsGroup(sceneGroup)
     aboutCreator.imagesGroup(sceneGroup)
 
+    adsManager.show(adsManager.SUPPORTED_SCREENS.ABOUT)
+
     eventUtil.setBackPressed(sceneManager.goMenu)
 end
 
 function scene:destroy()
+    adsManager.hide()
+
     local sceneGroup = self.view
 
     sceneGroup:removeSelf()

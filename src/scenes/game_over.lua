@@ -47,8 +47,7 @@ function scene:create(event)
         action = sceneManager.goMenu
     })
 
-    adsManager.set(adsManager.SUPPORTED_SCREENS.GAME_OVER)
-    adsManager.start()
+    adsManager.show(adsManager.SUPPORTED_SCREENS.GAME_OVER)
 
     sceneGroup:insert(background)
     sceneGroup:insert(gameOverTitle)

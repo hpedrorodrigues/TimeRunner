@@ -1,21 +1,23 @@
 local importations = require(IMPORTATIONS)
 local ads = require(importations.ADS)
 
-local APP_ID = 'ca-app-pub-1400363074358864~8485068036'
+local APP_KEY = 'b577d563-b843-447c-a470-fbb59dd075e4'
 
-local PREFERENCES_BANNER = 'ca-app-pub-1400363074358864/6868734039'
-local GAME_OVER_BANNER = 'ca-app-pub-1400363074358864/2438534439'
+local PREFERENCES_BANNER = 'bottom-banner-320x50'
+local GAME_OVER_BANNER = 'interstitial-1'
+local ABOUT_BANNER = PREFERENCES_BANNER
 
 local SUPPORTED_SCREENS = {
     PREFERENCES = 'preferences',
-    GAME_OVER = 'game_over'
+    GAME_OVER = 'game_over',
+    ABOUT = 'about'
 }
 
 local screenName
 
 local function _adsListener(event)
     if (event.phase == 'init') then
-        print('Corona Ads event: ad for "' .. tostring(event.placementId) .. '" placement requested')
+        print('Corona Ads event: initialization successful')
     elseif (event.phase == 'found') then
         print('Corona Ads event: ad for "' .. tostring(event.placementId) .. '" placement found')
     elseif (event.phase == 'failed') then
@@ -28,7 +30,7 @@ local function _adsListener(event)
 end
 
 local function _start()
-    ads.init(APP_ID, _adsListener)
+    ads.init(APP_KEY, _adsListener)
 end
 
 local function _hide()
@@ -38,27 +40,29 @@ local function _hide()
     elseif (screenName == SUPPORTED_SCREENS.GAME_OVER) then
 
         ads.hide(GAME_OVER_BANNER)
+    elseif (screenName == SUPPORTED_SCREENS.ABOUT) then
+
+        ads.hide(ABOUT_BANNER)
     end
 end
 
-local function _show()
+local function _show(sn)
+    screenName = sn
     if (screenName == SUPPORTED_SCREENS.PREFERENCES) then
 
         ads.show(PREFERENCES_BANNER, false)
     elseif (screenName == SUPPORTED_SCREENS.GAME_OVER) then
 
         ads.show(GAME_OVER_BANNER, false)
-    end
-end
+    elseif (screenName == SUPPORTED_SCREENS.ABOUT) then
 
-local function _set(sn)
-    screenName = sn
-    _show()
+        ads.show(ABOUT_BANNER, true)
+    end
 end
 
 return {
     start = _start,
     hide = _hide,
-    set = _set,
+    show = _show,
     SUPPORTED_SCREENS = SUPPORTED_SCREENS
 }
