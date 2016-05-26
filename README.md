@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/hpedrorodrigues/TimeRunner.svg?branch=master)](https://travis-ci.org/hpedrorodrigues/TimeRunner)
 
+Atualmente disponível na Play Store.
+
+[![Play Store Badge](./assets/images/docs/en-play-badge.png)](https://play.google.com/store/apps/details?id=com.hpedrorodrigues.TimeRunner)
+
 
 ### Sumário
 
