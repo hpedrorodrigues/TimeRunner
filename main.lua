@@ -19,7 +19,7 @@ googleAnalyticsManager.start()
 adsManager.start()
 
 if (settings.hasFirstAccess()) then
-    --    sceneManager.goMenu()
+    sceneManager.goMenu()
 else
     database.printSqliteVersion()
     settings.showAllSettings()
@@ -28,9 +28,8 @@ else
     memoryUtil.showMemoryInfo()
     settings.insertInitialValues()
     --    sceneManager.goTutorial()
+    sceneManager.goMenu()
 end
-
-sceneManager.goMenu()
 
 if (settings.isSoundEnabled()) then
     backgroundSound = soundUtil.playBackgroundSound()
